@@ -11,6 +11,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{float}
 \usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tocloft}
+
 
 
 \setlength{\parindent}{0pt}
@@ -20,7 +23,39 @@
 
 \begin{document}
 
-\section*{Chapter 1 Notes}
+\begin{titlepage}
+\centering
+
+\vspace*{3cm}
+
+{\LARGE MIE Lecture Notes}\\[0.4cm]
+{\large Probability and Statistics}\\[2cm]
+
+{\large Contents}
+
+\vspace{1cm}
+
+\noindent
+Chapter 1: \dotfill
+\hyperref[chap:one]{\pageref*{chap:one}}
+
+\vspace{0.5cm}
+
+\noindent
+Chapter 2: 
+\dotfill
+\hyperref[chap:two]{\pageref*{chap:two}}
+
+\vfill
+
+\end{titlepage}
+
+\newpage
+
+
+\section*{Chapter 1}
+\label{chap:one}
+
 
 \subsection*{Statistics Definitions}
 
@@ -30,11 +65,24 @@
 
 \vspace{0.5em}
 
-\textit{Probability vs Statistics:}
-\begin{itemize}
-    \item \textbf{Probability (deductive):} Population $\rightarrow$ Sample
-    \item \textbf{Statistics (inductive):} Sample $\rightarrow$ Population
-\end{itemize}
+\begin{center}
+\begin{tikzpicture}[
+    box/.style={draw, rectangle, minimum width=3cm, minimum height=1cm},
+    arrow/.style={->, thick}
+]
+
+\node[box] (pop) at (0,0) {Population};
+\node[box] (samp) at (5,0) {Sample};
+
+% top line
+\draw[arrow] (pop) to[bend left=15] node[above] {Probability (deductive)} (samp);
+
+% bottom line
+\draw[arrow] (samp) to[bend left=15] node[below] {Statistics Inference (inductive)} (pop);
+
+\end{tikzpicture}
+\end{center}
+
 
 \subsection*{Basic Terminology}
 \underline{Individuals}: Objects on which data are collected (people, animals, plots of land, etc.).\\
@@ -90,40 +138,170 @@ When examining a distribution, look for:
 \subsection*{Describing Distributions with Numbers}
 
 \underline{Central Tendency}: Describes where the data cluster or center.
+
+\underline{Central Tendency}: Describes where the data cluster or center.
 \begin{itemize}
     \item \underline{Mean}: average value
     \item \underline{Median}: middle value
 \end{itemize}
 
-The mean is more sensitive to extreme values than the median.
+\bigskip
 
-Changing a single data value will always change the mean, but may not change the median.
+\noindent
+\underline{Mean (Arithmetic Mean):}
+\[
+\boxed{
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+}
+\]
 
-If a distribution is exactly symmetric, the mean and median are equal.
+\bigskip
 
-\underline{Trimmed Mean}: The mean computed after removing extreme values. It is more resistant to outliers than the mean but uses more information than the median.
+\noindent
+\underline{Median:}
+\[
+\boxed{
+\tilde{x} =
+\begin{cases}
+x_{\left(\frac{n+1}{2}\right)}, & \text{if } n \text{ is odd} \\[6pt]
+\displaystyle \frac{x_{\left(\frac{n}{2}\right)} + x_{\left(\frac{n}{2}+1\right)}}{2}, & \text{if } n \text{ is even}
+\end{cases}
+}
+\]
+
+\bigskip
+
+\textbf{\textcolor{blue}{Theorem 1.1}}
+\begin{enumerate}
+    \item The mean is more sensitive to extreme values than the median.
+    \item Changing a single data value will always change the mean, but may not change the median.
+    \item If a distribution is exactly symmetric, the mean and median are equal.
+\end{enumerate}
+
+\bigskip
+
+\noindent
+\underline{Trimmed Mean:}  
+The mean computed after removing extreme values.
+
+\[
+\boxed{
+\bar{x}_{\text{trim}} = \frac{1}{n - 2k}
+\sum_{i=k+1}^{n-k} x_{(i)}
+}
+\]
+
+\noindent
+where \(k\) values are removed from both ends of the ordered data. (normally given in question like 10\% )
 
 \subsection*{Measures of Spread}
 
-\underline{Range}: Maximum minus minimum (very sensitive to extreme values).
+\underline{Range}:  
+Maximum minus minimum. Very sensitive to extreme values.
 
-\underline{Sample Variance}:
+\underline{Sample Variance}:  
+Measures the average squared deviation from the mean.
+
 \[
 \boxed{
 s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2
 }
 \]
 
-\underline{Standard Deviation}:
+\underline{Standard Deviation}:  
+The square root of the sample variance.
+
 \[
 \boxed{
 s = \sqrt{s^2}
 }
 \]
 
-\underline{Degrees of Freedom}: The number of independent pieces of information available to estimate variability.
+\underline{Degrees of Freedom}:  
+The number of independent pieces of information available to estimate variability.  
+For sample variance: $df = n - 1$.
+
+\subsection*{Plots}
+
+\underline{Scatter Plot}:  
+Used to display the relationship between two quantitative variables $(x, y)$.  
+A scatter plot helps identify trends, patterns, and associations between variables.
+
+\underline{Stem-and-Leaf Plot}:  
+An intermediate step between raw data and a frequency table.  
+Preserves the original data values while showing the distribution.
+
+\[
+\begin{array}{c|c}
+\text{Stem} & \text{Leaf} \\
+\hline
+1 & 2\;4\;7 \\
+2 & 1\;3\;5\;8 \\
+3 & 0\;4\;6
+\end{array}
+\]
+
+\underline{Relative Frequency Table}:  
+Shows the proportion of observations in each class.
+
+\[
+\begin{array}{c|c|c|c}
+\text{Class Interval} & \text{Class Midpoint} & \text{Frequency} & \text{Relative Frequency} \\
+\hline
+10\text{--}19 & 14.5 & 3 & 0.30 \\
+20\text{--}29 & 24.5 & 4 & 0.40 \\
+30\text{--}39 & 34.5 & 3 & 0.30
+\end{array}
+\]
+
+\underline{Histogram}:  
+A graphical representation of a frequency or relative frequency table using contiguous bars.
+
+When describing the shape of a histogram, we commonly classify it as:
+\begin{itemize}
+    \item \textbf{Symmetric}
+    \item \textbf{Skewed right} (positively skewed)
+    \item \textbf{Skewed left} (negatively skewed)
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.35cm]
+
+% Axes
+\draw[->] (0,0) -- (7,0) node[right]{Class};
+\draw[->] (0,0) -- (0,9) node[above]{Frequency};
+
+% Histogram bars (symmetric)
+\draw[fill=gray!20] (1,0) rectangle (2,2);
+\draw[fill=gray!20] (2,0) rectangle (3,5);
+\draw[fill=gray!20] (3,0) rectangle (4,7);
+\draw[fill=gray!20] (4,0) rectangle (5,5);
+\draw[fill=gray!20] (5,0) rectangle (6,2);
+
+% X-axis labels
+\node at (1.5,-0.8) {\small 10--19};
+\node at (2.5,-0.8) {\small 20--29};
+\node at (3.5,-0.8) {\small 30--39};
+\node at (4.5,-0.8) {\small 40--49};
+\node at (5.5,-0.8) {\small 50--59};
+
+% Trend line (smooth curve)
+\draw[thick]
+    plot[smooth] coordinates
+    {(1.5,2) (2.5,5) (3.5,7) (4.5,5) (5.5,2)};
+
+% Label
+\node[align=center] at (3.5,8.4) {\textbf{Symmetric distribution example}};
+
+\end{tikzpicture}
+\end{center}
+
+
+
 
 \section*{Chapter 2, Jan 9th}
+\label{chap:two}
+
 
 \underline{Experiment}: A process that generates an outcome.
 
@@ -277,7 +455,7 @@ A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
 
 \subsection*{Probability}
 
-$P(A)$ = probability of event $A$: the proportion of times the event occurs in infinitely many repetitions of the experiment.
+$P(A)$ = \underline{probability} of event $A$: the proportion of times the event occurs in infinitely many repetitions of the experiment.
 
 \medskip
 
@@ -576,6 +754,202 @@ P(\text{exactly one pair})
 \textcolor{red}{\text{Independent choices } \Rightarrow \binom{c}{1}^b}
 \]
 
+\section*{Chapter 2 continue, Jan 14}
 
+\subsection*{Review}
+
+\begin{enumerate}
+    \item \textit{\underline{Probability} is the proportion of times the event occurs in infinitely many repetitions of
+the experiment.}
+
+    \item \textit{$0 \le P(A) \le 1$}
+
+    \item \textit{$P(A) + P(A^c) = 1$}
+
+    \item \textit{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$}
+
+    \item \textit{
+    $
+    \begin{aligned}
+    P(A \cup B \cup C)
+    &= P(A) + P(B) + P(C) \\
+    &\quad - P(A \cap B) - P(A \cap C) - P(B \cap C) \\
+    &\quad + P(A \cap B \cap C)
+    \end{aligned}
+    $
+    }
+
+    \item \textit{\underline{Permutation}: A permutation counts ordered arrangements.}
+
+    \[
+    \boxed{
+    {}_nP_r = \frac{n!}{(n-r)!}
+    }
+    \]
+\end{enumerate}
+
+
+\subsection*{Example 1: Two fair dice}
+
+A pair of fair dice are rolled. Find the probability that the second die lands on a smaller value than the first.
+
+The outcomes where the second die is smaller than the first are represented below.
+
+\[
+\begin{array}{c|l}
+\text{First Die (Stem)} & \text{Second Die (Leaf)} \\ \hline
+2 & 1 \\
+3 & 1\;2 \\
+4 & 1\;2\;3 \\
+5 & 1\;2\;3\;4 \\
+6 & 1\;2\;3\;4\;5
+\end{array}
+\]
+
+There are 15 favorable outcomes and 36 total outcomes.
+
+\[
+P(\text{second}<\text{first}) = \frac{15}{36} = \frac{5}{12}.
+\]
+
+\subsection*{\underline{Conditional Probability}}
+
+The conditional probability of an event $B$ given that event $A$ has occurred is the probability that $B$ occurs when it is known that $A$ has occurred.
+
+\[
+\boxed{
+P(B \mid A) = \frac{P(A \cap B)}{P(A)}, \quad P(A) > 0
+}
+\]
+
+\subsection*{Example 2: Drinking Survey}
+
+\textit{
+A survey records the following data:
+}
+
+\[
+\begin{array}{c|cc|c}
+ & D & N & \text{Total} \\ \hline
+M & 19 & 41 & 60 \\
+F & 12 & 28 & 40 \\ \hline
+\text{Total} & 31 & 69 & 100
+\end{array}
+\]
+The symbols used above are defined as follows:
+
+\begin{itemize}
+    \item $M$: male
+    \item $F$: female
+    \item $D$: the individual drinks
+    \item $N$: the individual does not drink
+\end{itemize}
+
+\[
+P(D|M) = \frac{19}{60}
+\qquad
+P(M|D) = \frac{19}{31}
+\]
+
+\subsection*{Law of Total Probability}
+
+\textcolor{blue}{
+Theorem 2.3: If $B_1, \ldots, B_k$ form a partition (do not overlap but covers the whole sample space) of $S$ with $P(B_i)>0$, then for any event $A$,
+}
+
+\[
+P(A) = \sum_{i=1}^k P(A|B_i)P(B_i)
+\]
+\subsection*{Example 3: Monty Hall (3 doors)}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{c|c|c|c|c}
+Car location & Monty opens & Probability & Stay & Switch \\ \hline
+Door 1 & Door 2 & $\frac{1}{6}$ & Car & Goat \\ \hline
+Door 1 & Door 3 & $\frac{1}{6}$ & Car & Goat \\ \hline
+Door 2 & Door 3 & $\frac{1}{3}$ & Goat & Car \\ \hline
+Door 3 & Door 2 & $\frac{1}{3}$ & Goat & Car
+\end{tabular}
+\end{center}
+
+Staying wins only when the car is behind Door 1, so
+\[
+P(\text{win by staying})=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}.
+\]
+
+Switching wins when the car is behind Door 2 or Door 3, so
+\[
+P(\text{win by switching})=\frac{1}{3}+\frac{1}{3}=\frac{2}{3}.
+\]
+
+\subsection*{Example 4: Birthday Problem}
+
+Assume the following:
+\begin{itemize}
+    \item Leap years are ignored
+    \item All 365 birthdays are equally likely
+    \item Birthdays of different people are independent
+\end{itemize}
+
+\textbf{Question:}  
+What is the probability that at least two people share the same birthday in a group of $n$ people?
+
+\medskip
+
+Rather than computing this directly, we use the complement rule.
+
+\[
+P(\text{at least one match}) = 1 - P(\text{no match})
+\]
+
+\subsubsection*{Probability of no shared birthdays}
+
+\begin{itemize}
+    \item Person 1 can have any birthday: probability $1$
+    \item Person 2 must avoid that birthday: $\frac{364}{365}$
+    \item Person 3 must avoid the first two birthdays: $\frac{363}{365}$
+    \item $\dots$
+    \item Person $n$ must avoid the previous $n-1$ birthdays: $\frac{365-(n-1)}{365}$
+\end{itemize}
+
+Therefore,
+
+\[
+P(\text{no match})
+=
+\frac{365}{365}
+\cdot
+\frac{364}{365}
+\cdot
+\frac{363}{365}
+\cdots
+\frac{365-(n-1)}{365}
+\]
+
+or equivalently,
+
+\[
+P(\text{no match})
+=
+\prod_{k=0}^{n-1} \frac{365-k}{365}
+\]
+
+\subsubsection*{Final result}
+
+\[
+P(\text{at least one shared birthday})
+=
+1
+-
+\prod_{k=0}^{n-1} \frac{365-k}{365}
+\]
+
+\subsubsection*{Important values}
+
+\begin{itemize}
+    \item For $n = 23$: \quad $P(\text{at least one match}) \approx 0.507$
+    \item For $n = 57$: \quad $P(\text{at least one match}) \approx 0.99$
+\end{itemize}
 
 \end{document}
