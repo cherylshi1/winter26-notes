@@ -26,25 +26,100 @@
 \begin{titlepage}
 \centering
 
-\vspace*{3cm}
+\vspace*{1cm}
 
 {\LARGE MIE Lecture Notes}\\[0.4cm]
-{\large Probability and Statistics}\\[2cm]
-
+{\large Probability and Statistics}\\[0.4cm]
+{\large Cheryl Shi}\\[1cm]
 {\large Contents}
 
 \vspace{1cm}
 
 \noindent
-Chapter 1: \dotfill
+\textbf{Chapter 1: Probability Foundations}
+\dotfill
 \hyperref[chap:one]{\pageref*{chap:one}}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
+
+\noindent\hspace{0.5cm}
+1.1 Sampling Methods
+\dotfill
+\hyperref[sec:sampling]{\pageref*{sec:sampling}}
+
+\noindent\hspace{0.5cm}
+1.2 Data, Variables, and Distributions
+\dotfill
+\hyperref[sec:data_variables]{\pageref*{sec:data_variables}}
+
+\noindent\hspace{0.5cm}
+1.3 Graphical Representations of Data
+\dotfill
+\hyperref[sec:plots]{\pageref*{sec:plots}}
+
+\vspace{0.6cm}
 
 \noindent
-Chapter 2: 
+\textbf{Chapter 2: Random Variables and Distributions}
 \dotfill
 \hyperref[chap:two]{\pageref*{chap:two}}
+
+\vspace{0.3cm}
+
+\noindent\hspace{0.5cm}
+2.1 Experiments, Sample Spaces, and Events
+\dotfill
+\hyperref[sec:sample_space_events]{\pageref*{sec:sample_space_events}}
+
+\noindent\hspace{0.5cm}
+2.2 Event Operations and Probability Rules
+\dotfill
+\hyperref[sec:event_probability]{\pageref*{sec:event_probability}}
+
+\noindent\hspace{0.5cm}
+2.3 Counting Techniques and Equally Likely Outcomes
+\dotfill
+\hyperref[sec:counting]{\pageref*{sec:counting}}
+
+\noindent\hspace{0.5cm}
+2.4 Conditional Probability and Independence
+\dotfill
+\hyperref[sec:conditional]{\pageref*{sec:conditional}}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{Chapter 3: Statistical Inference}
+\dotfill
+\hyperref[chap:three]{\pageref*{chap:three}}
+
+\vspace{0.3cm}
+
+\noindent\hspace{0.5cm}
+3.1 Random Variables and Their Interpretation
+\dotfill
+\hyperref[sec:rv_definition]{\pageref*{sec:rv_definition}}
+
+\noindent\hspace{0.5cm}
+3.2 Discrete Random Variables
+\dotfill
+\hyperref[sec:rv_types]{\pageref*{sec:rv_types}}
+
+\noindent\hspace{0.5cm}
+3.3 Probability Mass Functions 
+\dotfill
+\hyperref[sec:pmf]{\pageref*{sec:pmf}}
+
+\noindent\hspace{0.5cm}
+3.4 Cumulative Distribution Function(CDF)
+\dotfill
+\hyperref[sec:cdf]{\pageref*{sec:cdf}}
+
+\noindent\hspace{0.5cm}
+3.5 Continuous Sample Space and Continuous Random Variables
+\dotfill
+\hyperref[sec:continuous_rv]{\pageref*{sec:continuous_rv}}
+
 
 \vfill
 
@@ -58,6 +133,7 @@ Chapter 2:
 
 
 \subsection*{Statistics Definitions}
+
 
 \textbf{Global definition:} Statistics involves collecting, organizing, summarizing, presenting, and analyzing data, as well as making inferences, conclusions, and decisions based on data.
 
@@ -91,8 +167,9 @@ Chapter 2:
 \underline{Sample}: A subset of individuals taken from the population.\\
 \underline{Statistical Inference}: Drawing conclusions about a population based on a sample.
 
+\section*{Sampling Methods}
+\label{sec:sampling}
 
-\subsection*{Sampling Methods}
 
 \underline{Simple Random Sample (SRS):}
 \begin{itemize}
@@ -110,6 +187,9 @@ Chapter 2:
         \textit{(one subgroup of the population created)}
   \item Ensures that important subgroups are neither over nor under represented.
 \end{itemize}
+
+\section*{Data, Variables, and Distributions}
+\label{sec:data_variables}
 
 \subsection*{Types of Variables}
 
@@ -221,7 +301,8 @@ s = \sqrt{s^2}
 The number of independent pieces of information available to estimate variability.  
 For sample variance: $df = n - 1$.
 
-\subsection*{Plots}
+\section*{Graphical Representations of Data}
+\label{sec:plots}
 
 \underline{Scatter Plot}:  
 Used to display the relationship between two quantitative variables $(x, y)$.  
@@ -302,6 +383,8 @@ When describing the shape of a histogram, we commonly classify it as:
 \section*{Chapter 2, Jan 9th}
 \label{chap:two}
 
+\section*{Experiments, Sample Spaces, and Events}
+\label{sec:sample_space_events}
 
 \underline{Experiment}: A process that generates an outcome.
 
@@ -350,6 +433,9 @@ C = \{ (x,y) \mid x^2 + y^2 \le 4 \}
 \]
 
 \vspace{1em}
+
+\section*{Event Operations and Probability Rules}
+\label{sec:event_probability}
 
 \underline{Event Operations}:
 \begin{itemize}
@@ -592,6 +678,9 @@ Find the probability that a randomly selected student earned A's on \underline{b
 \end{tikzpicture}
 \caption{Events $A$: A on midterm, $B$: A on final, with region counts and calculations}
 \end{figure}
+\section*{Counting Techniques and Equally Likely Outcomes}
+\label{sec:counting}
+
 
 \textcolor{blue}{\textbf{Theorem 2.2 (Equally Likely Outcomes):}}  
 
@@ -810,6 +899,9 @@ There are 15 favorable outcomes and 36 total outcomes.
 \[
 P(\text{second}<\text{first}) = \frac{15}{36} = \frac{5}{12}.
 \]
+
+\section*{Conditional Probability and Independence}
+\label{sec:conditional}
 
 \subsection*{\underline{Conditional Probability}}
 
@@ -1287,5 +1379,473 @@ P(D \mid \text{test says } D^c)
 P(D \mid \text{test says } D^c) \approx 0.00212
 }
 \]
+
+\section*{Chapter 3 — January 19}
+\label{chap:three}
+\section*{Random Variables and Their Interpretation}
+\label{sec:rv_definition}
+
+\textbf{Definition:}  
+A \underline{random variable (r.v.)} is a rule that assigns a \textbf{real number} to each outcome in the sample space.
+\\
+\textbf{Alternative definition:}  A \underline{random variable} is a function that takes the outcome of an experiment and assigns it a number so that probabilities can be calculated.
+
+\vspace{0.5em}
+
+\subsection*{Example 1: Three Electronic Components}
+
+Each component is classified as either defective (D) or non-defective (N).
+
+\[
+S = \{NNN, DNN, NDN, NND, DDN, DND, NDD, DDD\}
+\]
+
+\begin{itemize}
+\item \textbf{Defective (D):} the component does not meet required specifications and fails inspection.
+\item \textbf{Non-defective (N):} the component meets specifications and passes inspection.
+\end{itemize}
+
+Define the random variable
+\[X= \text{number of defective components}.
+\]
+
+Then:
+\[
+\begin{aligned}
+X = 0 &\quad \text{for } \{NNN\} \\
+X = 1 &\quad \text{for } \{DNN, NDN, NND\} \\
+X = 2 &\quad \text{for } \{DDN, DND, NDD\} \\
+X = 3 &\quad \text{for } \{DDD\}
+\end{aligned}
+\]
+
+Thus, the possible values of \(X\) are:
+\[
+\{0,1,2,3\}.
+\]
+
+\vspace{0.5em}
+
+\subsection*{Example 2: One Component (Dummy Variable)}
+
+\[
+S = \{D, N\}
+\]
+
+Define the random variable
+\[
+X =
+\begin{cases}
+1, & \text{if the component is defective (D)} \\
+0, & \text{if the component is non-defective (N)}
+\end{cases}
+\]
+
+This is called a \textbf{dummy variable} because the outcome is categorical, but is encoded numerically. 
+\\A \underline{dummy variable} is a special type of random variable that assigns numerical labels to categorical outcomes, where the numbers have no quantitative meaning beyond identification.
+
+
+\vspace{0.5em}
+
+\subsection*{Discrete Random Variables}
+\label{sec:rv_types}
+
+
+\textbf{Definition:}  
+A random variable is called \underline{discrete} if its set of possible values is \textbf{countable} (finite or countably infinite).
+
+\vspace{0.5em}
+
+\vspace{0.5em}\subsection*{Example 3: Sampling Until First Defective}
+
+Components are tested one(independently) at a time until the first defective component is observed.
+
+\[
+S = \{D,\ ND,\ NND,\ NNND,\ldots\}
+\]
+
+Define
+\[X = \text{number of components tested until the first defective}.
+\]
+
+Then:
+\[
+\begin{aligned}
+X = 1 &\quad \text{for } \{D\} \\
+X = 2 &\quad \text{for } \{ND\} \\
+X = 3 &\quad \text{for } \{NND\} \\
+&\vdots
+\end{aligned}
+\]
+
+Hence,
+\[
+X = 1,2,3,\ldots
+\]
+
+Since the possible values can be listed, \(X\) is a \underline{discrete random variable}.
+
+\textbf{Non-discrete version of the same experiment:}
+
+Define
+\[
+Y = \text{time (in seconds) until the first defective component is observed}.
+\]
+
+Since \(Y\) can take any real value in \([0,\infty)\), it cannot be listed and is therefore a \underline{continuous (non-discrete) random variable}.
+
+
+\subsection*{Discrete vs.\ Continuous Random Variables}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Discrete Random Variable} & \textbf{Continuous Random Variable} \\
+\hline
+Counts things & Measures things \\
+\hline
+Possible values are countable & Possible values fill an interval \\
+\hline
+$P(X = x)$ can be $> 0$ & $P(X = x) = 0$ for all $x$ \\
+\hline
+Uses a probability mass function (PMF) & Uses a probability density function (PDF) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Probability Mass Function (PMF)}
+\label{sec:pmf}
+
+
+\textbf{Definition:}  
+
+Let \(X\) be a discrete random variable.  
+The \underline{probability mass function (PMF)} of \(X\), denoted \(f(x)\), is defined by:
+
+\[
+\boxed{
+\begin{aligned}
+&1)\quad f(x) \ge 0 \quad \text{for all } x \\
+&2)\quad \sum_x f(x) = 1
+\end{aligned}
+}
+\]
+
+
+\textbf{Note:}
+\begin{itemize}
+\item Capital \(X\): random variable
+\item Lowercase \(x\): a specific value
+\end{itemize}
+
+\subsection*{Bernoulli and Binomial Random Variables}
+\vspace{0.5em}
+
+\subsubsection*{I. Bernoulli Random Variable (Single Trial)}
+
+A \underline{Bernoulli random variable: X} models a single experiment with only two possible outcomes: success or failure.
+
+\[
+X =
+\begin{cases}
+1, & \text{success} \\
+0, & \text{failure}
+\end{cases}
+\]
+
+If \(p = P(X=1)\), then the PMF is
+\[
+\begin{array}{c|cc}
+x & 0 & 1 \\
+\hline
+P(X=x) & 1-p & p
+\end{array}
+\]
+
+Here, \(p\) is the probability of success (e.g.\ observing a defective component).
+
+\vspace{1em}
+
+\subsubsection*{Binomial Random Variable (Multiple Bernoulli Trials)}
+
+The \underline{binomial random variable} extends the Bernoulli case to multiple independent trials.
+
+\textbf{Definition:}  
+
+A random variable \(X\) is called a binomial random variable if it represents the number of successes in \(n\) independent Bernoulli trials, each with success probability \(p\).
+
+\[
+X = \text{number of successes in } n \text{ trials}
+\]
+
+In this case,
+\[
+X \sim \text{Bin}(n,p)
+\]
+and the probability mass function is
+\[
+\fbox{
+$P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0,1,\ldots,n.$
+}
+\]
+
+\vspace{0.5em}
+
+\subsubsection*{Conditions for a Binomial Model}
+
+A binomial model applies only if:
+\begin{itemize}
+\item each trial has exactly two outcomes (success or failure),
+\item the probability of success \(p\) is the same for every trial,
+\item the trials are independent,
+\item the number of trials \(n\) is fixed.
+\end{itemize}
+
+\vspace{1em}
+
+\subsubsection*{Example: Three Components Tested}
+
+Assume each component is defective with probability
+\[
+p = 0.1, \quad n = 3.
+\]
+where p = P(a single component is defective), n = number of trials 
+
+Let
+\[
+X = \text{number of defective components}.
+\]
+
+\[
+\begin{array}{c|c}
+x & P(X = x) \\ \hline
+0 & \binom{3}{0}(0.9)^3 = 0.729 \\
+1 & \binom{3}{1}(0.1)(0.9)^2 = 0.243 \\
+2 & \binom{3}{2}(0.1)^2(0.9) = 0.027 \\
+3 & \binom{3}{3}(0.1)^3 = 0.001
+\end{array}
+\]
+
+\[
+0.729 + 0.243 + 0.027 + 0.001 = 1.
+\]
+
+
+\begin{center}
+\begin{tikzpicture}
+
+% Axes
+\draw[->] (-0.5,0) -- (4.5,0) node[right] {$x$};
+\draw[->] (0,0) -- (0, 3.5) node[above] {$P(X=x)$};
+
+% Y-axis labels
+\node[left] at (0,3) {$0.729$};
+\node[left] at (0,2) {$0.243$};
+\node[left] at (0, 1) {$0.027$};
+\node[left] at (0,0.5) {$0.001$};
+
+% Bars (NOTE: last bar is artificially boosted for visibility)
+\draw[fill=blue!40] (0.7,0) rectangle (1.3,3);
+\draw[fill=blue!40] (1.7,0) rectangle (2.3,2);
+\draw[fill=blue!40] (2.7,0) rectangle (3.3,1);
+\draw[fill=blue!40] (3.7,0) rectangle (4.3,0.5); % boosted height
+
+% X labels
+\node at (1, -0.06) {0};
+\node at (2, -0.06) {1};
+\node at (3, -0.06) {2};
+\node at (4, -0.06) {3};
+
+% Value labels on bars
+\node[above] at (1,3) {$0.729$};
+\node[above] at (2,2) {$0.243$};
+\node[above] at (3,1) {$0.027$};
+\node[above] at (4,0.5) {$0.001$};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Geometric Random Variable}
+
+\subsubsection*{Example: Sampling Until First Defective}
+
+Components are sampled one at a time until the first defective component is observed.  
+Assume the probability that a component is defective is
+\[
+p = 0.1.
+\]
+
+Define the random variable
+\[
+X = \text{number of samples collected until the first defective}.
+\]
+
+\[
+\begin{array}{c|c}
+x & P(X = x) = f(x) \\ \hline
+1 & 0.1 \\
+2 & 0.9(0.1) \\
+3 & 0.9^2(0.1) \\
+\vdots & \vdots
+\end{array}
+\]
+
+\subsubsection*{Geometric Random Variable}
+
+\textbf{Definition:}  
+
+A random variable \(X\) is called a \underline{geometric random variable} if it represents the number of trials needed to obtain the first success in a sequence of independent Bernoulli trials with success probability \(p\).
+
+\[
+\boxed{
+P(X = x) = (1-p)^{x-1}p, \quad x = 1,2,3,\ldots
+}
+\]
+
+In this example,
+\[
+P(X = x) = 0.9^{x-1}(0.1).
+\]
+
+\subsubsection*{Verification That Probabilities Sum to 1}
+
+\[
+\sum_{x=1}^{\infty} 0.9^{x-1}(0.1)
+= 0.1 \sum_{x=0}^{\infty} 0.9^{x}
+= 0.1 \left( \frac{1}{1-0.9} \right)
+= 1.
+\]
+
+\subsection*{Cumulative Distribution Function (CDF)}
+\label{sec:cdf}
+
+
+\textbf{Definition:}  
+
+The \underline{cumulative distribution function (CDF)} of a discrete random variable \(X\) with PMF \(f(x)\) is defined as
+\[
+\boxed{
+F(x) = P(X \le x) = \sum_{t \le x} f(t), \quad -\infty < x < \infty.
+}
+\]
+
+
+\subsection*{Example: Binomial Distribution (Three Components)}
+
+Let \(X\) be the number of defective components when three components are tested, with
+\[
+P(X=0)=0.729,\quad P(X=1)=0.243,\quad P(X=2)=0.027,\quad P(X=3)=0.001.
+\]
+
+\[
+\begin{aligned}
+F(0) &= P(X \le 0) = 0.729 \\
+F(1) &= P(X \le 1) = 0.729 + 0.243 = 0.972 \\
+F(2) &= P(X \le 2) = 0.729 + 0.243 + 0.027 = 0.999 \\
+F(3) &= P(X \le 3) = 0.729 + 0.243 + 0.027 + 0.001 = 1
+\end{aligned}
+\]
+
+Thus, the CDF can be written as
+\[
+F(x) =
+\begin{cases}
+0, & x < 0 \\
+0.729, & 0 \le x < 1 \\
+0.972, & 1 \le x < 2 \\
+0.999, & 2 \le x < 3 \\
+1, & x \ge 3
+\end{cases}
+\]
+
+\subsection*{Properties of the CDF}
+
+\begin{itemize}
+\item \(F(x)\) is \underline{monotone non-decreasing}.
+\item If \(x < y\), then \(F(x) \le F(y)\).
+\item \(0 \le F(x) \le 1\).
+\end{itemize}
+\textbf{Note:} A function is \textbf{monotone} non-decreasing if its value never decreases as the input increases.
+
+
+\subsection*{Using the CDF to Compute Probabilities}
+
+For \(a < b\),
+\[
+P(a < X \le b) = F(b) - F(a).
+\]
+
+Example:
+\[
+P(0 < X \le 2) = F(2) - F(0) = 0.999 - 0.729 = 0.27.
+\]
+\subsection*{CDF Histogram (Step Function)}
+
+\begin{center}
+\begin{tikzpicture}
+
+% Axes
+\draw[->] (-0.5,0) -- (4.5,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,4) node[above] {$F(x)$};
+
+% Horizontal steps
+\draw[thick] (0,0.729) -- (1,0.729);
+\draw[thick] (1,1.5) -- (2,1.5);
+\draw[thick] (2,2.5) -- (3,2.5);
+\draw[thick] (3,3.5) -- (4,3.5);
+
+% Vertical jumps
+% Vertical jumps (correct)
+\draw[thick] (0,0) -- (0,0.729);
+\draw[thick] (1,0.729) -- (1,1.5);
+\draw[thick] (2,1.5) -- (2,2.5);
+\draw[thick] (3,2.5) -- (3,3.5);
+
+% Dots (right-continuous)
+\fill (0,0.729) circle (2pt);
+\fill (1,1.5) circle (2pt);
+\fill (2, 2.5) circle (2pt);
+\fill (3,3.5) circle (2pt);
+
+% Open dots (left limits)
+\draw (1,0.729) circle (2pt);
+\draw (2,1.5) circle (2pt);
+\draw (3,2.5) circle (2pt);
+
+% Labels
+\node[left] at (0,0.729) {$0.729$};
+\node[left] at (0,1.5) {$0.972$};
+\node[left] at (0,2.5) {$0.999$};
+\node[left] at (0,3.5) {$1$};
+
+\node at (0,-0.07) {0};
+\node at (1,-0.07) {1};
+\node at (2,-0.07) {2};
+\node at (3,-0.07) {3};
+
+\end{tikzpicture}
+\end{center}
+
+\textbf{Note:} For a discrete random variable, the \underline{PMF} is drawn as a bar chart since it shows probabilities at individual points, while the \underline{CDF} is drawn as a step function since it represents cumulative probability and is monotone non-decreasing.
+
+
+\subsection*{Continuous Sample Space and Continuous Random Variables}
+\label{sec:continuous_rv}
+
+
+If the sample space contains an infinite number of outcomes equal to the number of points on a line segment, it is called a \underline{continuous sample space}.
+
+A \underline{continuous random variable} has
+\[
+\boxed{
+P(X = x) = 0 \quad \text{for all } x,
+}
+\]
+so probabilities are computed over intervals instead of single values.
+\\
+\\
+\textbf{*Alternative definition}: A \underline{continuous sample} space contains infinitely many outcomes, like the points on a line segment.  
+For a \underline{continuous random variable}, the probability of taking any exact value is zero, i.e.\ $P(X=x)=0$ for all $x$.  
+Therefore, probabilities are computed over intervals rather than at single points.
 
 \end{document}

@@ -1,0 +1,141 @@
+\documentclass[9pt]{article}
+
+% -----------------------------
+% Page + spacing (MAX DENSITY)
+% -----------------------------
+\usepackage[margin=0.5in]{geometry}
+\usepackage{setspace}
+\setstretch{1.0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% -----------------------------
+% Fonts
+% -----------------------------
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% -----------------------------
+% Math
+% -----------------------------
+\usepackage{amsmath, amssymb}
+
+% -----------------------------
+% Two-column layout
+% -----------------------------
+\usepackage{multicol}
+\setlength{\columnsep}{0.3in}
+
+% -----------------------------
+% Remove page numbers
+% -----------------------------
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{multicols}{2}
+
+\[
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+\]
+
+\[
+\tilde{x} =
+\begin{cases}
+x_{\left(\frac{n+1}{2}\right)}, & n \text{ odd} \\
+\dfrac{x_{(n/2)} + x_{(n/2+1)}}{2}, & n \text{ even}
+\end{cases}
+\]
+
+\[
+\bar{x}_{\text{trim}} =
+\frac{1}{n - 2k}
+\sum_{i=k+1}^{n-k} x_{(i)}
+\]
+
+\[
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2
+\]
+
+\[
+s = \sqrt{s^2}
+\qquad
+\text{df} = n-1
+\]
+
+\[
+0 \le P(A) \le 1
+\qquad
+P(A)+P(A^c)=1
+\]
+
+\[
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+\]
+
+\[
+\begin{aligned}
+P(A\cup B\cup C)
+&= P(A)+P(B)+P(C) \\
+&\quad -P(A\cap B)-P(A\cap C)-P(B\cap C) \\
+&\quad +P(A\cap B\cap C)
+\end{aligned}
+\]
+
+\[
+P\!\left(\bigcup_{i=1}^n A_i\right)=\sum_{i=1}^n P(A_i)
+\quad (\text{mutually exclusive})
+\]
+
+\[
+P(A)=\frac{|A|}{|S|}
+\]
+
+\[
+nP_r=\frac{n!}{(n-r)!}
+\]
+
+\[
+P(B\mid A)=\frac{P(A\cap B)}{P(A)}, \quad P(A)>0
+\]
+
+\[
+P(A)=\sum_{i=1}^k P(A\mid B_i)P(B_i)
+\]
+
+\[
+P(B_r\mid A)=
+\frac{P(B_r)P(A\mid B_r)}
+{\sum_{i=1}^k P(B_i)P(A\mid B_i)}
+\]
+
+\[
+f(x)\ge0
+\qquad
+\sum_x f(x)=1
+\]
+
+\[
+P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}
+\]
+
+\[
+P(X=x)=(1-p)^{x-1}p
+\]
+
+\[
+F(x)=P(X\le x)=\sum_{t\le x} f(t)
+\]
+
+\[
+P(a<X\le b)=F(b)-F(a)
+\]
+
+\[
+P(X=x)=0 \quad (\text{continuous})
+\]
+
+\end{multicols}
+
+\end{document}
