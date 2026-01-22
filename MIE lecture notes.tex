@@ -1,20 +1,82 @@
+% !TEX program = pdflatex
 \documentclass[10pt]{article}
 
+% ---------- PACKAGES ----------
 \usepackage[margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{setspace}
 \usepackage{amsmath, amssymb}
+
+\usepackage{xcolor}
+\definecolor{softpink}{rgb}{0.99, 0.74, 0.71}
+
 \usepackage{tikz}
-\usetikzlibrary{shapes}
+\usetikzlibrary{shapes,patterns}
+
 \usepackage{enumitem}
 \usepackage[normalem]{ulem}
 \usepackage{float}
-\usepackage{xcolor}
+
 \usepackage[hidelinks]{hyperref}
 \usepackage{tocloft}
 
+\usepackage[most]{tcolorbox}
 
+% ---------- GRAPH SYSTEM (pgfplots + cue + candycolors) ----------
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% ---------- BABY CANDY COLORS ----------
+\definecolor{babyblue}{rgb}{0.68, 0.85, 0.90}
+\definecolor{babypink}{rgb}{1.00, 0.80, 0.86}
+\definecolor{babyyellow}{rgb}{1.00, 0.95, 0.70}
+\definecolor{babyorange}{rgb}{1.00, 0.82, 0.65}
+\definecolor{babygreen}{rgb}{0.75, 0.90, 0.75}
+
+
+\pgfplotsset{
+    candycolors/.style={
+        ybar,
+        bar width=18pt,
+        draw=black,
+        fill=softpink!60,
+        axis lines=left,
+        tick style={black},
+        label style={black},
+        title style={black,font=\bfseries},
+        major grid style={dashed,gray!30},
+        ymajorgrids=true,
+        xmajorgrids=false
+    }
+}
+\pgfplotsset{
+    candycycle/.style={
+        cycle list={
+            {fill=babyblue,   draw=black},
+            {fill=babypink,   draw=black},
+            {fill=babyyellow, draw=black},
+            {fill=babyorange, draw=black},
+            {fill=babygreen,  draw=black}
+        }
+    }
+}
+
+
+\newcommand{\cue}[2][]{%
+\begin{tikzpicture}
+\begin{axis}[
+    candycolors,
+    width=0.9\textwidth,
+    height=6cm,
+    enlargelimits=false,
+    ymin=0,
+    #1
+]
+#2
+\end{axis}
+\end{tikzpicture}
+}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.35em}
@@ -251,14 +313,26 @@ x_{\left(\frac{n+1}{2}\right)}, & \text{if } n \text{ is odd} \\[6pt]
 
 \bigskip
 
-\textbf{\textcolor{blue}{Theorem 1.1}}
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!3,
+    colframe=softpink!70!black,
+    colbacktitle=softpink,
+    coltitle=black,
+    fonttitle=\bfseries,
+    title=Theorem 1.1,
+    width=0.9\textwidth
+]
 \begin{enumerate}
     \item The mean is more sensitive to extreme values than the median.
     \item Changing a single data value will always change the mean, but may not change the median.
     \item If a distribution is exactly symmetric, the mean and median are equal.
 \end{enumerate}
+\end{tcolorbox}
+\end{center}
 
 \bigskip
+
 
 \noindent
 \underline{Trimmed Mean:}  
@@ -346,37 +420,28 @@ When describing the shape of a histogram, we commonly classify it as:
 \end{itemize}
 
 \begin{center}
-\begin{tikzpicture}[x=0.9cm,y=0.35cm]
+\cue[
+    candycycle,
+    xlabel={Class},
+    ylabel={Frequency},
+    title={\textbf{Symmetric distribution example}},
+    xmin=0.5, xmax=5.5,
+    ymin=0, ymax=9,
+    xtick={1,2,3,4,5},
+    xticklabels={10--19,20--29,30--39,40--49,50--59},
+    enlarge x limits=0.15
+]{
+    \addplot coordinates {(1,2)};
+    \addplot coordinates {(2,5)};
+    \addplot coordinates {(3,7)};
+    \addplot coordinates {(4,5)};
+    \addplot coordinates {(5,2)};
 
-% Axes
-\draw[->] (0,0) -- (7,0) node[right]{Class};
-\draw[->] (0,0) -- (0,9) node[above]{Frequency};
-
-% Histogram bars (symmetric)
-\draw[fill=gray!20] (1,0) rectangle (2,2);
-\draw[fill=gray!20] (2,0) rectangle (3,5);
-\draw[fill=gray!20] (3,0) rectangle (4,7);
-\draw[fill=gray!20] (4,0) rectangle (5,5);
-\draw[fill=gray!20] (5,0) rectangle (6,2);
-
-% X-axis labels
-\node at (1.5,-0.8) {\small 10--19};
-\node at (2.5,-0.8) {\small 20--29};
-\node at (3.5,-0.8) {\small 30--39};
-\node at (4.5,-0.8) {\small 40--49};
-\node at (5.5,-0.8) {\small 50--59};
-
-% Trend line (smooth curve)
-\draw[thick]
-    plot[smooth] coordinates
-    {(1.5,2) (2.5,5) (3.5,7) (4.5,5) (5.5,2)};
-
-% Label
-\node[align=center] at (3.5,8.4) {\textbf{Symmetric distribution example}};
-
-\end{tikzpicture}
+    % Smooth guide curve
+    \addplot[smooth, thick, black]
+        coordinates {(1,2) (2,5) (3,7) (4,5) (5,2)};
+}
 \end{center}
-
 
 
 
@@ -544,12 +609,24 @@ $P(A)$ = \underline{probability} of event $A$: the proportion of times the event
 
 \medskip
 
-\textcolor{blue}{\textbf{Theorem2.1:}}
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!3,
+    colframe=softpink!70!black,
+    colbacktitle=softpink,
+    coltitle=black,
+    fonttitle=\bfseries,
+    title=Theorem 2.1,
+    width=0.9\textwidth
+]
 \[
 0 \le P(A) \le 1
 \]
+\end{tcolorbox}
+\end{center}
 
 \medskip
+
 
 \fbox{
 \parbox{0.95\textwidth}{
@@ -682,16 +759,33 @@ Find the probability that a randomly selected student earned A's on \underline{b
 \label{sec:counting}
 
 
-\textcolor{blue}{\textbf{Theorem 2.2 (Equally Likely Outcomes):}}  
+\medskip
 
-If the sample space $S$ has a finite number of outcomes and all outcomes are equally likely, then for any event $A$,
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!5,
+    colframe=softpink!70!black,
+    colbacktitle=softpink,
+    coltitle=black,
+    fonttitle=\bfseries,
+    title=Theorem 2.2 (Equally Likely Outcomes),
+    width=0.9\textwidth
+]
+If the sample space \(S\) has a finite number of outcomes and all outcomes are equally likely, then for any event \(A\),
 \[
-P(A) = \frac{|A|}{|S|}
+P(A) = \frac{|A|}{|S|}.
 \]
 
-where  \\
-\text{A: the event of interest (a subset of the sample space $S$),}\\
-\text{S: the sample space, i.e.\ the set of all possible outcomes.}
+where
+\[
+|A| = \text{number of outcomes in event } A,
+\qquad
+|S| = \text{number of outcomes in the sample space}.
+\]
+\end{tcolorbox}
+\end{center}
+
+\medskip
 
 
 \subsection*{Example 1: Poker Hands Basics}
@@ -944,13 +1038,28 @@ P(M|D) = \frac{19}{31}
 
 \subsection*{Law of Total Probability}
 
-\textcolor{blue}{
-Theorem 2.3: If $B_1, \ldots, B_k$ form a partition (do not overlap but covers the whole sample space) of $S$ with $P(B_i)>0$, then for any event $A$,
-}
+\medskip
 
+\begin{center}
+\begin{tcolorbox}[
+    colback=white,
+    colframe=softpink!70!black,
+    colbacktitle=softpink,
+    coltitle=black,
+    fonttitle=\bfseries,
+    title=Theorem 2.3 (Law of Total Probability),
+    width=0.9\textwidth
+]
+If \(B_1, B_2, \ldots, B_k\) form a partition of the sample space \(S\) with \(P(B_i) > 0\) for all \(i\), then for any event \(A\),
 \[
-P(A) = \sum_{i=1}^k P(A|B_i)P(B_i)
+P(A) = \sum_{i=1}^k P(A \mid B_i)\,P(B_i).
 \]
+\end{tcolorbox}
+\end{center}
+
+\medskip
+
+
 \subsection*{Example 3: Monty Hall (3 doors)}
 
 \begin{center}
@@ -1230,9 +1339,19 @@ P(C^c \mid \text{system works})
 }
 \]
 
-\subsection*{\textcolor{blue}{Theorem of Total Probability}}
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!5,
+    colframe=softpink!70!black,
+    coltitle=black,
+    colbacktitle=softpink,
+    title=\textbf{Theorem of Total Probability},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
 
-Let $B_1, B_2, \ldots, B_k$ be a partition of the sample space $S$ with
+Let $B_1, B_2, \ldots, B_k$ be a \underline{partition} of the sample space $S$ such that
 $P(B_i) > 0$ for all $i$.
 Then for any event $A \subseteq S$,
 
@@ -1244,12 +1363,25 @@ P(A)
 }
 \]
 
-\subsection*{\textcolor{blue}{Theorem: Bayes' Rule (1701--1761)}}
+\end{tcolorbox}
+\end{center}
 
-Let $B_1, B_2, \ldots, B_k$ be a partition of the sample space $S$ such that
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!5,
+    colframe=softpink!70!black,
+    coltitle=black,
+    colbacktitle=softpink,
+    title=\textbf{Theorem: Bayes' Rule (1701--1761)},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+
+Let $B_1, B_2, \ldots, B_k$ be a \underline{partition} of the sample space $S$ such that
 $P(B_i) > 0$ for $i = 1,\ldots,k$.
-For any event $A \subseteq S$ (in) with $P(A) > 0$,
-\
+For any event $A \subseteq S$ with $P(A) > 0$,
+
 \[
 \boxed{
 P(B_r \mid A)
@@ -1259,36 +1391,44 @@ P(B_r \mid A)
 }
 \]
 
-\begin{figure}[h]
+\end{tcolorbox}
+\end{center}
+
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[scale=1]
 
 % Sample space
 \draw[thick] (0,0) rectangle (10,4);
-\node at (5,4.3) {$S$};
+\node[above] at (5,4) {$S$};
 
-% Partition blocks
-\draw (0,0) rectangle (3.3,4);
-\draw (3.3,0) rectangle (6.6,4);
-\draw (6.6,0) rectangle (10,4);
+% Partition blocks (B1, B2, B3)
+\draw[thick] (0,0) rectangle (3.3,4);
+\draw[thick] (3.3,0) rectangle (6.6,4);
+\draw[thick] (6.6,0) rectangle (10,4);
 
 \node at (1.65,3.6) {$B_1$};
 \node at (4.95,3.6) {$B_2$};
 \node at (8.3,3.6) {$B_3$};
 
-% Event A intersections
-\fill[gray!30] (1,1) rectangle (2.3,2.5);
-\fill[gray!30] (4,0.8) rectangle (5.8,2.8);
-\fill[gray!30] (7.2,1.2) rectangle (8.6,2);
+% A cap Bi regions (filled baby candy colors)
+\fill[babyblue!40,   opacity=0.85] (1.0,1.0) rectangle (2.3,2.5);
+\fill[babypink!40,   opacity=0.85] (4.0,0.8) rectangle (5.8,2.8);
+\fill[babygreen!40,  opacity=0.85] (7.2,1.2) rectangle (8.6,2.0);
 
-\node at (1.65,0.6) {$A\cap B_1$};
-\node at (4.95,0.6) {$A\cap B_2$};
-\node at (8.3,0.6) {$A\cap B_3$};
+% Optional: outline the A cap Bi regions for clarity
+\draw[thick] (1.0,1.0) rectangle (2.3,2.5);
+\draw[thick] (4.0,0.8) rectangle (5.8,2.8);
+\draw[thick] (7.2,1.2) rectangle (8.6,2.0);
+
+% Labels for intersections
+\node at (1.65,0.55) {$A \cap B_1$};
+\node at (4.95,0.55) {$A \cap B_2$};
+\node at (8.3,0.55) {$A \cap B_3$};
 
 \end{tikzpicture}
-\caption{Visual interpretation of Bayes’ Rule}
+\caption{Partition of $S$ into $B_1,B_2,B_3$ with shaded regions $A\cap B_i$}
 \end{figure}
-
 
 \subsection*{Example (Medical Test)}
 
@@ -1319,6 +1459,44 @@ P(\text{test says } D \mid D) = 1 - 0.20 = 0.80
 $1 - P(\text{test says } D^c \mid D)$ is called the \underline{sensitivity} of the test,
 and $1 - P(\text{test says } D \mid D^c)$ is called the \underline{specificity}.
 }
+\begin{center}
+\begin{tikzpicture}[scale=6]
+
+% Outer square (whole population)
+\draw[thick] (0,0) rectangle (1,1);
+
+% Vertical split: D vs D'
+\draw[thick] (0.1,0) -- (0.1,1);
+
+% Horizontal splits (test result splits within each group)
+\draw[thick] (0,0.20) -- (0.1,0.20);      % within D
+\draw[thick] (0.1,0.95) -- (1,0.95);      % within D'
+
+% Fill regions
+\fill[babyblue!80]   (0,0.20) rectangle (0.1,1);      % D and +
+\fill[babyblue!15]   (0,0) rectangle (0.1,0.20);      % D and -
+
+\fill[babyyellow!80]  (0.1,0.95) rectangle (1,1);      % D' and +
+\fill[babyyellow!15]  (0.1,0) rectangle (1,0.95);      % D' and -
+
+% Labels inside rectangles
+\node[rotate=90] at (0.05,0.60) {\scriptsize $P(+\mid D)=0.80$};
+\node[rotate=90] at (0.05,0.10) {\scriptsize $P(-\mid D)=0.20$};
+
+\node at (0.55,0.975) {\scriptsize $P(+\mid D')=0.05$};
+\node at (0.55,0.475) {\scriptsize $P(-\mid D')=0.95$};
+
+% Bottom labels
+\node at (0.05,-0.1) {\scriptsize $D$};
+\node at (0.55,-0.1) {\scriptsize $D'$};
+
+% Side labels
+\node[rotate=90] at (-0.07,0.60) {\scriptsize $+$};
+\node[rotate=90] at (-0.07,0.10) {\scriptsize $-$};
+
+\end{tikzpicture}
+\end{center}
+
 
 
 \subsubsection*{(a) Probability the test says disease}
@@ -1632,37 +1810,26 @@ x & P(X = x) \\ \hline
 
 
 \begin{center}
-\begin{tikzpicture}
+\cue[
+    xlabel={$x$},
+    ylabel={$P(X=x)$},
+    title={\textbf{PMF of $X$}},
+    ymin=0,
+    ymax=0.8,
+    xtick={0,1,2,3},
+    enlarge x limits=0.2
+]{
+    \addplot[ybar, fill=babyblue,   draw=black] coordinates {(0,0.729)};
+    \addplot[ybar, fill=babypink,   draw=black] coordinates {(1,0.243)};
+    \addplot[ybar, fill=babyyellow, draw=black] coordinates {(2,0.027)};
+    \addplot[ybar, fill=babyorange, draw=black] coordinates {(3,0.001)};
 
-% Axes
-\draw[->] (-0.5,0) -- (4.5,0) node[right] {$x$};
-\draw[->] (0,0) -- (0, 3.5) node[above] {$P(X=x)$};
-
-% Y-axis labels
-\node[left] at (0,3) {$0.729$};
-\node[left] at (0,2) {$0.243$};
-\node[left] at (0, 1) {$0.027$};
-\node[left] at (0,0.5) {$0.001$};
-
-% Bars (NOTE: last bar is artificially boosted for visibility)
-\draw[fill=blue!40] (0.7,0) rectangle (1.3,3);
-\draw[fill=blue!40] (1.7,0) rectangle (2.3,2);
-\draw[fill=blue!40] (2.7,0) rectangle (3.3,1);
-\draw[fill=blue!40] (3.7,0) rectangle (4.3,0.5); % boosted height
-
-% X labels
-\node at (1, -0.06) {0};
-\node at (2, -0.06) {1};
-\node at (3, -0.06) {2};
-\node at (4, -0.06) {3};
-
-% Value labels on bars
-\node[above] at (1,3) {$0.729$};
-\node[above] at (2,2) {$0.243$};
-\node[above] at (3,1) {$0.027$};
-\node[above] at (4,0.5) {$0.001$};
-
-\end{tikzpicture}
+    % Value labels
+    \node at (axis cs:0,0.729) [above] {$0.729$};
+    \node at (axis cs:1,0.243) [above] {$0.243$};
+    \node at (axis cs:2,0.027) [above] {$0.027$};
+    \node at (axis cs:3,0.001) [above] {$0.001$};
+}
 \end{center}
 
 \subsection*{Geometric Random Variable}
@@ -1829,6 +1996,32 @@ P(0 < X \le 2) = F(2) - F(0) = 0.999 - 0.729 = 0.27.
 \textbf{Note:} For a discrete random variable, the \underline{PMF} is drawn as a bar chart since it shows probabilities at individual points, while the \underline{CDF} is drawn as a step function since it represents cumulative probability and is monotone non-decreasing.
 
 
+\section*{Chapter 3 — January 21}
+\subsection*{Review}
+
+\begin{enumerate}
+    \item \underline{\textit{Random Variable (RV), $X$}}:  
+    A random variable assigns a real number to each outcome.
+
+    \item \underline{\textit{Discrete Random Variable}}:  
+    If $X$ is discrete,
+    \begin{itemize}
+        \item $P(X = x) = f(x)$
+        \item $f(x)$ is the \underline{\textit{probability mass function (PMF)}}
+        \item $f(x) \ge 0$
+        \item $\displaystyle \sum_x f(x) = 1$
+    \end{itemize}
+
+    \item \underline{\textit{Cumulative Distribution Function (CDF), $F(x)$}}:  
+    \begin{itemize}
+        \item $F(x) = P(X \le x)$
+        \item If $X$ is discrete:
+        \[
+        F(x) = \sum_{t \le x} f(t), \quad -\infty < x < \infty
+        \]
+    \end{itemize}
+\end{enumerate}
+
 \subsection*{Continuous Sample Space and Continuous Random Variables}
 \label{sec:continuous_rv}
 
@@ -1847,5 +2040,430 @@ so probabilities are computed over intervals instead of single values.
 \textbf{*Alternative definition}: A \underline{continuous sample} space contains infinitely many outcomes, like the points on a line segment.  
 For a \underline{continuous random variable}, the probability of taking any exact value is zero, i.e.\ $P(X=x)=0$ for all $x$.  
 Therefore, probabilities are computed over intervals rather than at single points.
+
+
+\subsection*{Probability Density Function (PDF)}
+
+A function \(f(x)\) is called a \underline{probability density function (PDF)} of a continuous random variable \(X\), defined over \(\mathbb{R}\), if:
+
+\begin{center}
+\fbox{
+\begin{minipage}{0.9\linewidth}
+\begin{enumerate}
+    \item \(f(x) \ge 0\) for all \(x \in \mathbb{R}\)
+    \item \(\displaystyle \int_{-\infty}^{\infty} f(x)\,dx = 1\)
+    \item For any \(a < b\),
+    \[
+    P(a < X < b) = \int_a^b f(x)\,dx
+    \]
+\end{enumerate}
+\end{minipage}
+}
+\end{center}
+
+For continuous random variables,
+\[
+P(a < X < b)
+= P(a \le X \le b)
+= P(a \le X < b)
+= P(a < X \le b).
+\]
+
+
+\[
+\boxed{P(X = a) = 0}
+\]
+
+because a single point has zero area under the probability density function.
+
+% In your preamble:
+% \usepackage{tikz}
+% \usetikzlibrary{patterns}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05]
+
+% Axes
+\draw[->, thick] (0,0) -- (7.2,0) node[right] {$x$};
+\draw[->, thick] (0,0) -- (0,3.6) node[above] {$f(x)$};
+
+% Parameters for a and b (choose any values between 0 and 7)
+\def\xa{2.2}
+\def\xb{3.1}
+
+% A smooth "pdf-like" curve (hand-drawn look, not an exact function)
+\draw[thick]
+plot[smooth] coordinates {
+(0.6,0.4) (1.2,0.8) (2.0,1.6) (2.7,2.3)
+(3.4,2.6) (4.1,2.2) (5.0,1.4) (6.2,0.8) (6.8,0.6)
+};
+
+% Label on the curve
+\node at (4.3,2.45) {$f(x)$};
+
+% Shaded region between a and b under the curve
+\fill[pattern=north east lines, pattern color=babypink]
+(\xa,0)
+--
+plot[smooth] coordinates {
+(\xa, {0.4 + 0.0})
+(2.4,2.0)
+(\xb,2.55)
+}
+--
+(\xb,0)
+-- cycle;
+
+% Vertical lines at a and b
+\draw[thick] (\xa,0) -- (\xa,1.8);
+\draw[thick] (\xb,0) -- (\xb,2.52);
+
+% Labels a and b on x-axis
+\node[below] at (\xa,0) {$a$};
+\node[below] at (\xb,0) {$b$};
+
+% Integral annotation
+\node[align=left] at (4.6,-0.9)
+{$\displaystyle \int_{a}^{b} f(x)\,dx = P(a<X<b)$};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Example: Uniform Distribution}
+
+Let the probability density function be
+\[
+f(x) =
+\begin{cases}
+c, & 5 < x < 10, \\
+0, & \text{otherwise}.
+\end{cases}
+\]
+
+\textbf{1) Determine the value of \(c\)}
+
+Since \(f(x)\) is a \underline{probability density function}, the total area under the curve must equal 1:
+\[
+\int_{-\infty}^{\infty} f(x)\,dx = 1.
+\]
+
+Because \(f(x)=0\) outside the interval \((5,10)\),
+\[
+\int_5^{10} c\,dx = 1.
+\]
+
+Evaluating the integral,
+\[
+c(10-5) = 1 \quad \Rightarrow \quad c = \frac{1}{5}.
+\]
+
+Thus,
+\[
+f(x) =
+\begin{cases}
+\frac{1}{5}, & 5 < x < 10, \\
+0, & \text{otherwise}.
+\end{cases}
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+\draw[->, thick] (0,0) -- (11,0) node[right] {$x$};
+\draw[->, thick] (0,0) -- (0,2) node[above] {$f(x)$};
+
+% rectangle for uniform pdf
+\draw[thick] (5,1) -- (10,1);
+\draw[dashed] (5,0) -- (5,1);
+\draw[dashed] (10,0) -- (10,1);
+
+% shading for P(X<7)
+\fill[babyblue!80] (5,0) rectangle (7,1);
+
+% labels
+\node[left] at (0,1) {$\frac{1}{5}$};
+\node[below] at (5,0) {$5$};
+\node[below] at (7,0) {$7$};
+\node[below] at (10,0) {$10$};
+
+\node at (7.5,1.25) {$f(x)=\frac{1}{5}$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{2): Compute \(P(X<7)\)}
+
+\textbf{Formula used:}
+\[
+P(a<X<b) = \int_a^b f(x)\,dx.
+\]
+
+Applying this formula,
+\[
+P(X<7)
+= \int_5^7 \frac{1}{5}\,dx
+= \frac{1}{5}(7-5)
+= \frac{2}{5}.
+\]
+
+\subsection*{CDF for Continuous Random Variables}
+
+\textbf{Def:} Let \(X\) be a \underline{continuous random variable} with \underline{pdf: probability density function} \(f(x)\).  
+The \underline{cumulative distribution function (CDF)} is
+\[
+F(x) = P(X \le x) = \int_{-\infty}^{x} f(t)\,dt.
+\]
+
+\textbf{Consequently:}
+\begin{center}
+\fbox{
+\begin{minipage}{0.9\linewidth}
+\[
+f(x) = \frac{d}{dx}F(x),
+\qquad
+P(a < X < b) = F(b) - F(a).
+\]
+\end{minipage}
+}
+\end{center}
+
+\subsection*{Example}
+
+Let \(X\) be the time until a chemical reaction is complete (in msec). Suppose the CDF is
+\[
+F(x)=
+\begin{cases}
+0, & x<0,\\
+1-e^{-0.01x}, & x \ge 0.
+\end{cases}
+\]
+
+\textbf{(a) Find the pdf.}
+
+Use \(\,f(x)=\dfrac{d}{dx}F(x)\).
+
+For \(x<0\), \(F(x)=0\), so
+\[
+f(x)=0.
+\]
+
+For \(x \ge 0\),
+\[
+f(x)=\frac{d}{dx}\left(1-e^{-0.01x}\right)
+= 0.01e^{-0.01x}.
+\]
+
+Therefore,
+\[
+f(x)=
+\begin{cases}
+0, & x<0,\\
+0.01e^{-0.01x}, & x \ge 0.
+\end{cases}
+\]
+
+\textbf{(b) Find \(P(X<200)\).}
+
+Use the CDF directly:
+\[
+P(X<200)=F(200)=1-e^{-0.01(200)}=1-e^{-2}\approx 0.8647.
+\]
+
+\textbf{(c) Check if this is a valid CDF.}
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!3,
+    colframe=softpink!70!black,
+    coltitle=black,
+    colbacktitle=softpink,
+    title=\textbf{Theorem: Properties of a Cumulative Distribution Function},
+    width=0.9\textwidth
+]
+A function \(F(x)\) is a \underline{valid cumulative distribution function (CDF)} if and only if:
+\begin{itemize}
+    \item \(0 \le F(x) \le 1\) for all \(x\)
+    \item \(F(x)\) is \underline{monotone non-decreasing}, i.e.
+    \[
+    x \le y \implies F(x) \le F(y)
+    \]
+    \item \(\displaystyle \lim_{x \to -\infty} F(x) = 0\)
+    \item \(\displaystyle \lim_{x \to \infty} F(x) = 1\)
+\end{itemize}
+\end{tcolorbox}
+\end{center}
+
+For this \(F(x)\):
+\[
+\lim_{x\to -\infty}F(x)=0,
+\qquad
+\lim_{x\to \infty}F(x)=1,
+\]
+and for \(x\ge 0\), \(1-e^{-0.01x}\) increases as \(x\) increases, so \(F(x)\) is monotone non-decreasing.
+
+Thus, \(F(x)\) is a valid CDF.
+\subsection*{Joint Probability Distributions (Discrete)}
+
+\textbf{Def:}  
+The function \(f(x,y)\) is a \underline{joint probability mass function (PMF)} of discrete random variables \(X\) and \(Y\) if:
+
+\begin{center}
+\fbox{
+\begin{minipage}{0.9\linewidth}
+\begin{enumerate}
+    \item \(f(x,y) \ge 0\) for all \((x,y)\)
+    \item \(\displaystyle \sum_x \sum_y f(x,y) = 1\)
+    \item \(P(X=x, Y=y) = f(x,y)\)
+\end{enumerate}
+\end{minipage}
+}
+\end{center}
+
+That is, \(f(x,y)\) gives the probability that the two random variables \(X\) and \(Y\) take the values \(x\) and \(y\) \emph{simultaneously}.
+
+For any region \(A\) in the \(xy\)-plane,
+\[
+\boxed{
+P\big((X,Y) \in A\big) = \sum_{(x,y)\in A} f(x,y)
+}
+\]
+
+
+\subsection*{Example: Pen Refills}
+
+Two refills are selected at random and without replacement from a box containing:
+\begin{itemize}
+    \item 3 blue refills
+    \item 2 red refills
+    \item 3 green refills
+\end{itemize}
+
+Define the random variables
+\[
+X = \text{number of blue refills selected},
+\qquad
+Y = \text{number of red refills selected}.
+\]
+
+The total number of possible selections is
+\[
+\binom{8}{2}.
+\]
+
+\subsection*{Joint PMF Table}
+
+For each pair \((x,y)\),
+\[
+f(x,y) = \frac{\text{number of favorable outcomes}}{\binom{8}{2}}.
+\]
+
+\begin{center}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{c|ccc|c}
+\(X \backslash Y\) & 0 & 1 & 2 & Row Total \\ \hline
+0 &
+$\dfrac{\binom{3}{2}}{\binom{8}{2}}$ &
+$\dfrac{\binom{2}{1}\binom{3}{1}}{\binom{8}{2}}$ &
+$\dfrac{\binom{2}{2}}{\binom{8}{2}}$ &
+$\dfrac{\binom{5}{2}}{\binom{8}{2}}$
+\\
+1 &
+$\dfrac{\binom{3}{1}\binom{3}{1}}{\binom{8}{2}}$ &
+$\dfrac{\binom{3}{1}\binom{2}{1}}{\binom{8}{2}}$ &
+$0$ &
+$\dfrac{15}{\binom{8}{2}}$
+\\
+2 &
+$\dfrac{\binom{3}{2}}{\binom{8}{2}}$ &
+$0$ &
+$0$ &
+$\dfrac{3}{\binom{8}{2}}$
+\\ \hline
+Column Total &
+$\dfrac{15}{\binom{8}{2}}$ &
+$\dfrac{12}{\binom{8}{2}}$ &
+$\dfrac{1}{\binom{8}{2}}$ &
+$1$
+\end{tabular}
+\end{center}
+
+\subsection*{Marginal Distributions}
+
+\textbf{Def:}  
+Let \(f(x,y)\) be the joint PMF of \(X\) and \(Y\).
+
+The \underline{marginal PMF of \(X\)} is obtained by summing over all values of \(Y\):
+\[
+g(x) = \sum_y f(x,y).
+\]
+
+The \underline{marginal PMF of \(Y\)} is obtained by summing over all values of \(X\):
+\[
+h(y) = \sum_x f(x,y).
+\]
+
+\textbf{Marginal example:}
+\[
+P(X=1) = \sum_y P(X=1, Y=y).
+\]
+
+
+\subsection*{Conditional Distributions (Discrete)}
+
+\textbf{Def:}  
+The \underline{conditional PMF of \(Y\) given \(X=x\)} is
+\[
+f_{Y|X}(y|x) = \frac{f(x,y)}{g(x)}, \quad g(x) > 0.
+\]
+
+Similarly, the \underline{conditional PMF of \(X\) given \(Y=y\)} is
+\[
+f_{X|Y}(x|y) = \frac{f(x,y)}{h(y)}, \quad h(y) > 0.
+\]
+
+
+\subsection*{Example: Conditional Probabilities}
+
+\begin{enumerate}
+    \item 
+    \[
+    P(Y=1 \mid X=1)
+    = \frac{P(X=1,Y=1)}{P(X=1)}
+    = \frac{3/28}{15/28}
+    = \frac{3}{15}.
+    \]
+
+    \item
+    \[
+    P(X=0 \mid Y=1)
+    = \frac{P(X=0,Y=1)}{P(Y=1)}
+    = \frac{9/28}{15/28}
+    = \frac{9}{15}.
+    \]
+
+    \item
+    \[
+    P(Y=2 \mid X=1) = 0.
+    \]
+\end{enumerate}
+
+Check:
+\[
+\sum_y P(Y=y \mid X=1) = 1.
+\]
+
+\subsection*{Joint Probability Density Function (Continuous)}
+
+\textbf{Def:}  
+The function \(f(x,y)\) is a \underline{joint probability density function (PDF)} of continuous random variables \(X\) and \(Y\) if:
+
+\begin{enumerate}
+    \item \(f(x,y) \ge 0\) for all \((x,y)\)
+    \item \(\displaystyle \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y)\,dx\,dy = 1\)
+    \item For any region \(A\) in the \(xy\)-plane,
+    \[
+    P\big((X,Y)\in A\big) = \iint_A f(x,y)\,dx\,dy
+    \]
+\end{enumerate}
+
+\textbf{Geometric interpretation:}  
+The joint PDF is a surface above the \(xy\)-plane, and probabilities correspond to the \textbf{volume under the surface}.
 
 \end{document}
