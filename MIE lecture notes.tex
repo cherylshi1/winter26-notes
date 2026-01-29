@@ -22,6 +22,8 @@
 \usepackage{tocloft}
 
 \usepackage[most]{tcolorbox}
+\usepackage[table]{xcolor}
+
 
 % ---------- GRAPH SYSTEM (pgfplots + cue + candycolors) ----------
 \usepackage{pgfplots}
@@ -2449,14 +2451,77 @@ Check:
 \sum_y P(Y=y \mid X=1) = 1.
 \]
 
+
+\subsection*{Review: Chapter 3 — Random Variables}
+
+\begin{enumerate}
+\item \textit{\underline{Random Variable}}  
+A random variable is a function that maps outcomes of an experiment to real numbers.
+    \begin{itemize}
+        \item Domain: sample space outcomes
+        \item Range: real numbers
+        \item Can be \textbf{discrete} or \textbf{continuous}
+    \end{itemize}
+
+\item \textit{\underline{Probability Mass Function (PMF)}}  
+The PMF of a discrete random variable \(X\) is
+\[
+f_X(x) = P(X = x)
+\]
+    \begin{itemize}
+        \item Only for discrete random variables
+        \item \(f_X(x) \ge 0\)
+        \item \(\sum_x f_X(x) = 1\)
+    \end{itemize}
+
+\item \textit{\underline{Probability Density Function (PDF)}}  
+For a continuous random variable \(X\), probability is defined by
+\[
+P(a \le X \le b) = \int_a^b f_X(x)\,dx
+\]
+    \begin{itemize}
+        \item Only for continuous random variables
+        \item Area under the curve gives probability
+        \item \(P(X = x) = 0\)
+    \end{itemize}
+
+\item \textit{\underline{Cumulative Distribution Function (CDF)}}  
+The CDF is defined as
+\[
+F_X(x) = P(X \le x)
+\]
+    \begin{itemize}
+        \item Discrete: \(F(x)=\sum_{t \le x} f(t)\)
+        \item Continuous: \(F(x)=\int_{-\infty}^{x} f(t)\,dt\)
+        \item \(0 \le F(x) \le 1\), non-decreasing
+    \end{itemize}
+
+\item \textit{\underline{Joint Distribution}}  
+The joint distribution describes probabilities involving two random variables \(X\) and \(Y\).
+    \begin{itemize}
+        \item Discrete: \(f_{X,Y}(x,y)=P(X=x,Y=y)\)
+        \item Continuous: joint PDF \(f_{X,Y}(x,y)\)
+    \end{itemize}
+
+\item \textit{\underline{Marginal Distribution}}  
+A marginal distribution is obtained by eliminating the other variable.
+    \begin{itemize}
+        \item \(f_X(x)=\sum_y f_{X,Y}(x,y)\) or \(f_X(x)=\int f_{X,Y}(x,y)\,dy\)
+        \item \(f_Y(y)=\sum_x f_{X,Y}(x,y)\) or \(f_Y(y)=\int f_{X,Y}(x,y)\,dx\)
+    \end{itemize}
+\end{enumerate}
+
 \subsection*{Joint Probability Density Function (Continuous)}
 
 \textbf{Def:}  
-The function \(f(x,y)\) is a \underline{joint probability density function (PDF)} of continuous random variables \(X\) and \(Y\) if:
+A function \(f(x,y)\) is a \underline{joint probability density function (PDF)} of continuous random variables \(X\) and \(Y\) if:
 
 \begin{enumerate}
     \item \(f(x,y) \ge 0\) for all \((x,y)\)
-    \item \(\displaystyle \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y)\,dx\,dy = 1\)
+    \item 
+    \[
+    \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y)\,dx\,dy = 1
+    \]
     \item For any region \(A\) in the \(xy\)-plane,
     \[
     P\big((X,Y)\in A\big) = \iint_A f(x,y)\,dx\,dy
@@ -2464,6 +2529,389 @@ The function \(f(x,y)\) is a \underline{joint probability density function (PDF)
 \end{enumerate}
 
 \textbf{Geometric interpretation:}  
-The joint PDF is a surface above the \(xy\)-plane, and probabilities correspond to the \textbf{volume under the surface}.
+The joint PDF is a surface above the \(xy\)-plane. Probabilities correspond to the \textbf{volume under the surface} over a specified region.
+
+\medskip
+
+\textbf{Example 1:}
+
+\[
+f(x,y)=
+\begin{cases}
+\displaystyle \frac{12}{7}(x^2+xy), & 0\le x\le 1,\; 0\le y\le 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\textbf{(a) Verify it is a valid joint PDF:}
+\[
+\int_0^1 \int_0^1 \frac{12}{7}(x^2+xy)\,dx\,dy = 1
+\]
+
+\textbf{(b) Find \(P(0<X<0.2,\;0<Y<1)\):}
+\[
+P = \int_0^1 \int_0^{0.2} \frac{12}{7}(x^2+xy)\,dx\,dy
+\]
+
+\textbf{(c) Find \(P(X>Y)\):}
+
+The region \(X>Y\) corresponds to the area below the line \(y=x\) in the unit square \(0\le x\le1,\;0\le y\le1\).
+
+\[
+P(X>Y)=\int_0^1 \int_0^x \frac{12}{7}(x^2+xy)\,dy\,dx=\frac{9}{14}
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=4]
+    % Axes
+    \draw[->] (-0.05,0) -- (1.1,0) node[right] {$x$};
+    \draw[->] (0,-0.05) -- (0,1.1) node[above] {$y$};
+
+    % Unit square
+    \draw[thick] (0,0) rectangle (1,1);
+
+    % Diagonal y=x
+    \draw[thick] (0,0) -- (1,1) node[right] {$y=x$};
+
+    % Shade region y < x (i.e., X > Y)
+    \fill[babyblue!20] (0,0) -- (1,0) -- (1,1) -- cycle;
+
+    % Labels
+    \node at (0.5,0.2) {$X>Y$};
+    \node[below] at (1,0) {$1$};
+    \node[left] at (0,1) {$1$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{(d) Find \(P(X=Y)\):}
+
+\[
+P(X=Y)=\int_0^1 \int_y^y \frac{12}{7}(x^2+xy)\,dx\,dy=0
+\]
+
+(Probability along a line is zero for continuous random variables.)
+
+\medskip
+
+
+\textbf{Example:}
+
+Let the joint PDF be
+\[
+f(x,y)=
+\begin{cases}
+e^{-y}, & 0<x<y<\infty \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+We want to compute
+\[
+P(X+Y \ge 1).
+\]
+
+The support of the joint PDF is the region \(0<x<y\), which lies above the line \(y=x\) in the first quadrant.
+
+The boundary of the event \(X+Y \ge 1\) is the line \(x+y=1\).
+
+Rather than integrating over the unbounded region \(X+Y \ge 1\), we compute the complement:
+\[
+P(X+Y \ge 1)=1-P(X+Y<1).
+\]
+
+The region \(X+Y<1\) that lies within the support is bounded by:
+\[
+0 \le x \le \tfrac12, \qquad x \le y \le 1-x.
+\]
+
+Therefore,
+\[
+P(X+Y \ge 1)
+=
+1-\int_0^{1/2}\int_x^{1-x} e^{-y}\,dy\,dx
+=
+2e^{-1/2}-e^{-1}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=3]
+
+% Axes
+\draw[->] (0,0) -- (1.1,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,1.1) node[above] {$y$};
+
+% Lines
+\draw[thick] (0,0) -- (1,1) node[right] {$y=x$};
+\draw[thick] (0,1) -- (1,0) node[below right] {$x+y=1$};
+
+% Intersection point
+\fill (0.5,0.5) circle (0.02);
+\node[above right] at (0.5,0.4) {$\left(\tfrac12,\tfrac12\right)$};
+
+% Shaded region: x < y < 1-x
+\fill[yellow!30] 
+(0,0) -- (0.5,0.5) -- (0,1) -- cycle;
+
+% Labels
+\node at (0.15,0.55) {$X+Y<1$};
+\node at (0.25,0.35) {$0<x<y$};
+
+% Ticks
+\node[below] at (0.5,0) {$\tfrac12$};
+\node[left] at (0,1) {$1$};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Marginal and Conditional PDFs}
+
+\textbf{Def:}  
+The \underline{marginal PDFs} of \(X\) and \(Y\) are defined as
+
+\[
+g_X(x)=\int_{-\infty}^{\infty} f(x,y)\,dy,
+\qquad
+h_Y(y)=\int_{-\infty}^{\infty} f(x,y)\,dx
+\]
+
+\textbf{Example (continued):}
+
+\[
+f(x,y)=
+\begin{cases}
+\displaystyle \frac{12}{7}(x^2+xy), & 0\le x\le1,\;0\le y\le1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\textbf{Marginal PDF of \(X\):}
+\[
+g_X(x)=\int_0^1 \frac{12}{7}(x^2+xy)\,dy
+= \frac{12}{7}\left(x^2+\frac{x}{2}\right),
+\qquad 0\le x\le1
+\]
+
+\textbf{Marginal PDF of \(Y\):}
+\[
+h_Y(y)=\int_0^1 \frac{12}{7}(x^2+xy)\,dx
+= \frac{12}{7}\left(\frac{1}{3}+ \frac{y}{2}\right),
+\qquad 0\le y\le1
+\]
+
+\textbf{Conditional PDF of \(Y\) given \(X=x\):}
+
+\[
+f(y|x)=\frac{f(x,y)}{g(x)}
+=\frac{\frac{12}{7}(x^2+xy)}{\frac{12}{7}\left(x^2+\frac{x}{2}\right)},
+\qquad 0\le y\le1,\; 0<x\le1
+\]
+
+\textbf{Why the bounds are } \(0<x\le1\) \textbf{and not } \(0\le x\le1\):
+
+The marginal PDF
+\[
+g(x)=\frac{12}{7}\left(x^2+\frac{x}{2}\right)
+\]
+satisfies \(g(0)=0\).  
+
+Since the conditional PDF is defined as
+\[
+f_{Y|X}(y|x)=\frac{f(x,y)}{g(x)},
+\]
+it is \textbf{undefined at \(x=0\)} due to division by zero.
+
+Therefore, the conditional density is only defined for values of \(x\) such that
+\[
+g(x)>0 \;\Rightarrow\; 0<x\le1.
+\]
+
+\textbf{Key takeaway:}  
+The bounds of a conditional PDF exclude points where the conditioning density is zero.
+
+\subsection*{Statistical Independence}
+
+\textbf{Def:}  
+Random variables \(X\) and \(Y\) (discrete or continuous) are \underline{statistically independent} if and only if
+
+\[
+f(x,y)=g(x)\,h(y)
+\quad \text{for all } (x,y) \text{ in their range}
+\]
+
+\textbf{Consequences:}
+\begin{itemize}
+    \item \(f(x|y)=g(x)\)
+    \item \(f(y|x)=h(y)\)
+\end{itemize}
+
+
+\subsection*{Recall Example: Pen Refills}
+
+Two refills are selected at random and without replacement from a box containing:
+\begin{itemize}
+    \item 3 blue refills
+    \item 2 red refills
+    \item 3 green refills
+\end{itemize}
+
+Define the random variables
+\[
+X=\text{number of blue refills selected},\qquad
+Y=\text{number of red refills selected}.
+\]
+Total outcomes:
+\[
+\binom{8}{2}=28.
+\]
+
+\subsection*{Joint PMF Table}
+
+For each pair \((x,y)\),
+\[
+f(x,y)=\frac{\text{number of favorable outcomes}}{28}.
+\]
+
+\begin{center}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{c|ccc|c}
+$X \backslash Y$ & 0 & 1 & 2 & \cellcolor{babyblue!12}$g(x)=P(X=x)$ \\ \hline
+0 &
+$\dfrac{3}{28}$ &
+$\dfrac{3}{14}$ &
+$\dfrac{1}{28}$ &
+\cellcolor{babyblue!12}$\dfrac{5}{14}$
+\\
+1 &
+$\dfrac{9}{28}$ &
+$\dfrac{3}{14}$ &
+$0$ &
+\cellcolor{babyblue!12}$\dfrac{15}{28}$
+\\
+2 &
+$\dfrac{3}{28}$ &
+$0$ &
+$0$ &
+\cellcolor{babyblue!12}$\dfrac{3}{28}$
+\\ \hline
+\cellcolor{pink!18}$h(y)=P(Y=y)$ &
+\cellcolor{pink!18}$\dfrac{15}{28}$ &
+\cellcolor{pink!18}$\dfrac{3}{7}$ &
+\cellcolor{pink!18}$\dfrac{1}{28}$ &
+\cellcolor{pink!18}$1$
+\end{tabular}
+\end{center}
+
+\textbf{Marginals:}
+\(g(x)=P(X=x)\) is the \underline{marginal PMF of \(X\)} and is given by the \textbf{row totals}.  
+\(h(y)=P(Y=y)\) is the \underline{marginal PMF of \(Y\)} and is given by the \textbf{column totals}.
+
+\[
+g(0)=\frac{5}{14},\quad g(1)=\frac{15}{28},\quad g(2)=\frac{3}{28}
+\]
+\[
+h(0)=\frac{15}{28},\quad h(1)=\frac{3}{7},\quad h(2)=\frac{1}{28}
+\]
+
+\textbf{Independence check:}  
+If \(X\) and \(Y\) were \underline{statistically independent}, then \(f(x,y)=g(x)h(y)\) for all \((x,y)\).  
+Check \((x,y)=(0,1)\):
+\[
+f(0,1)=\frac{3}{14},\qquad g(0)h(1)=\left(\frac{5}{14}\right)\left(\frac{3}{7}\right)=\frac{15}{98}
+\]
+\[
+\frac{3}{14}\ne \frac{15}{98}\quad \Rightarrow \quad X \text{ and } Y \text{ are \underline{not independent}.}
+\]
+
+\subsection*{Example: Independence via Factorization (Discrete Case)}
+
+Let \(X\) and \(Y\) be \underline{discrete random variables} whose values in the nonnegative integers.
+
+Suppose the joint PMF is
+\[
+f(x,y)=\frac{1}{x!\,y!}\lambda^x \mu^ye^{-(\lambda+\mu)},
+\qquad x,y=0,1,2,\ldots
+\]
+
+
+\textbf{Factorization:}
+
+We can write
+\[
+f(x,y)=\left(\frac{\lambda^x e^{-\lambda}}{x!}\right)
+       \left(\frac{\mu^y e^{-\mu}}{y!}\right)
+       = g(x)\,h(y)
+\]
+
+\textbf{Marginal PMF of \(X\):}
+
+\[
+g(x)=\sum_{y=0}^{\infty} f(x,y)
+= \sum_{y=0}^{\infty} \frac{1}{x!\,y!}\,\lambda^x \mu^y\,e^{-(\lambda+\mu)}
+\]
+
+Factor out terms that do not depend on \(y\):
+
+\[
+g(x)=\frac{1}{x!}\,\lambda^x e^{-(\lambda+\mu)}
+\sum_{y=0}^{\infty} \frac{\mu^y}{y!}
+\]
+
+Using \(\displaystyle \sum_{y=0}^{\infty}\frac{\mu^y}{y!}=e^{\mu}\):
+
+\[
+g(x)=\frac{1}{x!}\,\lambda^x e^{-(\lambda+\mu)} e^{\mu}
+=\frac{1}{x!}\,\lambda^x e^{-\lambda},
+\qquad x=0,1,2,\ldots
+\]
+
+\medskip
+
+\textbf{Marginal PMF of \(Y\):}
+
+\[
+h(y)=\sum_{x=0}^{\infty} f(x,y)
+= \sum_{x=0}^{\infty} \frac{1}{x!\,y!}\,\lambda^x \mu^y\,e^{-(\lambda+\mu)}
+\]
+
+Factor out terms that do not depend on \(x\):
+
+\[
+h(y)=\frac{1}{y!}\,\mu^y e^{-(\lambda+\mu)}
+\sum_{x=0}^{\infty} \frac{\lambda^x}{x!}
+\]
+
+Using \(\displaystyle \sum_{x=0}^{\infty}\frac{\lambda^x}{x!}=e^{\lambda}\):
+
+\[
+h(y)=\frac{1}{y!}\,\mu^y e^{-(\lambda+\mu)} e^{\lambda}
+=\frac{1}{y!}\,\mu^y e^{-\mu},
+\qquad y=0,1,2,\ldots
+\]
+
+\textbf{Conclusion:}
+
+Since the joint PMF can be written as
+\[
+f(x,y)=g(x)\,h(y)
+\]
+for all \(x,y\), the random variables \(X\) and \(Y\) are \underline{statistically independent}. \(\checkmark\)
+
+\textbf{Important notes:}
+\begin{itemize}
+    \item Factorization of the joint PMF is \textbf{sufficient} to prove independence.
+    \item The constant terms (such as \(e^{-\lambda}\), \(e^{-\mu}\)) must be included to obtain the \textbf{correct marginals}.
+    \item  Independence requires that every combination of values with positive marginal probability also has positive joint probability.
+\\This means that if \(X=x\) is possible and \(Y=y\) is possible, then the pair \((X=x,Y=y)\) must also be possible.
+
+\[
+\{(x,y): f(x,y)>0\}
+=
+\{x: g(x)>0\}\times\{y: h(y)>0\}.
+\]
+
+This means that every value of \(X\) with positive marginal probability can occur with every value of \(Y\) with positive marginal probability.
+
+\end{itemize}
+
 
 \end{document}
