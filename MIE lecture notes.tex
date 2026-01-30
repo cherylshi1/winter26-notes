@@ -170,22 +170,69 @@
 \hyperref[sec:rv_types]{\pageref*{sec:rv_types}}
 
 \noindent\hspace{0.5cm}
-3.3 Probability Mass Functions 
+3.3 Probability Mass Functions
 \dotfill
 \hyperref[sec:pmf]{\pageref*{sec:pmf}}
 
+\noindent\hspace{1.2cm}
+3.3.1 PMFs for Discrete Random Variables
+\dotfill
+\hyperref[sec:pmf_discrete]{\pageref*{sec:pmf_discrete}}
+
 \noindent\hspace{0.5cm}
-3.4 Cumulative Distribution Function(CDF)
+3.4 Cumulative Distribution Function (CDF)
 \dotfill
 \hyperref[sec:cdf]{\pageref*{sec:cdf}}
+
+\noindent\hspace{1.2cm}
+3.4.1 CDF for Discrete Random Variables
+\dotfill
+\hyperref[sec:cdf_discrete]{\pageref*{sec:cdf_discrete}}
+
+\noindent\hspace{1.2cm}
+3.4.2 CDF for Continuous Random Variables
+\dotfill
+\hyperref[sec:cdf_continuous]{\pageref*{sec:cdf_continuous}}
 
 \noindent\hspace{0.5cm}
 3.5 Continuous Sample Space and Continuous Random Variables
 \dotfill
 \hyperref[sec:continuous_rv]{\pageref*{sec:continuous_rv}}
 
+\noindent\hspace{0.5cm}
+3.6 Probability Density Function (PDF)
+\dotfill
+\hyperref[sec:pdf]{\pageref*{sec:pdf}}
 
-\vfill
+\noindent\hspace{0.5cm}
+3.7 Joint Probability Distributions
+\dotfill
+\hyperref[sec:joint]{\pageref*{sec:joint}}
+
+\noindent\hspace{1.2cm}
+3.7.1 Joint Distributions for Discrete Random Variables
+\dotfill
+\hyperref[sec:joint_discrete]{\pageref*{sec:joint_discrete}}
+
+\noindent\hspace{1.2cm}
+3.7.2 Joint Distributions for Continuous Random Variables
+\dotfill
+\hyperref[sec:joint_continuous]{\pageref*{sec:joint_continuous}}
+
+\noindent\hspace{0.5cm}
+3.8 Marginal Distributions
+\dotfill
+\hyperref[sec:marginal]{\pageref*{sec:marginal}}
+
+\noindent\hspace{0.5cm}
+3.9 Conditional Distributions
+\dotfill
+\hyperref[sec:conditional]{\pageref*{sec:conditional}}
+
+\noindent\hspace{0.5cm}
+3.10 Independence
+\dotfill
+\hyperref[sec:independence]{\pageref*{sec:independence}}
 
 \end{titlepage}
 
@@ -1887,6 +1934,7 @@ P(X = x) = 0.9^{x-1}(0.1).
 
 \subsection*{Cumulative Distribution Function (CDF)}
 \label{sec:cdf}
+\label{sec:cdf_discrete}
 
 
 \textbf{Definition:}  
@@ -2038,13 +2086,14 @@ P(X = x) = 0 \quad \text{for all } x,
 \]
 so probabilities are computed over intervals instead of single values.
 \\
-\\
+
 \textbf{*Alternative definition}: A \underline{continuous sample} space contains infinitely many outcomes, like the points on a line segment.  
 For a \underline{continuous random variable}, the probability of taking any exact value is zero, i.e.\ $P(X=x)=0$ for all $x$.  
 Therefore, probabilities are computed over intervals rather than at single points.
 
 
 \subsection*{Probability Density Function (PDF)}
+
 
 A function \(f(x)\) is called a \underline{probability density function (PDF)} of a continuous random variable \(X\), defined over \(\mathbb{R}\), if:
 
@@ -2207,6 +2256,7 @@ P(X<7)
 \]
 
 \subsection*{CDF for Continuous Random Variables}
+\label{sec:cdf_continuous}
 
 \textbf{Def:} Let \(X\) be a \underline{continuous random variable} with \underline{pdf: probability density function} \(f(x)\).  
 The \underline{cumulative distribution function (CDF)} is
@@ -2302,6 +2352,9 @@ and for \(x\ge 0\), \(1-e^{-0.01x}\) increases as \(x\) increases, so \(F(x)\) i
 
 Thus, \(F(x)\) is a valid CDF.
 \subsection*{Joint Probability Distributions (Discrete)}
+\label{sec:joint}
+\label{sec:joint_discrete}
+
 
 \textbf{Def:}  
 The function \(f(x,y)\) is a \underline{joint probability mass function (PMF)} of discrete random variables \(X\) and \(Y\) if:
@@ -2387,6 +2440,7 @@ $1$
 \end{center}
 
 \subsection*{Marginal Distributions}
+\label{sec:marginal}
 
 \textbf{Def:}  
 Let \(f(x,y)\) be the joint PMF of \(X\) and \(Y\).
@@ -2408,6 +2462,7 @@ P(X=1) = \sum_y P(X=1, Y=y).
 
 
 \subsection*{Conditional Distributions (Discrete)}
+\label{sec:conditional}
 
 \textbf{Def:}  
 The \underline{conditional PMF of \(Y\) given \(X=x\)} is
@@ -2464,6 +2519,8 @@ A random variable is a function that maps outcomes of an experiment to real numb
     \end{itemize}
 
 \item \textit{\underline{Probability Mass Function (PMF)}}  
+\label{sec:pmf}
+\label{sec:pmf_discrete}
 The PMF of a discrete random variable \(X\) is
 \[
 f_X(x) = P(X = x)
@@ -2475,6 +2532,7 @@ f_X(x) = P(X = x)
     \end{itemize}
 
 \item \textit{\underline{Probability Density Function (PDF)}}  
+\label{sec:pdf}
 For a continuous random variable \(X\), probability is defined by
 \[
 P(a \le X \le b) = \int_a^b f_X(x)\,dx
@@ -2497,6 +2555,7 @@ F_X(x) = P(X \le x)
     \end{itemize}
 
 \item \textit{\underline{Joint Distribution}}  
+\label{sec:joint_continuous}
 The joint distribution describes probabilities involving two random variables \(X\) and \(Y\).
     \begin{itemize}
         \item Discrete: \(f_{X,Y}(x,y)=P(X=x,Y=y)\)
@@ -2913,5 +2972,536 @@ This means that every value of \(X\) with positive marginal probability can occu
 
 \end{itemize}
 
+\section*{Jan 30}
+
+\subsection*{Joint distribution}  
+Describes probabilities involving two random variables \(X\) and \(Y\).
+
+\begin{itemize}
+  \item Discrete:
+  \[
+  f(X,Y)=P(X=x,Y=y)
+  \]
+  \item Continuous: joint PDF \(f(X,Y)\)
+\end{itemize}
+
+\subsection*{Marginal distribution}  
+Obtained by eliminating the other variable.
+
+\begin{itemize}
+  \item
+  \[
+  f(X)=\sum_y f(X,Y), \qquad
+  f(Y)=\sum_x f(X,Y)
+  \]
+  \item
+  \[
+  f(X)=\int_{-\infty}^{\infty} f(X,Y)\,dy, \qquad
+  f(Y)=\int_{-\infty}^{\infty} f(X,Y)\,dx
+  \]
+\end{itemize}
+
+\subsection*{Joint PDF validity}  
+A function \(f(X,Y)\) is a valid joint PDF if:
+
+\begin{itemize}
+  \item \(f(X,Y)\ge0\)
+  \item
+  \[
+  \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(X,Y)\,dx\,dy=1
+  \]
+\end{itemize}
+
+\textbf{Example (valid joint PDF):}
+\[
+f(X,Y)=
+\begin{cases}
+\dfrac{12}{7}(x^2+xy), & 0\le x\le1,\;0\le y\le1,\\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+\subsection*{Geometric interpretation}  
+Probabilities correspond to the \textbf{volume under the surface} \(f(X,Y)\) over a region.
+
+\subsection*{Conditional PDF}  
+Distribution of one variable given the other.
+
+\begin{itemize}
+  \item
+  \[
+  f(Y\mid X)=\frac{f(X,Y)}{f(X)}, \quad f(X)>0
+  \]
+\end{itemize}
+
+
+\subsection*{Statistical Independence}
+\label{sec:independence}
+
+\textbf{Definition:}  
+Random variables \(X\) and \(Y\) are \underline{statistically independent} if
+\[
+f(X,Y)=f(X)f(Y)
+\]
+
+This means knowing the value of one variable gives no information about the other.
+
+\subsection*{Support and Independence}
+
+\textbf{Support:}  
+The support of a joint distribution is the set
+\[
+\{(x,y): f(X,Y)>0\}
+\]
+
+\textbf{Key idea:}  
+If \(X\) and \(Y\) are independent, the support must factor as
+\[
+\{x:f(X)>0\}\times\{y:f(Y)>0\}
+\]
+
+That is, every allowed value of \(X\) can occur with every allowed value of \(Y\).
+\subsection*{Example: Non-Independent Random Variables}
+
+\[
+f(X,Y)=
+\begin{cases}
+4(x+y^2), & xy>0,\;x+y\le1,\\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+The condition \(x+y\le1\) links \(x\) and \(y\), so the support does not factor.
+
+\[
+\Rightarrow X \text{ and } Y \text{ are not independent}
+\]
+
+\textbf{Why this implies dependence (key intuition):}
+
+Pick a value of \(X\) that is allowed:
+\[
+x=0.8 \quad (\text{positive and } <1)
+\]
+
+Pick a value of \(Y\) that is allowed:
+\[
+y=0.8 \quad (\text{positive and } <1)
+\]
+
+Individually, both values are valid.  
+But together:
+\[
+x+y=0.8+0.8=1.6>1
+\]
+
+This violates the condition \(x+y\le1\), so the pair \((0.8,0.8)\) is impossible.
+
+\medskip
+
+\textbf{Conclusion:}  
+Knowing the value of \(X\) restricts which values \(Y\) can take.  
+Therefore, \(X\) and \(Y\) are \underline{not independent}.
+
+
+\subsection*{Independent Random Variables}
+
+If random variables are independent, joint probabilities factor.
+
+\textbf{Example:}  
+Let \(X_1,X_2,X_3\) be independent with
+\[
+f(X)=e^{-x}, \quad x>0
+\]
+
+Then
+\[
+f(X_1,X_2,X_3)=e^{-x_1}e^{-x_2}e^{-x_3}
+\]
+
+\[
+P(X_1<2,\;1<X_2<3,\;X_3>2)
+=
+(1-e^{-2})(e^{-1}-e^{-3})e^{-2}
+\]
+\textbf{Explanation (why this works):}
+
+Since \(X_1,X_2,X_3\) are \underline{independent}, the joint probability factors:
+\[
+P(X_1<2,\;1<X_2<3,\;X_3>2)
+=
+P(X_1<2)\,P(1<X_2<3)\,P(X_3>2)
+\]
+
+For an exponential random variable with
+\[
+f(X)=e^{-x}, \quad x>0,
+\]
+we have:
+\[
+P(X<a)=1-e^{-a}, \qquad P(X>a)=e^{-a}
+\]
+
+Thus,
+\[
+P(X_1<2)=1-e^{-2}
+\]
+\[
+P(1<X_2<3)=P(X_2<3)-P(X_2<1)=e^{-1}-e^{-3}
+\]
+\[
+P(X_3>2)=e^{-2}
+\]
+
+Multiplying gives:
+\[
+(1-e^{-2})(e^{-1}-e^{-3})e^{-2}
+\]
+
+
+
+\subsection*{Mutual Independence and Modeling Assumptions}
+
+\textbf{Mutual independence:}  
+Random variables \(X_1,\ldots,X_n\) are mutually independent if
+\[
+f(X_1,\ldots,X_n)=\prod_{i=1}^n f(X_i)
+\]
+
+Pairwise independence does \textbf{not} imply mutual independence.
+
+\medskip
+
+\textbf{Independent selection:}
+Selections are independent if:
+\begin{itemize}
+  \item each selection is random,
+  \item distributions are identical,
+  \item outcomes do not affect future selections.
+\end{itemize}
+
+Sampling without replacement generally produces \underline{dependent} variables.
+
+\section*{Chapter 4}
+
+\subsection*{Motivation}
+
+\textbf{Example:}  
+If you roll a fair die repeatedly, what \textit{average value} do you expect in the long run?
+
+\medskip
+This motivates the idea of \underline{expectation}: a theoretical long-run average.
+
+\subsection*{Expectation (Expected Value)}
+
+\textbf{Def:}  
+For a random variable \(X\), the \underline{expectation} (or \underline{expected value} or \underline{mean}) is the long-run average value of \(X\).
+
+\medskip
+
+\textbf{Discrete random variable:}
+\[
+\boxed{
+\mu = E(X)=\sum_x x\,f(X)
+}
+\]
+
+\textbf{Continuous random variable:}
+\[
+\boxed{
+\mu = E(X)=\int_{-\infty}^{\infty} x\,f(X)\,dx
+}
+\]
+
+\medskip
+\textbf{Interpretation:}  
+Expectation is a \underline{weighted average}, where values of \(X\) are weighted by how likely they are.
+
+\subsection*{Example: Fair Die}
+
+Let \(X\) be the outcome when a fair die is rolled.
+
+\[
+E(X)=\sum_{x=1}^6 x\cdot\frac{1}{6}
+\]
+
+\[
+E(X)=\frac{1+2+3+4+5+6}{6}=3.5
+\]
+
+\medskip
+Even though 3.5 is not a possible outcome, it represents the \underline{long-run average}.
+
+\subsection*{Example: Number of Messages per Hour}
+
+Let \(X\) be the number of messages sent per hour, with PMF:
+
+\[
+\begin{array}{c|cccccc}
+x & 10 & 11 & 12 & 13 & 14 & 15 \\ \hline
+f(X) & 0.08 & 0.15 & 0.30 & 0.20 & 0.20 & 0.07
+\end{array}
+\]
+
+\textbf{Check:}
+\[
+\sum f(X)=1
+\]
+
+\textbf{Expected value:}
+\[
+\begin{aligned}
+E(X)
+&=10(0.08)+11(0.15)+12(0.30)+13(0.20)+14(0.20)+15(0.07) \\
+&=12.5
+\end{aligned}
+\]
+
+\medskip
+This means that over many hours, the average number of messages per hour is about 12.5.
+
+\subsection*{PMF Visualization}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+
+% Axes
+\draw[->] (9.5,0) -- (15.8,0) node[right] {$x$};
+\draw[->] (9.5,0) -- (9.5,0.35) node[above] {$f(X)$};
+
+% Bars
+\foreach \x/\p in {10/0.08,11/0.15,12/0.30,13/0.20,14/0.20,15/0.07}
+{
+    \draw[fill=babyblue!50] (\x-0.3,0) rectangle (\x+0.3,\p);
+}
+
+% Labels
+\node[below] at (10,0) {10};
+\node[below] at (11,0) {11};
+\node[below] at (12,0) {12};
+\node[below] at (13,0) {13};
+\node[below] at (14,0) {14};
+\node[below] at (15,0) {15};
+
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Example: Deal or No Deal}
+
+Consider a game with two possible outcomes:
+\begin{itemize}
+    \item \$1 with probability \(1/2\)
+    \item \$10{,}000 with probability \(1/2\)
+\end{itemize}
+
+\textbf{Expected value:}
+\[
+E(X)=\frac{1}{2}(1)+\frac{1}{2}(10{,}000)=5000.5
+\]
+
+\medskip
+\textbf{Key idea:}  
+The expected value is the \underline{average payout in the long run}, not the most likely outcome.
+
+\subsection*{Example: Continuous RV (Device Lifetime)}
+
+Let \(X\) be a random variable that denotes the lifetime (in hours) of a certain device, with PDF
+\[
+f(X)=
+\begin{cases}
+\dfrac{20000}{x^3}, & x>100,\\
+0, & \text{otherwise.}
+\end{cases}
+\]
+
+\textbf{Check (valid PDF):}
+\[
+\int_{-\infty}^{\infty} f(X)\,dx
+=
+\int_{100}^{\infty} \frac{20000}{x^3}\,dx
+=
+20000\left[\frac{-1}{2x^2}\right]_{100}^{\infty}
+=
+1
+\]
+
+\textbf{Expected lifetime:}
+\[
+E(X)=\int_{100}^{\infty} x\frac{20000}{x^3}\,dx
+=
+\int_{100}^{\infty}\frac{20000}{x^2}\,dx
+=
+20000\left[\frac{-1}{x}\right]_{100}^{\infty}
+=
+200
+\]
+
+So we expect this type of device to last on average \(\boxed{200}\) hours.
+
+\subsection*{Example: Discrete RV and Transformation}
+
+Let \(X\) be a discrete random variable with PMF:
+
+\[
+\begin{array}{c|cccc}
+x & -1 & 0 & 1 & 2 \\ \hline
+f(X) & 0.3 & 0.2 & 0.3 & 0.2
+\end{array}
+\]
+
+Define a new random variable as a \underline{transformation} of \(X\):
+\[
+g(X)=X^2
+\]
+
+\textbf{Possible values of \(g(X)\):}
+\[
+g(-1)=1,\quad g(0)=0,\quad g(1)=1,\quad g(2)=4
+\]
+So \(g(X)\) can take values \(\{0,1,4\}\).
+
+\textbf{Distribution of \(g(X)\):}
+\[
+P(g(X)=0)=P(X=0)=0.2
+\]
+\[
+P(g(X)=1)=P(X=-1)+P(X=1)=0.3+0.3=0.6
+\]
+\[
+P(g(X)=4)=P(X=2)=0.2
+\]
+
+\[
+\begin{array}{c|ccc}
+g(X) & 0 & 1 & 4 \\ \hline
+P(g(X)) & 0.2 & 0.6 & 0.2
+\end{array}
+\]
+
+This is called a \underline{transformation} of a random variable.
+
+\textbf{Expected value of the transformed RV:}
+\[
+\boxed{
+E(g(X))=E(X^2)=\sum_x x^2 f(X)=\sum_x g(x)\,f(X)
+}
+\]
+
+Numerically:
+\[
+E(X^2)=0^2(0.2)+(-1)^2(0.3)+(1)^2(0.3)+(2)^2(0.2)
+=0+0.3+0.3+0.8=1.4
+\]
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!5,
+    colframe=softpink!70!black,
+    coltitle=black,
+    colbacktitle=softpink,
+    title=\textbf{Expected Value of a Function of a RV},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+Let \(X\) be a random variable with distribution \(f(X)\). The expected value of the random variable \(g(X)\) is
+
+\[
+\boxed{
+E(g(X))=
+\begin{cases}
+\sum_x g(x)\,f(X), & \text{if \(X\) is discrete}\\[6pt]
+\int_{-\infty}^{\infty} g(x)\,f(X)\,dx, & \text{if \(X\) is continuous}
+\end{cases}
+}
+\]
+\end{tcolorbox}
+\end{center}
+
+\subsection*{Example: Chip Game (Expected Winnings)}
+
+A bowl contains 5 chips:
+\begin{itemize}
+  \item 3 chips are worth \$1 each
+  \item 2 chips are worth \$4 each
+\end{itemize}
+A player draws 2 chips at random (without replacement) and is paid the sum.
+
+\medskip
+Let \(X\) be the number of \$1 chips drawn. Then
+\[
+X\in\{0,1,2\}.
+\]
+
+\textbf{PMF of \(X\):} (hypergeometric)
+\[
+f(X)=
+\begin{cases}
+\dfrac{\binom{3}{x}\binom{2}{2-x}}{\binom{5}{2}}, & x=0,1,2,\\[8pt]
+0, & \text{otherwise.}
+\end{cases}
+\]
+
+\textbf{Define payout as a function of \(X\):}  
+If you draw \(x\) one-dollar chips, then you draw \(2-x\) four-dollar chips, so the payout is
+\[
+g(x)=1(x)+4(2-x)=8-3x.
+\]
+So the payout random variable is \(g(X)=8-3X\).
+
+\textbf{Expected payout:}
+\[
+E(g(X))=\sum_{x=0}^{2} g(x)\,f(X)
+\]
+
+Compute \(f(X)\) values:
+\[
+f(0)=\frac{\binom{3}{0}\binom{2}{2}}{\binom{5}{2}}=\frac{1}{10},\quad
+f(1)=\frac{\binom{3}{1}\binom{2}{1}}{\binom{5}{2}}=\frac{6}{10},\quad
+f(2)=\frac{\binom{3}{2}\binom{2}{0}}{\binom{5}{2}}=\frac{3}{10}.
+\]
+
+Then
+\[
+E(g(X))=\sum_{x=0}^{2} (8-3x)\,f(X)
+=
+(8)\left(\frac{1}{10}\right)
++(5)\left(\frac{6}{10}\right)
++(2)\left(\frac{3}{10}\right)
+=4.4
+\]
+
+\textbf{Decision:}  
+If it costs \$4.75 to play, your expected profit is
+\[
+E(\text{profit})=E(g(X)) - 4.75 = 4.4-4.75=-0.35
+\]
+So in the long run, you lose about \(\boxed{\$0.35}\) per game on average, so you should \underline{not} play.
+
+\subsection*{Notation: \(g(X)\) vs. \(g(x)\)}
+
+\begin{itemize}
+  \item \(X\) is a \underline{random variable}; \(x\) is a specific value it can take.
+  \item \(g(X)\) is a \underline{random variable}.
+  \item \(g(x)\) is a \underline{number}.
+\end{itemize}
+
+\medskip
+
+\textbf{Key rule:}
+\[
+\boxed{
+E(g(X))=\sum_x g(x)\,f(X)
+}
+\]
+
+Expectation averages the numerical values \(g(x)\), weighted by their probabilities.
+
+\medskip
+
+\textbf{Exam rule:}  
+\[
+\boxed{g(X)\text{ is random variable, } g(x)\text{ is a number.}}
+\]
 
 \end{document}
