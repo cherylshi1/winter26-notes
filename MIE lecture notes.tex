@@ -92,7 +92,7 @@
 
 \vspace*{1cm}
 
-{\LARGE MIE Lecture Notes}\\[0.4cm]
+{\LARGE MIE286 Lecture Notes}\\[0.4cm]
 {\large Probability and Statistics}\\[0.4cm]
 {\large Cheryl Shi}\\[1cm]
 {\large Contents}
@@ -233,6 +233,45 @@
 3.10 Independence
 \dotfill
 \hyperref[sec:independence]{\pageref*{sec:independence}}
+
+\vspace{0.6cm}
+
+\noindent
+\textbf{Chapter 4}
+\dotfill
+\hyperref[chap:four]{\pageref*{chap:four}}
+
+\vspace{0.3cm}
+
+\noindent\hspace{0.5cm}
+4.1 Expected Value
+\dotfill
+\hyperref[sec:expected_value]{\pageref*{sec:expected_value}}
+
+\noindent\hspace{1.2cm}
+4.1.1 Expected Value of a Random Variable
+\dotfill
+\hyperref[sec:ev_definition]{\pageref*{sec:ev_definition}}
+
+\noindent\hspace{1.2cm}
+4.1.2 Expected Value of a Function of a Random Variable
+\dotfill
+\hyperref[sec:ev_function]{\pageref*{sec:ev_function}}
+
+\noindent\hspace{1.2cm}
+4.1.3 Expected Value from a Joint Distribution
+\dotfill
+\hyperref[sec:ev_joint]{\pageref*{sec:ev_joint}}
+
+\noindent\hspace{1.2cm}
+4.1.4 Properties of Expected Value
+\dotfill
+\hyperref[sec:ev_properties]{\pageref*{sec:ev_properties}}
+
+\noindent\hspace{0.5cm}
+4.2 Variance
+\dotfill
+\hyperref[sec:variance]{\pageref*{sec:variance}}
 
 \end{titlepage}
 
@@ -3183,6 +3222,7 @@ Selections are independent if:
 Sampling without replacement generally produces \underline{dependent} variables.
 
 \section*{Chapter 4}
+\label{chap:four}
 
 \subsection*{Motivation}
 
@@ -3192,7 +3232,11 @@ If you roll a fair die repeatedly, what \textit{average value} do you expect in 
 \medskip
 This motivates the idea of \underline{expectation}: a theoretical long-run average.
 
-\subsection*{Expectation (Expected Value)}
+\section*{Expected Value}
+\label{sec:expected_value}
+\subsection*{Expected Value of a Random Variable}
+\label{sec:ev_definition}
+
 
 \textbf{Def:}  
 For a random variable \(X\), the \underline{expectation} (or \underline{expected value} or \underline{mean}) is the long-run average value of \(X\).
@@ -3503,5 +3547,499 @@ Expectation averages the numerical values \(g(x)\), weighted by their probabilit
 \[
 \boxed{g(X)\text{ is random variable, } g(x)\text{ is a number.}}
 \]
+
+\section*{February 2}
+
+\subsection*{Chapter 4 Review: Expectation}
+
+\begin{enumerate}
+\item \textit{\underline{Expected value}}, $\mu = E(X)$  
+
+\begin{itemize}
+    \item \textbf{Discrete:}
+    \[
+    E(X) = \sum_x x\, f(X)
+    \]
+
+    \item \textbf{Continuous:}
+    \[
+    E(X) = \int_{-\infty}^{\infty} x\, f(X)\, dx
+    \]
+\end{itemize}
+
+\item \textit{\underline{Expected value of a function}}, $E[g(X)]$  
+
+\begin{itemize}
+    \item $g(X)$ is a function of $X$
+
+    \item \textbf{Discrete:}
+    \[
+    E[g(X)] = \sum_x g(x)\, f(X)
+    \]
+
+    \item \textbf{Continuous:}
+    \[
+    E[g(X)] = \int_{-\infty}^{\infty} g(X)\, f(X)\, dx
+    \]
+\end{itemize}
+
+\item \textbf{Example (continuous RV):}  
+
+\[
+f(X) = 4x^3, \quad 0 < x < 1
+\]
+
+\begin{itemize}
+    \item
+    \[
+    E(X) = \int_0^1 x \cdot 4x^3\, dx
+    \]
+
+    \item
+    \[
+    E(X^2) = \int_0^1 x^2 \cdot 4x^3\, dx
+    \]
+\end{itemize}
+
+\end{enumerate}
+
+\subsection*{Expected Value of a Function of a Random Variable}
+\label{sec:ev_function}
+
+
+\begin{enumerate}
+\item \textit{\underline{Expected value of a function: expected average value in the long wrong}}, $E[g(X)]$  
+
+\begin{itemize}
+    \item $g(X)$ is a function of $X$
+
+    \item \textbf{Discrete:}
+    \[
+    E[g(X)] = \sum_x g(x)\, f(X)
+    \]
+
+    \item \textbf{Continuous:}
+    \[
+    E[g(X)] = \int_{-\infty}^{\infty} g(X)\, f(X)\, dx
+    \]
+\end{itemize}
+
+\item \textbf{Example (continuous RV):}  
+
+\[
+f(X) = 4x^3, \quad 0 < x < 1
+\]
+
+\begin{itemize}
+    \item
+    \[
+    E(X) = \int_0^1 x \cdot 4x^3\, dx
+    \]
+
+    \item
+    \[
+    E(X^2) = \int_0^1 x^2 \cdot 4x^3\, dx
+    \]
+\end{itemize}
+\end{enumerate}
+
+\subsection*{Expected Value from a Joint Distribution}
+\label{sec:ev_joint}
+
+
+\noindent
+\textbf{General formula}
+\[
+\boxed{
+E[g(X,Y)] = \int\!\!\int g(x,y)\, f(X,Y)\, dx\, dy
+}
+\]
+
+\bigskip
+
+\noindent
+\textbf{Computing $E(X)$ from a joint PDF}
+
+\medskip
+\noindent
+There are two equivalent methods to compute $E(X)$.
+
+\bigskip
+
+\noindent
+\textbf{Method 1: Using the marginal distribution}
+
+\medskip
+\noindent
+First find the marginal of $X$:
+\[
+f(X) = \int_0^1 x(1+3y^2)\, dy
+\]
+
+\[
+= x \int_0^1 (1+3y^2)\, dy
+\]
+
+\[
+= x \left[ y + y^3 \right]_0^1
+= x(1+1)
+= 2x
+\]
+
+\medskip
+\noindent
+Now compute the expected value:
+\[
+E(X) = \int_0^2 x f(X)\, dx
+= \int_0^2 x(2x)\, dx
+\]
+
+\[
+= 2 \int_0^2 x^2\, dx
+= 2 \left[ \frac{x^3}{3} \right]_0^2
+= \frac{16}{3}
+\]
+
+\bigskip
+
+\noindent
+\textbf{Method 2: Direct double integral}
+
+\medskip
+\noindent
+Apply the general formula with $g(X,Y)=X$:
+\[
+E(X) = \int_0^1 \int_0^2 x\, f(X,Y)\, dx\, dy
+\]
+
+\[
+= \int_0^1 \int_0^2 x \cdot x(1+3y^2)\, dx\, dy
+\]
+
+\[
+= \int_0^1 (1+3y^2)\left( \int_0^2 x^2\, dx \right) dy
+\]
+
+\[
+= \int_0^1 (1+3y^2)\left[ \frac{x^3}{3} \right]_0^2 dy
+= \int_0^1 (1+3y^2)\frac{8}{3}\, dy
+\]
+
+\[
+= \frac{8}{3} \int_0^1 (1+3y^2)\, dy
+= \frac{8}{3} \cdot 2
+= \frac{16}{3}
+\]
+
+\bigskip
+\noindent
+Both methods give the same result:
+\[
+\boxed{
+E(X) = \frac{16}{3}
+}
+\]
+
+\subsection*{Properties of Expected Value}
+\label{sec:ev_properties}
+
+
+\textcolor{blue}{\textbf{Properties of Expectation}}
+
+Let $X,Y$ be random variables and let $a,b \in \mathbb{R}$ be constants.
+
+\begin{enumerate}
+\item \textbf{Linearity (scaling and shifting):}
+\[
+\boxed{
+E(aX + b) = aE(X) + b
+}
+\]
+
+\noindent
+\textbf{Continuous case:}
+\[
+E(aX + b)
+= \int_{-\infty}^{\infty} (ax+b)\, f(X)\, dx
+\]
+\[
+= a \int_{-\infty}^{\infty} x f(X)\, dx
++ b \int_{-\infty}^{\infty} f(X)\, dx
+\]
+
+\medskip
+\noindent
+Note that
+\[
+\int_{-\infty}^{\infty} f(X)\, dx = 1
+\]
+because $f(X)$ is a probability density function and the total probability over its entire support must equal $1$.
+
+\medskip
+\noindent
+Therefore,
+\[
+E(aX + b) = aE(X) + b
+\]
+
+\item \textbf{Expectation of a constant:}
+\[
+\boxed{
+E(a) = a
+}
+\]
+
+\item \textbf{Additivity:}
+\[
+\boxed{
+E[g(X) \pm h(X)] = E[g(X)] \pm E[h(X)]
+}
+\]
+
+\item \textbf{Non-negativity:}
+\[
+\boxed{
+X \ge 0 \;\Rightarrow\; E(X) \ge 0
+}
+\]
+
+\item \textbf{Zero expectation:}
+\[
+\boxed{
+X \ge 0 \text{ and } E(X)=0 \iff P(X=0)=1
+}
+\]
+\end{enumerate}
+
+
+
+\section*{Variance}
+\label{sec:variance}
+
+
+\noindent
+$E(X)$ is a measure of the \textbf{center} of a distribution.
+
+\medskip
+\noindent
+The \textbf{variance}, denoted $\sigma^2 = \mathrm{Var}(X)$, measures how closely the distribution is concentrated around the mean $\mu$.
+
+\medskip
+\noindent
+Definition:
+\[
+\boxed{
+\mathrm{Var}(X) = E[(X-\mu)^2], \quad \mu = E(X)
+}
+\]
+
+\medskip
+\noindent
+$\sigma = \sqrt{\sigma^2}$ is called the \textbf{standard deviation}.
+
+\bigskip
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!5,
+    colframe=softpink!70!black,
+    coltitle=black,
+    colbacktitle=softpink,
+    title=\textbf{Theorem (Variance Formula)},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+\[
+\mathrm{Var}(X) = \sigma^2 = E(X^2) - \mu^2
+\]
+\end{tcolorbox}
+\end{center}
+
+
+\medskip
+\noindent
+\textbf{Proof:}
+\[
+E[(X-\mu)^2]
+= E[X^2 - 2\mu X + \mu^2]
+\]
+\[
+= E(X^2) - 2\mu E(X) + \mu^2
+\]
+\[
+= E(X^2) - \mu^2
+\]
+
+\bigskip
+
+\noindent
+\textbf{Example}
+
+Weekly demand for a drink (in thousand liters) is a continuous random variable $X$ with PDF
+\[
+f(X) = 2(x-1), \quad 1 < x < 2
+\]
+
+\medskip
+\noindent
+Mean:
+\[
+\mu = E(X) = \int_1^2 x \cdot 2(x-1)\, dx = \frac{5}{3}
+\]
+
+\medskip
+\noindent
+Second moment:
+\[
+E(X^2) = \int_1^2 x^2 \cdot 2(x-1)\, dx = \frac{17}{6}
+\]
+
+\medskip
+\noindent
+Variance:
+\[
+\boxed{
+\sigma^2 = \mathrm{Var}(X)
+= \frac{17}{6} - \left(\frac{5}{3}\right)^2
+= \frac{1}{18}
+}
+\]
+
+\bigskip
+
+\noindent
+\textbf{Variance of a function of a random variable}
+
+Let $X$ be a random variable and let $g(X)$ be a function of $X$.
+
+\medskip
+\noindent
+Mean of $g(X)$:
+\[
+\mu_{g(X)} = E[g(X)]
+\]
+
+\medskip
+\noindent
+Variance of $g(X)$:
+\[
+\boxed{
+\mathrm{Var}(g(X))
+= E[(g(X)-\mu_{g(X)})^2]
+= E[g(X)^2] - (E[g(X)])^2
+}
+\]
+
+\bigskip
+
+\textcolor{blue}{\textbf{Properties of Variance}}
+
+Let $X,Y$ be random variables and let $a,b \in \mathbb{R}$.
+
+\begin{enumerate}
+\item
+\[
+\boxed{
+\mathrm{Var}(aX+b) = a^2 \mathrm{Var}(X)
+}
+\]
+
+\noindent
+\textbf{Proof:}
+\[
+\mathrm{Var}(aX+b)
+= E[(aX+b)^2] - (E[aX+b])^2
+\]
+\[
+= E[a^2X^2 + 2abX + b^2] - (aE[X]+b)^2
+\]
+\[
+= a^2E[X^2] + 2abE[X] + b^2
+- a^2E[X]^2 - 2abE[X] - b^2
+\]
+\[
+= a^2\big(E[X^2]-E[X]^2\big)
+= a^2\mathrm{Var}(X)
+\]
+
+\item
+\[
+\boxed{
+\mathrm{Var}(X) \ge 0
+}
+\]
+
+\item
+\[
+\boxed{
+\mathrm{Var}(a) = 0
+}
+\quad \text{for any constant } a
+\]
+
+\item
+\[
+\boxed{
+\mathrm{Var}(X)=0 \iff X \text{ is a constant}
+}
+\]
+\end{enumerate}
+
+\bigskip
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!5,
+    colframe=softpink!70!black,
+    coltitle=black,
+    colbacktitle=softpink,
+    title=\textbf{Theorem (Variance of a Linear Combination)},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+Let $X,Y$ be random variables with joint distribution $f(X,Y)$.
+Then
+\[
+\mathrm{Var}(aX+bY)
+= a^2\mathrm{Var}(X)
++ b^2\mathrm{Var}(Y)
++ 2ab\,\mathrm{Cov}(X,Y)
+\]
+\end{tcolorbox}
+\end{center}
+
+\medskip
+\noindent
+where the \textbf{covariance} is defined as
+\[
+\boxed{
+\mathrm{Cov}(X,Y)
+= E[(X-E[X])(Y-E[Y])]
+}
+\]
+
+\bigskip
+
+\noindent
+\textbf{Interpretation of covariance}
+
+\begin{itemize}
+\item $\mathrm{Cov}(X,Y) > 0$: $X$ and $Y$ tend to increase together  
+\item $\mathrm{Cov}(X,Y) < 0$: one increases while the other decreases  
+\item $\mathrm{Cov}(X,Y) = 0$: no linear relationship
+\end{itemize}
+
+\medskip
+\noindent
+\textbf{Example (population intuition):}
+
+If $X$ is height and $Y$ is weight in a population,
+\[
+(X-E[X])(Y-E[Y]) > 0
+\]
+for tall–heavy and short–light individuals, so $\mathrm{Cov}(X,Y) > 0$.
+
 
 \end{document}
