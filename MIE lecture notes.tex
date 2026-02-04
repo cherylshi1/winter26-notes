@@ -3550,60 +3550,7 @@ Expectation averages the numerical values \(g(x)\), weighted by their probabilit
 
 \section*{February 2}
 
-\subsection*{Chapter 4 Review: Expectation}
-
-\begin{enumerate}
-\item \textit{\underline{Expected value}}, $\mu = E(X)$  
-
-\begin{itemize}
-    \item \textbf{Discrete:}
-    \[
-    E(X) = \sum_x x\, f(X)
-    \]
-
-    \item \textbf{Continuous:}
-    \[
-    E(X) = \int_{-\infty}^{\infty} x\, f(X)\, dx
-    \]
-\end{itemize}
-
-\item \textit{\underline{Expected value of a function}}, $E[g(X)]$  
-
-\begin{itemize}
-    \item $g(X)$ is a function of $X$
-
-    \item \textbf{Discrete:}
-    \[
-    E[g(X)] = \sum_x g(x)\, f(X)
-    \]
-
-    \item \textbf{Continuous:}
-    \[
-    E[g(X)] = \int_{-\infty}^{\infty} g(X)\, f(X)\, dx
-    \]
-\end{itemize}
-
-\item \textbf{Example (continuous RV):}  
-
-\[
-f(X) = 4x^3, \quad 0 < x < 1
-\]
-
-\begin{itemize}
-    \item
-    \[
-    E(X) = \int_0^1 x \cdot 4x^3\, dx
-    \]
-
-    \item
-    \[
-    E(X^2) = \int_0^1 x^2 \cdot 4x^3\, dx
-    \]
-\end{itemize}
-
-\end{enumerate}
-
-\subsection*{Expected Value of a Function of a Random Variable}
+\subsection*{Chapter 4 Review: Expected Value of a Function of a Random Variable}
 \label{sec:ev_function}
 
 
@@ -4040,6 +3987,874 @@ If $X$ is height and $Y$ is weight in a population,
 (X-E[X])(Y-E[Y]) > 0
 \]
 for tall–heavy and short–light individuals, so $\mathrm{Cov}(X,Y) > 0$.
+
+\section*{Feb 4}
+
+\subsection*{Review}
+
+\begin{enumerate}
+    \item \underline{\textit{Expected Value}}
+
+    \begin{itemize}
+        \item \textbf{Discrete random variable:}
+        \[
+        E(X) = \sum_x x f(X)
+        \]
+
+        \item \textbf{Continuous random variable:}
+        \[
+        E(X) = \int_{-\infty}^{\infty} x f(X)\,dx
+        \]
+    \end{itemize}
+
+    \item \underline{\textit{Variance}}
+
+    \begin{itemize}
+        \item Definition:
+        \[
+        \mathrm{Var}(X) = \sigma^2 = E\big[(X-\mu)^2\big]
+        \]
+
+        \item Simplified form:
+        \[
+        \mathrm{Var}(X) = E(X^2) - \mu^2
+        \]
+        where \(\mu = E(X)\).
+    \end{itemize}
+
+    \item \underline{\textit{Variance of a Linear Combination}}
+
+    \begin{itemize}
+        \item For constants \(a,b\):
+        \[
+        \mathrm{Var}(aX + bY)
+        = a^2 \mathrm{Var}(X) + b^2 \mathrm{Var}(Y)
+        + 2ab\,\sigma_{XY}
+        \]
+
+        \item Covariance:
+        \[
+        \sigma_{XY}
+        = \mathrm{Cov}(X,Y)
+        = E\big[(X - E(X))(Y - E(Y))\big]
+        \]
+
+        \item Equivalent form:
+        \[
+        \sigma_{XY} = E(XY) - E(X)E(Y)
+        \]
+    \end{itemize}
+\end{enumerate}
+
+\medskip
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!10,
+    colframe=softpink,
+    coltitle=black,
+    title=\textbf{Theorem: Independence and Expected Value},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+Let $X$ and $Y$ be independent random variables. Then
+\[
+E(XY) = E(X)\,E(Y).
+\]
+
+As a consequence,
+\[
+\mathrm{Cov}(X,Y) = 0.
+\]
+\medskip
+
+\textbf{Continuous case:}
+
+\[
+E(XY)
+= \int_{-\infty}^{\infty}\!\!\int_{-\infty}^{\infty}
+xy\, f(X,Y)\,dx\,dy
+\]
+
+If \(X\) and \(Y\) are independent,
+\[
+f(X,Y) = g(X)h(Y)
+\]
+
+so
+\[
+E(XY)
+= \left(\int_{-\infty}^{\infty} x g(X)\,dx\right)
+\left(\int_{-\infty}^{\infty} y h(Y)\,dy\right)
+\]
+
+\[
+= E(X)\,E(Y)
+\]
+
+
+\end{tcolorbox}
+\end{center}
+
+\subsection*{Example}
+
+\textbf{Given:} The joint PMF table below.
+
+\[
+\begin{array}{c|ccc|c}
+f(X,Y) & X=-1 & X=0 & X=1 & h(Y) \\ \hline
+Y=-1 & \tfrac18 & \tfrac18 & \tfrac18 & \tfrac38 \\
+Y=0  & \tfrac18 & 0         & \tfrac18 & \tfrac28 \\
+Y=1  & \tfrac18 & \tfrac18 & \tfrac18 & \tfrac38 \\ \hline
+g(X) & \tfrac38 & \tfrac28 & \tfrac38 & 1
+\end{array}
+\]
+
+\begin{enumerate}
+    \item \underline{\textit{Compute $E(X)$}}
+
+    Using the marginal PMF $g(X)$:
+    \[
+    E(X) = \sum_x x\,g(X)
+    \]
+    \[
+    E(X)=(-1)\cdot\tfrac38 + 0\cdot\tfrac28 + 1\cdot\tfrac38
+    =-\tfrac38 + 0 + \tfrac38
+    =0
+    \]
+
+    \item \underline{\textit{Compute $E(Y)$}}
+
+    Using the marginal PMF $h(Y)$:
+    \[
+    E(Y)=\sum_y y\,h(Y)
+    \]
+    \[
+    E(Y)=(-1)\cdot\tfrac38 + 0\cdot\tfrac28 + 1\cdot\tfrac38
+    =-\tfrac38 + 0 + \tfrac38
+    =0
+    \]
+
+    \item \underline{\textit{Compute $E(XY)$}}
+
+    Using the joint PMF:
+    \[
+    E(XY)=\sum_x\sum_y xy\,f(X,Y)
+    \]
+
+    Compute by rows:
+
+    \textbf{Row $y=-1$:}
+    \[
+    (-1)(-1)\tfrac18 + (0)(-1)\tfrac18 + (1)(-1)\tfrac18
+    =\tfrac18 + 0 - \tfrac18 =0
+    \]
+
+    \textbf{Row $y=0$:} all terms are $0$ because $y=0$.
+
+    \textbf{Row $y=1$:}
+    \[
+    (-1)(1)\tfrac18 + (0)(1)\tfrac18 + (1)(1)\tfrac18
+    =-\tfrac18 + 0 + \tfrac18 =0
+    \]
+
+    Therefore,
+    \[
+    E(XY)=0
+    \]
+\end{enumerate}
+
+\medskip
+\textbf{Final:}
+\[
+E(X)=0,\qquad E(Y)=0,\qquad E(XY)=0
+\]
+
+\medskip
+\textbf{Note:} Even if $E(XY)=E(X)E(Y)$, this \underline{does not automatically mean} $X$ and $Y$ are independent.
+Independence requires:
+\[
+f(X,Y)=g(X)\,h(Y).
+\]
+
+\subsection*{Covariance and Independence}
+
+\textbf{Recall:}
+\[
+\mathrm{Cov}(X,Y)=0
+\quad \text{does NOT necessarily imply independence.}
+\]
+
+\medskip
+
+\textbf{Check independence:}
+\[
+f(X,Y)\stackrel{?}{=} g(X)h(Y)
+\]
+
+\medskip
+
+In this example,
+\[
+f(0,0)=0
+\]
+
+but
+\[
+g(0)h(0)=\tfrac{2}{8}\cdot\tfrac{2}{8}\neq 0
+\]
+
+Therefore,
+\[
+f(0,0)\neq g(0)h(0)
+\]
+
+\[
+\Rightarrow \quad X \text{ and } Y \text{ are \underline{not independent}.}
+\]
+
+\bigskip
+
+\textcolor{blue}{\textbf{Properties of Covariance}}
+
+\medskip
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=white,
+    colframe=black,
+    boxrule=0.8pt,
+    arc=0pt,
+    width=0.9\textwidth
+]
+\begin{enumerate}
+    \item
+    \[
+    \mathrm{Cov}(X,X)
+    =
+    \mathrm{Var}(X)
+    =
+    E(X^2) - E(X)^2
+    \]
+
+    \item
+    \[
+    \mathrm{Cov}(aX+b,\;cY+d)
+    =
+    ac\,\mathrm{Cov}(X,Y)
+    \]
+
+    \item
+    \[
+    \mathrm{Cov}(X+Y,\;Z)
+    =
+    \mathrm{Cov}(X,Z)
+    +
+    \mathrm{Cov}(Y,Z)
+    \]
+
+    \item
+    \[
+    \mathrm{Cov}(X,Y)
+    =
+    \mathrm{Cov}(Y,X)
+    \]
+\end{enumerate}
+\end{tcolorbox}
+\end{center}
+
+\bigskip
+
+\textbf{Important note:}
+
+The covariance $\sigma_{XY}$ is \underline{not scale-free}.  
+Its magnitude does \underline{not} directly indicate the strength of the linear relationship between $X$ and $Y$.
+
+\medskip
+
+\textbf{Definition: Correlation Coefficient}
+
+The \underline{correlation coefficient} of $X$ and $Y$ is
+\[
+\boxed{
+\rho_{XY}
+=
+\frac{\sigma_{XY}}{\sigma_X\,\sigma_Y}
+}
+\]
+
+where
+\[
+\sigma_X=\sqrt{\mathrm{Var}(X)}, \qquad
+\sigma_Y=\sqrt{\mathrm{Var}(Y)}.
+\]
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!10,
+    colframe=softpink,
+    coltitle=black,
+    title=\textbf{Theorem: Correlation Is Scale-Free},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+For constants $a,c \neq 0$ and any constants $b,d$,
+\[
+\rho(aX+b,\;cY+d)=\rho(X,Y)
+\]
+
+Therefore, the correlation coefficient is \underline{scale-free}.
+\end{tcolorbox}
+\end{center}
+
+\textbf{Proof.}
+
+By definition of correlation,
+\[
+\rho(aX+b,\;cY+d)
+=
+\frac{\mathrm{Cov}(aX+b,\;cY+d)}
+{\sqrt{\mathrm{Var}(aX+b)\,\mathrm{Var}(cY+d)}}.
+\]
+
+Using properties of covariance,
+\[
+\mathrm{Cov}(aX+b,\;cY+d)=ac\,\mathrm{Cov}(X,Y)
+\]
+
+Using properties of variance,
+\[
+\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X),
+\qquad
+\mathrm{Var}(cY+d)=c^2\mathrm{Var}(Y)
+\]
+
+Substituting,
+\[
+\rho(aX+b,\;cY+d)
+=
+\frac{ac\,\mathrm{Cov}(X,Y)}
+{\sqrt{a^2\mathrm{Var}(X)\,c^2\mathrm{Var}(Y)}}.
+\]
+
+The constants $a$ and $c$ appear in both the numerator and denominator and therefore cancel:
+\[
+=
+\frac{\mathrm{Cov}(X,Y)}
+{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}}
+=
+\rho(X,Y)
+\]
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=softpink!10,
+    colframe=softpink,
+    coltitle=black,
+    title=\textbf{Theorem: Bounds on Correlation},
+    boxrule=0.8pt,
+    arc=6pt,
+    width=0.9\textwidth
+]
+\[
+-1 \le \rho(X,Y) \le 1
+\]
+\end{tcolorbox}
+\end{center}
+
+\subsection*{Interpretation of the Correlation Coefficient}
+
+\begin{enumerate}
+    \item
+    $\rho$ is a measure of the \underline{strength and direction}
+    of the \underline{linear relationship} between $X$ and $Y$.
+
+    \item
+    When there is an \underline{exact linear relationship},
+    \[
+    \boxed{
+    Y = aX + b
+    }
+    \quad \Rightarrow \quad
+    \boxed{
+    \rho = 1 \text{ or } \rho = -1
+    }
+    \]
+\end{enumerate}
+\subsection*{Example}
+
+\textbf{Given:}
+\[
+f(X,Y)=
+\begin{cases}
+1, & 0<x<1,\; x<y<x+1,\\
+0, & \text{otherwise.}
+\end{cases}
+\]
+
+% Support region for: 0<x<1 and x<y<x+1
+
+\begin{center}
+\begin{tikzpicture}[scale=3]
+
+% Axes
+\draw[->] (-0.05,0) -- (1.25,0) node[right] {$x$};
+\draw[->] (0,-0.05) -- (0,2.25) node[above] {$y$};
+
+% Key x-boundaries
+\draw[dashed] (0,0) -- (0,2.1) node[above left] {$x=0$};
+\draw[dashed] (1,0) -- (1,2.1) node[above] {$x=1$};
+
+% Lines y = x and y = x+1 (only drawn over 0<x<1)
+\draw[thick] (0,0) -- (1,1) node[right] {$y=x$};
+\draw[thick] (0,1) -- (1,2) node[right] {$y=x+1$};
+
+% Shaded support region
+\fill[babyblue!20, opacity=0.7] 
+  (0,0) -- (1,1) -- (1,2) -- (0,1) -- cycle;
+
+% Corner points (optional, helps clarity)
+\fill (0,0) circle (0.015);
+\fill (1,1) circle (0.015);
+\fill (0,1) circle (0.015);
+\fill (1,2) circle (0.015);
+
+% Labels (optional)
+\node at (0.45,0.75) {$f(X,Y)=1$};
+
+% A few axis ticks (optional)
+\draw (1,0) -- (1,-0.02) node[below] {$1$};
+\draw (0,1) -- (-0.02,1) node[left] {$1$};
+\draw (0,2) -- (-0.02,2) node[left] {$2$};
+
+\end{tikzpicture}
+\end{center}
+
+
+\medskip
+
+\textbf{Check total probability:}
+\[
+\int_{0}^{1}\int_{x}^{x+1} 1\,dy\,dx
+=
+\int_{0}^{1} (x+1-x)\,dx
+=
+\int_{0}^{1} 1\,dx
+=1
+\]
+
+\subsubsection*{Expected Values}
+
+\[
+E(X)=\int_{0}^{1}\int_{x}^{x+1} x\,f(X,Y)\,dy\,dx
+=
+\int_{0}^{1}\int_{x}^{x+1} x\,dy\,dx
+\]
+
+\[
+=\int_{0}^{1} x(1)\,dx
+=\int_{0}^{1} x\,dx
+=\frac12
+\]
+
+\[
+\boxed{E(X)=\frac12}
+\]
+
+\medskip
+
+\[
+E(Y)=\int_{0}^{1}\int_{x}^{x+1} y\,f(X,Y)\,dy\,dx
+=
+\int_{0}^{1}\int_{x}^{x+1} y\,dy\,dx
+\]
+
+\[
+=\int_{0}^{1}
+\left[\frac{y^{2}}{2}\right]_{x}^{x+1}
+dx
+=
+\int_{0}^{1}
+\frac{(x+1)^2-x^2}{2}
+dx
+\]
+
+\[
+=\int_{0}^{1}\frac{2x+1}{2}\,dx
+=
+\left[\frac{x^2}{2}+\frac{x}{2}\right]_{0}^{1}
+=1
+\]
+
+\[
+\boxed{E(Y)=1}
+\]
+
+\subsubsection*{Compute $E(XY)$}
+
+\[
+E(XY)=\int_{0}^{1}\int_{x}^{x+1} xy\,f(X,Y)\,dy\,dx
+=
+\int_{0}^{1}\int_{x}^{x+1} xy\,dy\,dx
+\]
+
+\[
+=\int_{0}^{1}
+x\left[\frac{y^{2}}{2}\right]_{x}^{x+1}
+dx
+=
+\int_{0}^{1}
+x\cdot\frac{(x+1)^2-x^2}{2}
+dx
+\]
+
+\[
+=\int_{0}^{1}
+x\cdot\frac{2x+1}{2}
+dx
+=
+\int_{0}^{1}
+\left(x^2+\frac{x}{2}\right)dx
+\]
+
+\[
+=
+\left[\frac{x^3}{3}+\frac{x^2}{4}\right]_{0}^{1}
+=\frac{7}{12}
+\]
+
+\[
+\boxed{E(XY)=\frac{7}{12}}
+\]
+
+\subsubsection*{Variances}
+
+\[
+\mathrm{Var}(X)=E(X^2)-E(X)^2
+\]
+
+\[
+E(X^2)=\int_{0}^{1}\int_{x}^{x+1} x^2\,dy\,dx
+=\int_{0}^{1} x^2\,dx
+=\frac13
+\]
+
+\[
+\mathrm{Var}(X)=\frac13-\left(\frac12\right)^2=\frac{1}{12}
+\]
+
+\[
+\boxed{\mathrm{Var}(X)=\frac{1}{12}}
+\]
+
+\medskip
+
+\[
+\mathrm{Var}(Y)=E(Y^2)-E(Y)^2
+\]
+
+\[
+E(Y^2)=\int_{0}^{1}\int_{x}^{x+1} y^2\,dy\,dx
+=\int_{0}^{1}
+\left[\frac{y^3}{3}\right]_{x}^{x+1}
+dx
+\]
+
+\[
+=\int_{0}^{1}
+\frac{(x+1)^3-x^3}{3}
+dx
+=\frac{7}{6}
+\]
+
+\[
+\mathrm{Var}(Y)=\frac{7}{6}-1=\frac16
+\]
+
+\[
+\boxed{\mathrm{Var}(Y)=\frac16}
+\]
+
+\subsubsection*{Variances (again but using $E[(X-\mu)^2]$}
+
+\textbf{Variance of $X$:}
+
+Since $E(X)=\dfrac12$,
+\[
+\mathrm{Var}(X)
+=
+E\big[(X-\tfrac12)^2\big]
+=
+\int_{0}^{1}\int_{x}^{x+1}
+\left(x-\tfrac12\right)^2
+f(X,Y)\,dy\,dx
+\]
+
+Because $f(X,Y)=1$,
+\[
+\mathrm{Var}(X)
+=
+\int_{0}^{1}\int_{x}^{x+1}
+\left(x-\tfrac12\right)^2
+\,dy\,dx
+\]
+
+\[
+=
+\int_{0}^{1}
+\left(x-\tfrac12\right)^2
+(1)\,dx
+=
+\int_{0}^{1}
+\left(x-\tfrac12\right)^2
+dx
+\]
+
+\[
+=
+\int_{0}^{1}
+\left(x^2-x+\tfrac14\right)
+dx
+=
+\left[\frac{x^3}{3}-\frac{x^2}{2}+\frac{x}{4}\right]_{0}^{1}
+=\frac{1}{12}
+\]
+
+\[
+\boxed{\mathrm{Var}(X)=\frac{1}{12}}
+\]
+
+\textbf{Variance of $Y$:}
+
+Since $E(Y)=1$,
+\[
+\mathrm{Var}(Y)
+=
+E\big[(Y-1)^2\big]
+=
+\int_{0}^{1}\int_{x}^{x+1}
+(y-1)^2
+f(X,Y)\,dy\,dx
+\]
+
+\[
+=
+\int_{0}^{1}\int_{x}^{x+1}
+(y-1)^2
+\,dy\,dx
+\]
+
+\[
+=
+\int_{0}^{1}
+\left[\frac{(y-1)^3}{3}\right]_{y=x}^{y=x+1}
+dx
+=
+\int_{0}^{1}
+\frac{(x)^3-(x-1)^3}{3}
+dx
+\]
+
+\[
+=
+\int_{0}^{1}
+\left(x^2-x+\tfrac13\right)
+dx
+=
+\left[\frac{x^3}{3}-\frac{x^2}{2}+\frac{x}{3}\right]_{0}^{1}
+=\frac{1}{6}
+\]
+
+\[
+\boxed{\mathrm{Var}(Y)=\frac{1}{6}}
+\]
+
+\subsubsection*{Correlation}
+
+\[
+\rho_{XY}
+=
+\frac{E(XY)-E(X)E(Y)}
+{\sqrt{\mathrm{Var}(X)\mathrm{Var}(Y)}}
+=
+\frac{\frac{7}{12}-\frac12}
+{\sqrt{\frac{1}{12}\cdot\frac16}}
+=
+\frac{1}{\sqrt{2}}
+\]
+
+\[
+\boxed{\rho_{XY}=\frac{1}{\sqrt{2}}}
+\]
+
+\subsection*{Example}
+
+\textbf{Question:}  
+
+Let the joint PDF be
+\[
+f(X,Y)=
+\begin{cases}
+10, & 0<x<1,\; x<y<x+\dfrac{1}{10},\\[6pt]
+0, & \text{otherwise.}
+\end{cases}
+\]
+
+\medskip
+
+\begin{center}
+\begin{tikzpicture}[scale=5]
+
+% Axes
+\draw[->] (-0.05,0) -- (1.1,0) node[right] {$x$};
+\draw[->] (0,-0.05) -- (0,1.25) node[above] {$y$};
+
+% x-boundaries
+\draw[dashed] (0,0) -- (0,1.2);
+\draw[dashed] (1,0) -- (1,1.2);
+
+% Lines
+\draw[thick] (0,0) -- (1,1) node[right] {$y=x$};
+\draw[thick] (0,0.1) -- (1,1.1) node[right] {$y=x+\tfrac{1}{10}$};
+
+% Shaded region
+\fill[babyyellow!25, opacity=0.8]
+  (0,0) -- (1,1) -- (1,1.1) -- (0,0.1) -- cycle;
+
+% Label
+\node at (0.55,0.65) {$f(x,y)=10$};
+
+% Ticks
+\draw (1,0) -- (1,-0.02) node[below] {$1$};
+\draw (0,0.1) -- (-0.02,0.1) node[left] {$\tfrac{1}{10}$};
+
+\end{tikzpicture}
+\end{center}
+
+\textbf{Idea:}
+
+From the support \(x<y<x+\tfrac{1}{10}\), subtract \(x\):
+\[
+0<y-x<\tfrac{1}{10}.
+\]
+
+Define
+\[
+U = Y - X.
+\]
+
+Then the support becomes
+\[
+0<X<1,\qquad 0<U<\tfrac{1}{10}.
+\]
+
+So \(X\) and \(U\) are independent 
+
+\medskip
+
+\textbf{Calculations:}
+\\
+\textbf{Variance of a Uniform random variable:}
+
+\[
+\boxed{
+\operatorname{Var}(Z)=\frac{(b-a)^2}{12}
+\quad \text{for } Z\sim \text{Uniform}(a,b)
+}
+\]
+
+\medskip
+
+This follows from
+\[
+E(Z)=\frac{a+b}{2},
+\qquad
+E(Z^2)=\frac{a^2+ab+b^2}{3},
+\]
+and
+\[
+\operatorname{Var}(Z)=E(Z^2)-[E(Z)]^2.
+\]
+\[
+\operatorname{Var}(X)=\frac{(1-0)^2}{12}=\frac{1}{12}.
+\]
+
+\[
+\operatorname{Var}(U)=\frac{(1/10 - 0)^2}{12}=\frac{1}{1200}.
+\]
+
+\medskip
+
+Because \(Y=X+U\) and \(X\) and \(U\) are independent,
+\[
+\operatorname{Var}(Y)=\operatorname{Var}(X)+\operatorname{Var}(U)
+=\frac{1}{12}+\frac{1}{1200}
+=\frac{101}{1200}.
+\]
+
+\medskip
+
+\textbf{Covariance:}
+\[
+\operatorname{Cov}(X,Y)
+=\operatorname{Cov}(X,X+U)
+=\operatorname{Cov}(X,X)+\operatorname{Cov}(X,U).
+\]
+
+Since \(\operatorname{Cov}(X,U)=0\),
+\[
+\operatorname{Cov}(X,Y)=\operatorname{Var}(X)=\frac{1}{12}.
+\]
+
+\medskip
+
+\textbf{Correlation coefficient:}
+\[
+\rho_{X,Y}
+=
+\frac{\frac{1}{12}}
+{\sqrt{\left(\frac{1}{12}\right)\left(\frac{101}{1200}\right)}}
+=
+\sqrt{\frac{100}{101}}.
+\]
+
+\textbf{Comparison and interpretation:}
+
+In both examples, the support is a diagonal band of the form
+\[
+x<y<x+w,
+\]
+where \(w\) is the band width.
+
+\medskip
+
+\begin{itemize}
+\item A \textbf{smaller band width} means \(Y\) stays closer to the line \(y=x\).
+\item This implies less variation in \(Y-X\).
+\item Hence, \(Y\) is more tightly determined by \(X\).
+\end{itemize}
+
+\medskip
+
+In the second example,
+\[
+w=\frac{1}{10},
+\]
+so \(Y=X+U\) with \(U\sim\text{Unif}(0,\tfrac{1}{10})\) very small.
+
+As a result,
+\[
+\rho_{X,Y}=\sqrt{\frac{100}{101}}\approx 1,
+\]
+indicating a very strong positive correlation.
+
+\medskip
+
+\textbf{Key idea:}
+A thinner diagonal support band implies stronger linear dependence and higher correlation between \(X\) and \(Y\).
+
 
 
 \end{document}
