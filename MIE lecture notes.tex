@@ -4855,6 +4855,437 @@ indicating a very strong positive correlation.
 \textbf{Key idea:}
 A thinner diagonal support band implies stronger linear dependence and higher correlation between \(X\) and \(Y\).
 
+\section*{Feb 6 }
+
+\subsection*{Discrete Uniform Distribution}
+
+A random variable $X$ has a \underline{discrete uniform distribution} if it assumes the values
+\[
+x_1, x_2, \dots, x_k
+\]
+with equal probability.
+
+\[
+f(X) =
+\begin{cases}
+\dfrac{1}{k}, & X = x_1, x_2, \dots, x_k \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+In general, $k$ will be given.
+
+\textbf{Mean:}
+\[
+E(X) = \mu = \frac{1}{k} \sum_{i=1}^{k} x_i
+\]
+
+\textbf{Variance:}
+\[
+\boxed{
+\operatorname{Var}(X) = \sigma^2
+= \frac{1}{k} \sum_{i=1}^{k} (x_i - \mu)^2
+}
+\]
+
+\subsection*{Bernoulli Distribution}
+
+A \underline{Bernoulli random variable} has only two outcomes:
+\begin{itemize}
+    \item success
+    \item failure
+\end{itemize}
+
+(The definition of success is arbitrary.  
+For example, in a cancer experiment, success could be defined as death.)
+
+\[
+X =
+\begin{cases}
+1, & \text{success} \\
+0, & \text{failure}
+\end{cases}
+\]
+
+Let
+\[
+p = P(X=1), \qquad q = P(X=0) = 1 - p
+\]
+
+\textbf{PMF table:}
+
+\[
+\begin{array}{c|cc}
+x & 0 & 1 \\
+\hline
+f(x) & q & p
+\end{array}
+\]
+
+\textbf{Mean:}
+\[
+\mu = E(X) = 1\cdot p + 0\cdot q = p
+\]
+
+\textbf{Variance:}
+\[
+\sigma^2 = E(X^2) - \mu^2
+\]
+\[
+= 0^2 q + 1^2 p - p^2
+= p - p^2
+= p(1-p)
+= pq
+\]
+
+\subsection*{Example: Independent Bernoulli Trials}
+
+Four components are tested independently.  
+Let $X$ be the number of defectives.
+
+\[
+x = 0,1,2,3,4
+\]
+
+\[
+\begin{array}{c|ccccc}
+x & 0 & 1 & 2 & 3 & 4 \\
+\hline
+P(X=x) &
+\binom{4}{0}p^0 q^4 &
+\binom{4}{1}p^1 q^3 &
+\binom{4}{2}p^2 q^2 &
+\binom{4}{3}p^3 q &
+\binom{4}{4}p^4
+\end{array}
+\]
+
+\subsection*{Binomial Distribution}
+
+The \underline{binomial distribution} gives the number of successes in $n$ independent Bernoulli trials.
+
+\[
+X \sim \text{Binomial}(n,p)
+\]
+
+\[
+\boxed{
+b(x;n,p) = f(X)
+= \binom{n}{x} p^x q^{\,n-x},
+\qquad x = 0,1,2,\dots,n
+}
+\]
+
+\subsection*{Binomial Expansion Check}
+
+\[
+\binom{n}{0} p^0 q^n
++ \binom{n}{1} p^1 q^{n-1}
++ \cdots
++ \binom{n}{n} p^n q^0
+= (p+q)^n
+\]
+
+Since $p+q=1$,
+\[
+(p+q)^n = 1
+\]
+
+\subsection*{Mean of a Binomial Random Variable}
+
+\textbf{Reminder:}
+\[
+E(X_1 + X_2 + \cdots + X_n)
+= E(X_1) + E(X_2) + \cdots + E(X_n)
+\]
+
+Let $I_i$ be the indicator random variable for success on trial $i$:
+\[
+I_i =
+\begin{cases}
+1, & \text{success on trial } i \\
+0, & \text{failure on trial } i
+\end{cases}
+\]
+
+Then
+\[
+X = I_1 + I_2 + \cdots + I_n
+\]
+
+\[
+\boxed{
+\mu = E(X)
+= nE(I_i)
+= np
+}
+\]
+
+\subsection*{Variance of a Binomial Random Variable}
+
+\textbf{Reminder:}
+\[
+\operatorname{Var}(aX + bY + c)
+= a^2 \operatorname{Var}(X)
++ b^2 \operatorname{Var}(Y)
++ 2ab \operatorname{Cov}(X,Y)
+\]
+
+Since $I_1, \dots, I_n$ are independent,
+\[
+\operatorname{Cov}(I_i, I_j) = 0 \quad (i \neq j)
+\]
+
+\[
+\operatorname{Var}(X)
+= \operatorname{Var}(I_1 + \cdots + I_n)
+\]
+
+\[
+= \operatorname{Var}(I_1) + \cdots + \operatorname{Var}(I_n)
+\]
+
+Each $I_i$ is Bernoulli$(p)$, so
+\[
+\operatorname{Var}(I_i) = pq
+\]
+
+\[
+\boxed{
+\operatorname{Var}(X) = npq
+}
+\]
+
+\subsection*{Example: Testing a Manufacturer's Claim}
+
+A manufacturer claims that the defective rate is $p = 0.1$.
+We test $n=4$ components independently and observe $3$ defectives.
+
+Let
+\[
+X = \text{number of defectives in } 4 \text{ trials}
+\]
+
+Assume the claim is true, so $p=0.1$.
+
+\[
+X \sim \text{Binomial}(4,0.1)
+\]
+
+\[
+P(X=x) = \binom{4}{x}(0.1)^x(0.9)^{4-x},
+\qquad x=0,1,2,3,4
+\]
+
+We compute the probability of observing at least $3$ defectives:
+\[
+P(X \ge 3)
+= P(X=3) + P(X=4)
+\]
+
+\[
+= \binom{4}{3}(0.1)^3(0.9)
++ \binom{4}{4}(0.1)^4
+\]
+
+\[
+= 0.0037
+\]
+
+Since this probability is very small, observing $3$ or more defectives would be very unlikely if the claim were true.
+
+Therefore, we reject the claim.
+
+\medskip
+
+\textbf{Important note:}  
+The claim is either true or false; there is no probability attached to the claim itself.
+The probability calculation assumes the claim is true and measures how surprising the observed data would be under that assumption.
+
+(We will study this idea formally in Chapter 9.)
+
+\subsection*{Multinomial Distribution}
+
+The \underline{multinomial distribution} applies when each trial has more than two possible outcomes.
+
+\medskip
+
+\textbf{Definition:}  
+Suppose a single trial can result in $k$ outcomes
+\[
+E_1, E_2, \dots, E_k
+\]
+with probabilities
+\[
+p_1, p_2, \dots, p_k,
+\qquad \sum_{i=1}^{k} p_i = 1
+\]
+
+Let
+\[
+X_i = \text{number of occurrences of outcome } E_i
+\]
+in $n$ independent trials, for $i=1,2,\dots,k$.
+
+Then the joint probability distribution of
+\[
+(X_1, X_2, \dots, X_k)
+\]
+is given by
+\[
+\boxed{
+f(x_1, x_2, \dots, x_k; p_1, \dots, p_k, n)
+= \binom{n}{x_1, x_2, \dots, x_k}
+p_1^{x_1} p_2^{x_2} \cdots p_k^{x_k}
+}
+\]
+
+subject to the constraint
+\[
+\sum_{i=1}^{k} x_i = n
+\]
+
+\medskip
+
+\textbf{Interpretation:}  
+This is like Bernoulli trials, but with more than two possible outcomes per trial.
+
+\subsection*{Example: Travel Choice (Multinomial)}
+
+Suppose a person travels to school each day using one of three methods:
+\[
+E_1 = \text{bus}, \quad
+E_2 = \text{train}, \quad
+E_3 = \text{car}
+\]
+
+Assume the probabilities are
+\[
+p_1 = P(\text{bus}), \quad
+p_2 = P(\text{train}), \quad
+p_3 = P(\text{car}),
+\qquad p_1 + p_2 + p_3 = 1
+\]
+
+The person travels for $n$ days independently.
+
+Let
+\[
+X_1 = \text{number of days taking the bus}
+\]
+\[
+X_2 = \text{number of days taking the train}
+\]
+\[
+X_3 = \text{number of days taking the car}
+\]
+
+Then
+\[
+(X_1, X_2, X_3) \sim \text{Multinomial}(n; p_1, p_2, p_3)
+\]
+
+The joint probability is
+\[
+P(X_1 = x_1, X_2 = x_2, X_3 = x_3)
+=
+\binom{n}{x_1, x_2, x_3}
+p_1^{x_1} p_2^{x_2} p_3^{x_3}
+\]
+
+subject to
+\[
+x_1 + x_2 + x_3 = n
+\]
+
+\medskip
+
+This is similar to a binomial distribution, but instead of two outcomes per trial, there are three or more possible outcomes.
+
+\subsection*{Example: Traffic Light (Multinomial)}
+
+As a student drives to school, he encounters a traffic light that is:
+\begin{itemize}
+    \item green for 35 s
+    \item yellow for 5 s
+    \item red for 60 s
+\end{itemize}
+
+Assume each encounter is independent.
+
+Define the random variables:
+\[
+X_1 = \text{number of times the light is green}
+\]
+\[
+X_2 = \text{number of times the light is yellow}
+\]
+\[
+X_3 = \text{number of times the light is red}
+\]
+
+Then
+\[
+X_1 + X_2 + X_3 = n
+\]
+
+The probabilities are:
+\[
+p_1 = P(\text{green}) = 0.35
+\]
+\[
+p_2 = P(\text{yellow}) = 0.05
+\]
+\[
+p_3 = P(\text{red}) = 0.60
+\]
+
+\[
+p_1 + p_2 + p_3 = 1
+\]
+
+Suppose the student encounters the traffic light $n=100$ times.
+
+Then
+\[
+(X_1, X_2, X_3) \sim \text{Multinomial}(100; 0.35, 0.05, 0.60)
+\]
+
+We compute:
+\[
+P(X_1=30, X_2=10, X_3=60)
+\]
+
+\[
+= \binom{100}{30,10,60}
+(0.35)^{30}(0.05)^{10}(0.60)^{60}
+\]
+
+\[
+= 0.00117
+\]
+
+\subsection*{Multinomial Coefficient}
+
+The multinomial coefficient is defined as
+\[
+\boxed{
+\binom{n}{x_1, x_2, \dots, x_k}
+= \frac{n!}{x_1!x_2!\cdots x_k!}
+}
+\]
+
+It can also be written as a product of binomial coefficients:
+\[
+\boxed{
+\binom{n}{x_1, x_2, \dots, x_k}
+=
+\binom{n}{x_1}
+\binom{n-x_1}{x_2}
+\cdots
+\binom{n-x_1-\cdots-x_{k-1}}{x_k}
+}
+\]
 
 
-\end{document}
+\end{document} 
