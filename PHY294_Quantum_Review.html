@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHY294 Quantum Review — Final Exam Study Guide</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root { --accent: #2563eb; --bg: #fafafa; --card: #fff; --border: #e2e8f0; --text: #1e293b; --dim: #64748b; --highlight: #fef3c7; --green: #dcfce7; --red: #fee2e2; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); line-height: 1.7; max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.8rem; text-align: center; margin-bottom: 0.3rem; color: var(--accent); }
+  .subtitle { text-align: center; color: var(--dim); margin-bottom: 2rem; font-style: italic; }
+  h2 { font-size: 1.4rem; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 0.3rem; margin: 2.5rem 0 1rem; }
+  h3 { font-size: 1.15rem; color: #334155; margin: 1.5rem 0 0.5rem; }
+  p { margin-bottom: 0.8rem; }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem; }
+  .toc h3 { margin-top: 0; }
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.3rem 0; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; }
+  .box.key { border-left: 4px solid var(--accent); background: #eff6ff; }
+  .box.warn { border-left: 4px solid #f59e0b; background: var(--highlight); }
+  .box.tip { border-left: 4px solid #22c55e; background: var(--green); }
+  .box.exam { border-left: 4px solid #ef4444; background: var(--red); }
+  .box-title { font-weight: bold; margin-bottom: 0.4rem; font-size: 0.95rem; }
+  .formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1rem 0; }
+  @media (max-width: 600px) { .formula-grid { grid-template-columns: 1fr; } }
+  .formula-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem; }
+  .formula-card .label { font-size: 0.85rem; color: var(--dim); margin-bottom: 0.3rem; }
+  .tag { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 12px; font-weight: bold; margin-right: 0.3rem; }
+  .tag.pre { background: #dbeafe; color: #1d4ed8; }
+  .tag.post { background: #fce7f3; color: #be185d; }
+  .tag.heavy { background: #fee2e2; color: #dc2626; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid var(--border); padding: 0.5rem 0.8rem; text-align: left; }
+  th { background: #f1f5f9; font-weight: bold; }
+  .separator { text-align: center; margin: 3rem 0 1rem; font-size: 0.85rem; color: var(--dim); letter-spacing: 0.3em; }
+  .connection { background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 1px dashed var(--accent); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .connection-title { font-weight: bold; color: var(--accent); margin-bottom: 0.3rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .fig { text-align: center; margin: 1.5rem 0; }
+  .fig svg { max-width: 100%; height: auto; }
+  .fig-caption { font-size: 0.85rem; color: var(--dim); margin-top: 0.4rem; font-style: italic; }
+  .prio { display: inline-block; font-size: 0.65rem; padding: 0.1rem 0.45rem; border-radius: 3px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; vertical-align: middle; margin-left: 0.4rem; }
+  .prio.must { background: #dc2626; color: #fff; }
+  .prio.good { background: #f59e0b; color: #fff; }
+  .prio.ctx { background: #cbd5e1; color: #475569; }
+  .cheat { background: linear-gradient(135deg, #1e293b, #334155); color: #f1f5f9; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+  .cheat h3 { color: #fbbf24; margin: 1.2rem 0 0.5rem; font-size: 1rem; }
+  .cheat h3:first-child { margin-top: 0; }
+  .cheat .cf { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.4rem 0; font-size: 0.95rem; }
+  .cheat .cf .lab { color: #94a3b8; font-size: 0.8rem; }
+  .cheat table { border-color: rgba(255,255,255,0.15); }
+  .cheat th { background: rgba(255,255,255,0.1); color: #fbbf24; }
+  .cheat td { border-color: rgba(255,255,255,0.1); color: #e2e8f0; }
+  .cheat p { color: #e2e8f0; }
+  .legend { display: flex; gap: 1rem; align-items: center; margin: 1rem 0; flex-wrap: wrap; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<h1>PHY294 Quantum Mechanics — Final Exam Review</h1>
+<p class="subtitle">Cheryl Shi · 2026<br/>Prof. Trischuk · All Quantum Lectures (Jan 5 – Feb 13) · Chapters 7–10 of Taylor/Zafiratos/Dubson</p>
+
+<div class="toc">
+<h3>Contents</h3>
+<ol>
+  <li><a href="#s1">Schrödinger Equation Foundations</a> <span class="tag pre">Pre-midterm</span></li>
+  <li><a href="#s2">Bound States & Sketching Wavefunctions</a> <span class="tag pre">Pre-midterm</span></li>
+  <li><a href="#s3">Simple Harmonic Oscillator</a> <span class="tag pre">Pre-midterm</span></li>
+  <li><a href="#s4">Time-Dependent Schrödinger & Superposition</a> <span class="tag pre">Pre-midterm</span></li>
+  <li><a href="#s5">Scattering & Tunneling</a> <span class="tag pre">Pre-midterm</span></li>
+  <li><a href="#s6">Higher Dimensions: 2D & 3D Boxes</a> <span class="tag pre">Pre-midterm</span></li>
+  <li><a href="#s7">Central Forces & Angular Momentum</a> <span class="tag post">Post-midterm</span></li>
+  <li><a href="#s8">The Hydrogen Atom</a> <span class="tag post">Post-midterm</span> <span class="tag heavy">Exam-heavy</span></li>
+  <li><a href="#s9">Electron Spin & Multi-electron Atoms</a> <span class="tag post">Post-midterm</span> <span class="tag heavy">Exam-heavy</span></li>
+  <li><a href="#s10">Master Formula Map & Decision Tree</a></li>
+  <li><a href="#s11">Predicted Quantum Question Types</a> <span class="tag heavy">Exam-heavy</span></li>
+</ol>
+</div>
+
+<div class="legend">
+  <strong>Priority tags throughout this guide:</strong>
+  <span><span class="prio must">MUST KNOW</span> Will lose marks without this</span>
+  <span><span class="prio good">GOOD TO KNOW</span> Likely to appear, worth reviewing</span>
+  <span><span class="prio ctx">CONTEXT</span> Helps understanding, skim if short on time</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- EXAM ESSENTIALS CHEAT SHEET -->
+<div class="cheat">
+<h3 style="margin-top:0; font-size:1.2rem;">Exam Essentials — One-Page Cheat Sheet (no equation sheet for quantum!)</h3>
+
+<h3>Core Formulas You Must Have Memorized</h3>
+<div class="cf"><span class="lab">TISE</span> &nbsp; $-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + U(x)\psi = E\psi$</div>
+<div class="cf"><span class="lab">Infinite well</span> &nbsp; $E_n = n^2 E_1$, &nbsp; $E_1 = \frac{\hbar^2\pi^2}{2mL^2}$, &nbsp; $\psi_n = \sqrt{2/L}\sin(n\pi x/L)$</div>
+<div class="cf"><span class="lab">SHO</span> &nbsp; $E_n = (n+\frac{1}{2})\hbar\omega$, &nbsp; ground state $\psi_0 = Ae^{-x^2/2b^2}$, $b = \sqrt{\hbar/m\omega}$</div>
+<div class="cf"><span class="lab">Hydrogen</span> &nbsp; $E_n = -E_R/n^2$, &nbsp; $E_R = 13.6$ eV, &nbsp; $a_B = 0.0529$ nm</div>
+<div class="cf"><span class="lab">H-like ion</span> &nbsp; $E_n = -Z^2 E_R/n^2$, &nbsp; $a_Z = a_B/Z$</div>
+<div class="cf"><span class="lab">Angular mom.</span> &nbsp; $|\vec{L}| = \sqrt{l(l+1)}\hbar$, &nbsp; $L_z = m_l\hbar$, &nbsp; $l = 0,\ldots,n{-}1$, &nbsp; $m_l = -l,\ldots,+l$</div>
+<div class="cf"><span class="lab">Spin</span> &nbsp; $s = \frac{1}{2}$, &nbsp; $|\vec{S}| = \frac{\sqrt{3}}{2}\hbar$, &nbsp; $S_z = m_s\hbar = \pm\frac{1}{2}\hbar$</div>
+<div class="cf"><span class="lab">Degeneracy</span> &nbsp; H-atom: $2n^2$ states per level (including spin)</div>
+<div class="cf"><span class="lab">Radial prob.</span> &nbsp; $P(r) = r^2|R_{nl}|^2 = 4\pi r^2|\psi|^2$ &nbsp; | &nbsp; $\psi_{1s} = \frac{1}{\sqrt{\pi}a_B^{3/2}}e^{-r/a_B}$</div>
+<div class="cf"><span class="lab">Key integral</span> &nbsp; $\int_0^\infty r^n e^{-r/b}\,dr = n!\,b^{n+1}$</div>
+<div class="cf"><span class="lab">Tunneling</span> &nbsp; $T \approx e^{-2\kappa L}$, &nbsp; $\kappa = \sqrt{2m(U_0-E)}/\hbar$</div>
+<div class="cf"><span class="lab">Bohr magneton</span> &nbsp; $\mu_B = e\hbar/2m_e = 5.79\times10^{-5}$ eV/T</div>
+<div class="cf"><span class="lab">Zeeman shift</span> &nbsp; $\Delta E = \mu_B m_l B$ (normal) &nbsp; | &nbsp; $\Delta E = \pm\mu_B B$ (spin-only)</div>
+
+<h3>5 Problem Types They Will Ask (and what to do)</h3>
+<table>
+<tr><th>#</th><th>Problem type</th><th>What to do</th></tr>
+<tr><td>1</td><td>Wavefunction sketching / bound states</td><td>Oscillate where $E>U$, decay where $E&lt;U$. More KE → shorter $\lambda$. Nodes = $n-1$.</td></tr>
+<tr><td>2</td><td>$P(r &lt; a_B)$ or $\langle r \rangle$ for hydrogen</td><td>Write $P(r) = 4\pi r^2|\psi|^2$, integrate with $\int r^n e^{-r/b}dr = n!\,b^{n+1}$.</td></tr>
+<tr><td>3</td><td>Electron configurations</td><td>Fill $1s\to2s\to2p\to3s\to3p\to4s\to3d$. Each $s$: 2, $p$: 6, $d$: 10. Hund's rule for partially filled.</td></tr>
+<tr><td>4</td><td>Angular momentum quantum numbers</td><td>Given $n$: list $l = 0$ to $n{-}1$, for each $l$: $m_l = -l$ to $+l$, always $m_s = \pm\frac{1}{2}$.</td></tr>
+<tr><td>5</td><td>Tunneling / transmission</td><td>$T \approx e^{-2\kappa L}$. Double $L$ → $T$ gets squared. Increase $E$ → $\kappa$ drops → $T$ rises.</td></tr>
+</table>
+
+<h3>Top 3 Traps</h3>
+<p>1. <strong>Hydrogen vs multi-electron:</strong> In H, energy depends only on $n$. In multi-electron atoms, it depends on $n$ AND $l$ ($s &lt; p &lt; d$).</p>
+<p>2. <strong>Spin magnetic moment has factor of 2:</strong> $\mu_S = e/m_e \cdot S$ (not $e/2m_e$). Anomalous Zeeman splitting = $2\mu_B B$, not $\mu_B B$.</p>
+<p>3. <strong>$P(r)$ vs $|\psi|^2$:</strong> Radial probability is $4\pi r^2|\psi|^2$, not just $|\psi|^2$. The $r^2$ factor means the max of $P(r)$ is NOT at $r=0$ even though $|\psi_{1s}|^2$ is maximal there.</p>
+
+</div>
+<!-- END CHEAT SHEET -->
+
+<!-- ============================================================ -->
+<h2 id="s1">1. Schrödinger Equation Foundations</h2>
+
+<h3>The Two Schrödinger Equations</h3>
+<p>Everything in this course flows from these two equations. Know when to use each one.</p>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Time-Independent (TISE) — used most of the time</div>
+  $$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + U(x)\psi(x) = E\,\psi(x)$$
+  <p style="font-size:0.85rem; color:var(--dim);">Use when: $U(x)$ doesn't depend on time. Gives you the allowed energies $E_n$ and spatial wavefunctions $\psi_n(x)$.</p>
+</div>
+<div class="formula-card">
+  <div class="label">Time-Dependent (TDSE) — the full deal</div>
+  $$-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2} + U(x)\Psi = i\hbar\frac{\partial\Psi}{\partial t}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Use when: you need time evolution, superposition states, or probability that changes with time.</p>
+</div>
+</div>
+
+<div class="box key">
+<div class="box-title">Key relationship between them <span class="prio must">MUST KNOW</span></div>
+<p>If you solve the TISE and get $\psi_n(x)$ with energy $E_n$, the full time-dependent solution is:</p>
+$$\Psi_n(x,t) = \psi_n(x)\,e^{-i\omega_n t}, \quad \omega_n = \frac{E_n}{\hbar}$$
+<p>These are <strong>stationary states</strong>: $|\Psi_n|^2 = |\psi_n|^2$ — the probability doesn't change in time.</p>
+</div>
+
+<h3>Probability & Normalization</h3>
+$$P(a \le x \le b) = \int_a^b |\psi(x)|^2\,dx, \qquad \int_{-\infty}^{\infty}|\psi(x)|^2\,dx = 1$$
+
+<h3>Uncertainty Principle</h3>
+$$\Delta x\,\Delta p \gtrsim \hbar$$
+<p>If $\Delta x$ is small (particle well-localized), then $\Delta p$ must be large (momentum very uncertain), and vice versa. This is why the infinite square well ground state has nonzero energy — confining the particle to width $a$ forces a minimum momentum, hence minimum kinetic energy.</p>
+
+<h3>Key Constants & Relations</h3>
+<table>
+<tr><th>Symbol</th><th>Meaning</th><th>Relation</th></tr>
+<tr><td>$k$</td><td>Wave number</td><td>$k = \frac{2\pi}{\lambda} = \frac{p}{\hbar} = \frac{\sqrt{2mE}}{\hbar}$</td></tr>
+<tr><td>$E$</td><td>Kinetic energy (free particle)</td><td>$E = \frac{\hbar^2 k^2}{2m} = \frac{p^2}{2m}$</td></tr>
+<tr><td>$\omega$</td><td>Angular frequency</td><td>$E = \hbar\omega$</td></tr>
+<tr><td>$\lambda_{\text{dB}}$</td><td>de Broglie wavelength</td><td>$\lambda = \frac{h}{p} = \frac{2\pi\hbar}{p}$</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="s2">2. Bound States & Sketching Wavefunctions</h2>
+
+<h3>The Curvature Equation</h3>
+$$\psi''(x) = \frac{2m}{\hbar^2}\bigl[U(x) - E\bigr]\,\psi(x)$$
+
+<table>
+<tr><th>Region</th><th>Condition</th><th>Sign of $\psi''$</th><th>Behavior</th></tr>
+<tr><td><strong>Classically allowed</strong></td><td>$E > U(x)$</td><td>Opposite to $\psi$</td><td>$\psi$ <strong>curves toward</strong> the $x$-axis → oscillatory</td></tr>
+<tr><td><strong>Classically forbidden</strong></td><td>$E < U(x)$</td><td>Same sign as $\psi$</td><td>$\psi$ <strong>curves away</strong> from the $x$-axis → exponential</td></tr>
+</table>
+
+<!-- FIGURE: Curvature rules -->
+<div class="fig">
+<svg viewBox="0 0 750 260" width="750" height="260" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="750" height="260" fill="#f8fafc" rx="8"/>
+  <!-- Left panel: classically allowed -->
+  <text x="185" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Classically Allowed (E > U)</text>
+  <line x1="30" y1="130" x2="340" y2="130" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+  <text x="345" y="134" font-size="11" fill="#94a3b8">x-axis</text>
+  <!-- Sinusoidal wave -->
+  <path d="M40,130 Q80,50 120,130 Q160,210 200,130 Q240,50 280,130 Q320,210 330,160" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <!-- Arrows showing curvature toward axis -->
+  <path d="M80,70 L80,90" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <text x="60" y="65" font-size="10" fill="#dc2626">curves↓</text>
+  <path d="M160,190 L160,170" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <text x="140" y="210" font-size="10" fill="#dc2626">curves↑</text>
+  <text x="185" y="248" text-anchor="middle" font-size="11" fill="#64748b">ψ always bends toward x-axis</text>
+
+  <!-- Divider -->
+  <line x1="375" y1="10" x2="375" y2="250" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Right panel: classically forbidden -->
+  <text x="562" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">Classically Forbidden (E &lt; U)</text>
+  <line x1="400" y1="130" x2="720" y2="130" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+  <!-- Exponential decay -->
+  <path d="M420,50 Q440,50 460,65 Q500,105 560,125 Q620,129 720,130" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <!-- Exponential growth (bad solution) -->
+  <path d="M420,210 Q440,210 460,195 Q500,155 560,135 Q620,131 720,130" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="6,4" opacity="0.4"/>
+  <!-- Arrows showing curvature away -->
+  <path d="M470,72 L470,55" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <text x="478" y="52" font-size="10" fill="#dc2626">curves away↑</text>
+  <path d="M470,188 L470,205" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <text x="478" y="220" font-size="10" fill="#dc2626">curves away↓</text>
+  <text x="560" y="108" font-size="10" fill="#16a34a">✓ physical (decays)</text>
+  <text x="560" y="160" font-size="10" fill="#94a3b8" opacity="0.7">✗ blows up (reject)</text>
+  <text x="562" y="248" text-anchor="middle" font-size="11" fill="#64748b">ψ always bends away from x-axis</text>
+
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#dc2626"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Fig 2.1 — Curvature rules for sketching wavefunctions. Left: in the classically allowed region, ψ oscillates (bends toward axis). Right: in the forbidden region, ψ decays or grows exponentially (bends away from axis). Only the decaying solution is physical.</div>
+</div>
+
+<div class="box tip">
+<div class="box-title">Sketching Rules (Quiz 1 type!) <span class="prio must">MUST KNOW</span></div>
+<p>1. Draw horizontal line for $E$ on the $U(x)$ plot. Identify classical turning points where $E = U(x)$.</p>
+<p>2. <strong>Inside the well</strong> ($E > U$): $\psi$ oscillates. More curvature where $E - U$ is larger (shorter wavelength).</p>
+<p>3. <strong>Outside the well</strong> ($E < U$): $\psi$ decays exponentially. Faster decay where $U - E$ is larger.</p>
+<p>4. $\psi$ and $\psi'$ are <strong>always continuous</strong> (smooth) at transitions (except $\psi'$ can be discontinuous at infinite walls).</p>
+<p>5. <strong>Ground state</strong>: 0 nodes. <strong>First excited</strong>: 1 node. The $n$-th state has $n-1$ nodes.</p>
+<p>6. At infinite walls, $\psi = 0$. At finite walls, $\psi$ smoothly decays into the forbidden region.</p>
+</div>
+
+<h3>Infinite Square Well</h3>
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Potential</div>
+  $$U(x) = \begin{cases} 0 & 0 \le x \le a \\ \infty & \text{otherwise} \end{cases}$$
+</div>
+<div class="formula-card">
+  <div class="label">Solutions</div>
+  $$\psi_n = \sqrt{\frac{2}{a}}\sin\!\left(\frac{n\pi x}{a}\right), \quad E_n = \frac{n^2\pi^2\hbar^2}{2ma^2}$$
+</div>
+</div>
+
+<!-- FIGURE: Infinite square well wavefunctions -->
+<div class="fig">
+<svg viewBox="0 0 700 320" width="700" height="320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="320" fill="#f8fafc" rx="8"/>
+  <!-- Well walls -->
+  <line x1="100" y1="20" x2="100" y2="300" stroke="#1e293b" stroke-width="3"/>
+  <line x1="400" y1="20" x2="400" y2="300" stroke="#1e293b" stroke-width="3"/>
+  <text x="250" y="310" text-anchor="middle" font-size="12" fill="#64748b">0 ≤ x ≤ a</text>
+
+  <!-- Energy levels and wavefunctions -->
+  <!-- n=1 ground state -->
+  <line x1="100" y1="260" x2="400" y2="260" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="80" y="264" text-anchor="end" font-size="12" fill="#1e293b" font-weight="bold">E₁</text>
+  <path d="M100,260 C150,220 200,200 250,200 C300,200 350,220 400,260" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="250" y="195" text-anchor="middle" font-size="11" fill="#2563eb">ψ₁ (0 nodes)</text>
+
+  <!-- n=2 -->
+  <line x1="100" y1="180" x2="400" y2="180" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="80" y="184" text-anchor="end" font-size="12" fill="#1e293b" font-weight="bold">E₂ = 4E₁</text>
+  <path d="M100,180 C140,150 175,140 200,140 C225,140 245,155 250,180 C255,205 275,220 300,220 C325,220 360,210 400,180" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="250" y="228" text-anchor="middle" font-size="11" fill="#dc2626">ψ₂ (1 node)</text>
+  <circle cx="250" cy="180" r="3" fill="#dc2626"/>
+
+  <!-- n=3 -->
+  <line x1="100" y1="90" x2="400" y2="90" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="80" y="94" text-anchor="end" font-size="12" fill="#1e293b" font-weight="bold">E₃ = 9E₁</text>
+  <path d="M100,90 C120,65 145,55 167,55 C189,55 200,70 200,90 C200,110 211,125 233,125 C255,125 266,110 266,90 C266,70 278,55 300,55 C322,55 350,65 400,90" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="310" y="52" font-size="11" fill="#16a34a">ψ₃ (2 nodes)</text>
+  <circle cx="200" cy="90" r="3" fill="#16a34a"/>
+  <circle cx="266" cy="90" r="3" fill="#16a34a"/>
+
+  <!-- Right side annotations -->
+  <text x="430" y="60" font-size="12" fill="#1e293b" font-weight="bold">Key features:</text>
+  <text x="430" y="82" font-size="11" fill="#64748b">• Eₙ ∝ n² (levels spread out)</text>
+  <text x="430" y="102" font-size="11" fill="#64748b">• ψ = 0 at walls</text>
+  <text x="430" y="122" font-size="11" fill="#64748b">• n-1 nodes for ψₙ</text>
+  <text x="430" y="142" font-size="11" fill="#64748b">• ψ doesn't leak outside</text>
+  <text x="430" y="172" font-size="12" fill="#1e293b" font-weight="bold">vs. Finite well:</text>
+  <text x="430" y="194" font-size="11" fill="#64748b">• ψ leaks (exp. tails)</text>
+  <text x="430" y="214" font-size="11" fill="#64748b">• E_finite &lt; E_infinite</text>
+  <text x="430" y="234" font-size="11" fill="#64748b">• Finite # of bound states</text>
+  <text x="430" y="254" font-size="11" fill="#64748b">• Smooth ψ' at walls</text>
+</svg>
+<div class="fig-caption">Fig 2.2 — Infinite square well: first three wavefunctions with energy levels. Note ψ = 0 at both walls and the number of nodes increases with n.</div>
+</div>
+
+<h3>Finite Square Well</h3>
+<p>Key differences from infinite well: wavefunctions <strong>leak</strong> into the forbidden region (exponential tails), energies are lower, and there are only finitely many bound states.</p>
+
+<!-- ============================================================ -->
+<h2 id="s3">3. Simple Harmonic Oscillator (SHO)</h2>
+
+<div class="box warn">
+<div class="box-title">Why the SHO matters so much <span class="prio good">GOOD TO KNOW</span></div>
+<p>Any potential near a minimum can be approximated as $U(x) \approx \frac{1}{2}kx^2$ for small oscillations. This makes the SHO the universal model for vibrations — diatomic molecules, crystal lattices, quantum fields. It appeared on the 2024 final, 2025 final (as 2D SHO), and Quiz 1.</p>
+</div>
+
+<h3>Setup & Solution</h3>
+$$U(x) = \tfrac{1}{2}kx^2, \qquad \omega = \sqrt{\frac{k}{m}}$$
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Energy levels (equally spaced!)</div>
+  $$\boxed{E_n = \left(n + \tfrac{1}{2}\right)\hbar\omega}, \quad n = 0, 1, 2, \ldots$$
+</div>
+<div class="formula-card">
+  <div class="label">Ground state wavefunction</div>
+  $$\boxed{\psi_0(x) = A_0\,e^{-x^2/2b^2}}, \quad b^2 = \frac{\hbar}{m\omega} = \frac{\hbar}{\sqrt{mk}}$$
+</div>
+</div>
+
+<!-- FIGURE: SHO energy levels and wavefunctions -->
+<div class="fig">
+<svg viewBox="0 0 720 380" width="720" height="380" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="720" height="380" fill="#f8fafc" rx="8"/>
+  <!-- Parabola U(x) = ½kx² — opens UPWARD -->
+  <path d="M55,40 C120,40 150,350 250,358 C350,350 380,40 445,40" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <text x="445" y="55" font-size="12" fill="#94a3b8">U(x) = ½kx²</text>
+
+  <!-- Energy levels - equally spaced -->
+  <!-- n=0 -->
+  <line x1="140" y1="315" x2="360" y2="315" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="56" y="319" text-anchor="end" font-size="11" fill="#1e293b">E₀ = ½ℏω</text>
+  <!-- Gaussian ground state -->
+  <path d="M140,315 C170,315 200,290 250,280 C300,290 330,315 360,315" fill="none" stroke="#2563eb" stroke-width="2"/>
+
+  <!-- n=1 -->
+  <line x1="120" y1="265" x2="380" y2="265" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="56" y="269" text-anchor="end" font-size="11" fill="#1e293b">E₁ = 3/2 ℏω</text>
+  <path d="M130,265 C155,265 180,250 210,240 C230,235 240,255 250,265 C260,275 270,295 290,290 C320,280 345,265 370,265" fill="none" stroke="#dc2626" stroke-width="2"/>
+  <circle cx="250" cy="265" r="3" fill="#dc2626"/>
+
+  <!-- n=2 -->
+  <line x1="105" y1="215" x2="395" y2="215" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="56" y="219" text-anchor="end" font-size="11" fill="#1e293b">E₂ = 5/2 ℏω</text>
+  <path d="M115,215 C130,215 145,205 165,195 C180,188 192,200 210,215 C220,225 235,235 250,235 C265,235 280,225 290,215 C308,200 320,188 335,195 C355,205 370,215 385,215" fill="none" stroke="#16a34a" stroke-width="2"/>
+
+  <!-- n=3 -->
+  <line x1="90" y1="165" x2="410" y2="165" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="56" y="169" text-anchor="end" font-size="11" fill="#1e293b">E₃ = 7/2 ℏω</text>
+
+  <!-- Spacing arrows -->
+  <line x1="480" y1="315" x2="480" y2="265" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowOrange)" marker-start="url(#arrowOrangeDown)"/>
+  <text x="490" y="294" font-size="12" fill="#f59e0b" font-weight="bold">ℏω</text>
+  <line x1="480" y1="265" x2="480" y2="215" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowOrange)" marker-start="url(#arrowOrangeDown)"/>
+  <text x="490" y="244" font-size="12" fill="#f59e0b" font-weight="bold">ℏω</text>
+  <line x1="480" y1="215" x2="480" y2="165" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowOrange)" marker-start="url(#arrowOrangeDown)"/>
+  <text x="490" y="194" font-size="12" fill="#f59e0b" font-weight="bold">ℏω</text>
+
+  <!-- Turning points label -->
+  <text x="145" y="345" font-size="10" fill="#dc2626">←turning pt</text>
+  <text x="325" y="345" font-size="10" fill="#dc2626">turning pt→</text>
+
+  <!-- Annotations -->
+  <text x="540" y="160" font-size="12" fill="#1e293b" font-weight="bold">Key features:</text>
+  <text x="540" y="182" font-size="11" fill="#64748b">• Equally spaced by ℏω</text>
+  <text x="540" y="202" font-size="11" fill="#64748b">• Zero-point E₀ = ½ℏω ≠ 0</text>
+  <text x="540" y="222" font-size="11" fill="#64748b">• ψₙ has n nodes</text>
+  <text x="540" y="242" font-size="11" fill="#64748b">• ψ₀ is a Gaussian</text>
+  <text x="540" y="262" font-size="11" fill="#64748b">• ψ leaks past turning pts</text>
+  <text x="540" y="292" font-size="11" fill="#64748b">• High n: probability peaks</text>
+  <text x="540" y="312" font-size="11" fill="#64748b">  at turning points</text>
+  <text x="540" y="332" font-size="11" fill="#64748b">  (matches classical)</text>
+
+  <defs>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#f59e0b"/></marker>
+    <marker id="arrowOrangeDown" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto-start-reverse"><path d="M0,0 L8,3 L0,6" fill="#f59e0b"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Fig 3.1 — SHO: parabolic potential with equally spaced energy levels and wavefunctions. The Gaussian ground state has no nodes; each higher state adds one node. Wavefunctions extend slightly past the classical turning points (tunneling).</div>
+</div>
+
+<p><strong>Normalization of ground state:</strong> $\int_{-\infty}^{\infty}|A_0|^2 e^{-x^2/b^2}dx = 1$. Using $\int_{-\infty}^{\infty}e^{-\lambda x^2}dx = \sqrt{\pi/\lambda}$ with $\lambda = 1/b^2$:</p>
+$$|A_0|^2 \sqrt{\pi}\,b = 1 \implies A_0 = \frac{1}{(\pi b^2)^{1/4}}$$
+
+<p><strong>Key features:</strong> $E_0 = \frac{1}{2}\hbar\omega \neq 0$ (zero-point energy from uncertainty principle). Energy levels equally spaced by $\hbar\omega$ — unique to harmonic potential. Hermite polynomials: $\psi_n \propto P_n(x/b)\,e^{-x^2/2b^2}$. Orthogonality: $\int \psi_n^* \psi_m\,dx = 0$ for $n \neq m$.</p>
+
+<div class="box exam">
+<div class="box-title">2025 Final Q1 — 2D SHO (33 pts) <span class="prio must">MUST KNOW</span></div>
+<p>Asked about $U(x,y) = \frac{1}{2}kx^2 + \frac{1}{2}k'y^2$: write 2D Schrödinger, separate variables, verify Gaussian solution, find energy levels and degeneracies when $k' = 4k$. See Section 6.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s4">4. Time-Dependent Schrödinger & Superposition</h2>
+
+<h3>Stationary States vs. Superposition</h3>
+<p>A single eigenstate $\Psi_n(x,t) = \psi_n(x)e^{-i\omega_n t}$ has $|\Psi_n|^2 = |\psi_n|^2$ — time-independent. But a <strong>superposition</strong>:</p>
+
+$$\Psi(x,t) = a\,\psi_1(x)\,e^{-i\omega_1 t} + b\,\psi_2(x)\,e^{-i\omega_2 t}$$
+
+<div class="box key">
+<div class="box-title">Probability density of a superposition <span class="prio good">GOOD TO KNOW</span></div>
+$$|\Psi(x,t)|^2 = a^2|\psi_1|^2 + b^2|\psi_2|^2 + 2ab\,\psi_1(x)\psi_2(x)\cos(\omega_{21}t)$$
+<p>where $\omega_{21} = \omega_2 - \omega_1 = (E_2 - E_1)/\hbar$. The cross-term <strong>oscillates</strong> — this is how probability "sloshes" back and forth.</p>
+</div>
+
+<!-- FIGURE: Superposition sloshing -->
+<div class="fig">
+<svg viewBox="0 0 700 200" width="700" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="200" fill="#f8fafc" rx="8"/>
+  <!-- Well at t=0 -->
+  <rect x="30" y="30" width="190" height="150" fill="none" stroke="#1e293b" stroke-width="2"/>
+  <text x="125" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">t = 0</text>
+  <path d="M30,155 C60,155 80,100 100,70 C120,50 140,90 160,130 C175,155 195,160 220,160" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="125" y="192" text-anchor="middle" font-size="10" fill="#64748b">|Ψ|² bunched left</text>
+
+  <!-- Well at t=T/4 -->
+  <rect x="260" y="30" width="190" height="150" fill="none" stroke="#1e293b" stroke-width="2"/>
+  <text x="355" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">t = T/4</text>
+  <path d="M260,160 C275,158 295,145 320,120 C340,100 350,92 355,90 C360,92 370,100 390,120 C415,145 435,158 450,160" fill="none" stroke="#9333ea" stroke-width="2.5"/>
+  <text x="355" y="192" text-anchor="middle" font-size="10" fill="#64748b">|Ψ|² centered (symmetric)</text>
+
+  <!-- Well at t=T/2 -->
+  <rect x="490" y="30" width="190" height="150" fill="none" stroke="#1e293b" stroke-width="2"/>
+  <text x="585" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">t = T/2</text>
+  <path d="M490,160 C510,158 535,155 555,130 C570,110 585,60 605,50 C625,60 650,100 670,140 C675,155 678,158 680,160" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="585" y="192" text-anchor="middle" font-size="10" fill="#64748b">|Ψ|² bunched right</text>
+
+  <!-- Arrows -->
+  <path d="M230,100 L250,100" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <path d="M460,100 L480,100" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <defs><marker id="arrowGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748b"/></marker></defs>
+</svg>
+<div class="fig-caption">Fig 4.1 — A superposition of ψ₁ and ψ₂ in an infinite well "sloshes" back and forth at the beat frequency ω₂₁. The probability density |Ψ|² oscillates in time, unlike a single stationary state.</div>
+</div>
+
+<p><strong>Normalization requires:</strong> $|a|^2 + |b|^2 = 1$. <strong>Derivation trick:</strong> $|u + ve^{i\theta}|^2 = u^2 + v^2 + 2uv\cos\theta$.</p>
+
+<!-- ============================================================ -->
+<h2 id="s5">5. Scattering & Tunneling</h2>
+
+<h3>Step Potential: E > U₀</h3>
+
+<!-- FIGURE: Step potential scattering -->
+<div class="fig">
+<svg viewBox="0 0 700 250" width="700" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="250" fill="#f8fafc" rx="8"/>
+  <!-- Potential step -->
+  <line x1="50" y1="200" x2="320" y2="200" stroke="#1e293b" stroke-width="2"/>
+  <line x1="320" y1="200" x2="320" y2="120" stroke="#1e293b" stroke-width="2"/>
+  <line x1="320" y1="120" x2="600" y2="120" stroke="#1e293b" stroke-width="2"/>
+  <rect x="320" y="120" width="280" height="80" fill="#fef3c7" opacity="0.5"/>
+  <text x="450" y="160" text-anchor="middle" font-size="13" fill="#92400e">U = U₀</text>
+  <text x="180" y="215" text-anchor="middle" font-size="13" fill="#64748b">U = 0</text>
+
+  <!-- Energy line -->
+  <line x1="50" y1="70" x2="600" y2="70" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6"/>
+  <text x="610" y="74" font-size="12" fill="#dc2626" font-weight="bold">E</text>
+
+  <!-- Region labels -->
+  <text x="180" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Region I</text>
+  <text x="460" y="30" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Region II</text>
+
+  <!-- Incident wave -->
+  <path d="M60,70 Q80,45 100,70 Q120,95 140,70 Q160,45 180,70 Q200,95 220,70 Q240,45 260,70 Q280,95 300,70" fill="none" stroke="#2563eb" stroke-width="2"/>
+  <text x="180" y="42" text-anchor="middle" font-size="11" fill="#2563eb">A₀e^(ik₁x) →</text>
+
+  <!-- Reflected wave (smaller) -->
+  <path d="M300,70 Q288,80 276,70 Q264,60 252,70 Q240,80 228,70" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4"/>
+  <text x="260" y="105" text-anchor="middle" font-size="11" fill="#f59e0b">← Ae^(-ik₁x)</text>
+
+  <!-- Transmitted wave (longer wavelength) -->
+  <path d="M320,70 Q355,40 390,70 Q425,100 460,70 Q495,40 530,70 Q565,100 590,85" fill="none" stroke="#16a34a" stroke-width="2"/>
+  <text x="460" y="105" text-anchor="middle" font-size="11" fill="#16a34a">Be^(ik₂x) →</text>
+
+  <!-- k labels -->
+  <text x="90" y="235" font-size="11" fill="#2563eb">k₁ = √(2mE)/ℏ</text>
+  <text x="380" y="235" font-size="11" fill="#16a34a">k₂ = √(2m(E-U₀))/ℏ</text>
+  <text x="460" y="108" font-size="10" fill="#16a34a">longer λ (slower)</text>
+</svg>
+<div class="fig-caption">Fig 5.1 — Step potential with E > U₀. The incident wave (blue) partially reflects (orange, dashed) and partially transmits (green). The transmitted wave has a longer wavelength because the particle has less kinetic energy in Region II.</div>
+</div>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Reflection coefficient</div>
+  $$\boxed{R = \left(\frac{k_1 - k_2}{k_1 + k_2}\right)^2}$$
+</div>
+<div class="formula-card">
+  <div class="label">Transmission coefficient</div>
+  $$\boxed{T = \frac{k_2}{k_1}\frac{|B|^2}{|A_0|^2} = \frac{4k_1 k_2}{(k_1 + k_2)^2}}$$
+</div>
+</div>
+
+<div class="box warn">
+<div class="box-title">Why the $k_2/k_1$ factor in $T$? <span class="prio good">GOOD TO KNOW</span></div>
+<p>The particle moves at different speeds in the two regions ($v \propto k$). The $k_2/k_1$ ratio accounts for the probability current — the rate particles flow past a point. Always: $R + T = 1$.</p>
+</div>
+
+<h3>Tunneling Through a Finite Barrier</h3>
+
+<!-- FIGURE: Tunneling -->
+<div class="fig">
+<svg viewBox="0 0 700 240" width="700" height="240" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="240" fill="#f8fafc" rx="8"/>
+  <!-- Barrier -->
+  <rect x="260" y="60" width="120" height="120" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="320" y="95" text-anchor="middle" font-size="13" fill="#dc2626" font-weight="bold">U₀</text>
+  <line x1="50" y1="180" x2="260" y2="180" stroke="#1e293b" stroke-width="2"/>
+  <line x1="380" y1="180" x2="650" y2="180" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Energy line -->
+  <line x1="50" y1="130" x2="650" y2="130" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6"/>
+  <text x="660" y="134" font-size="12" fill="#2563eb" font-weight="bold">E</text>
+  <text x="320" y="50" text-anchor="middle" font-size="11" fill="#dc2626">E &lt; U₀</text>
+
+  <!-- Incident wave (Region I) -->
+  <path d="M60,130 Q80,110 100,130 Q120,150 140,130 Q160,110 180,130 Q200,150 220,130 Q240,110 255,125" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+
+  <!-- Exponential decay inside barrier (Region II) -->
+  <path d="M260,125 C280,127 300,129 320,130 C340,130.5 360,130.8 380,131" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="320" y="148" text-anchor="middle" font-size="10" fill="#f59e0b">Be^(-αx)</text>
+
+  <!-- Transmitted wave (Region III, much smaller) -->
+  <path d="M380,131 Q405,122 430,131 Q455,140 480,131 Q505,122 530,131 Q555,140 580,131" fill="none" stroke="#16a34a" stroke-width="1.8" opacity="0.7"/>
+  <text x="480" y="155" text-anchor="middle" font-size="10" fill="#16a34a">De^(ikx) (small amplitude)</text>
+
+  <!-- Labels -->
+  <text x="150" y="205" text-anchor="middle" font-size="11" fill="#64748b">Region I</text>
+  <text x="320" y="205" text-anchor="middle" font-size="11" fill="#64748b">Region II</text>
+  <text x="500" y="205" text-anchor="middle" font-size="11" fill="#64748b">Region III</text>
+  <text x="265" y="220" font-size="10" fill="#64748b">x = 0</text>
+  <text x="375" y="220" font-size="10" fill="#64748b">x = L</text>
+
+  <!-- Width annotation -->
+  <line x1="260" y1="230" x2="380" y2="230" stroke="#1e293b" stroke-width="1" marker-end="url(#arrowBlack)" marker-start="url(#arrowBlackRev)"/>
+  <text x="320" y="228" text-anchor="middle" font-size="10" fill="#1e293b">L</text>
+  <defs>
+    <marker id="arrowBlack" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker>
+    <marker id="arrowBlackRev" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6" fill="#1e293b"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Fig 5.2 — Tunneling through a barrier. The wavefunction decays exponentially inside the barrier but emerges on the other side with reduced amplitude. The transmitted wave has the same wavelength as the incident wave (same energy, same U = 0).</div>
+</div>
+
+$$\boxed{T \approx 16\frac{E}{U_0}\left(1 - \frac{E}{U_0}\right)e^{-2\alpha L}}, \qquad \alpha = \frac{\sqrt{2m(U_0 - E)}}{\hbar}$$
+
+<p>The exponential $e^{-2\alpha L}$ dominates: tunneling probability drops off exponentially with barrier width $L$ and with $\sqrt{U_0 - E}$.</p>
+
+<!-- ============================================================ -->
+<h2 id="s6">6. Higher Dimensions: 2D & 3D Boxes</h2>
+
+<h3>Separation of Variables — The Master Technique</h3>
+<div class="box key">
+<div class="box-title">Separation of Variables Recipe <span class="prio must">MUST KNOW</span></div>
+<p>1. Write the multi-dimensional Schrödinger equation.</p>
+<p>2. <strong>Guess</strong> a product: $\psi(x,y) = X(x)Y(y)$.</p>
+<p>3. Substitute and divide by $XY$: $\frac{X''}{X} + \frac{Y''}{Y} = \text{const}$.</p>
+<p>4. Each term depends on only one variable → each must separately equal a constant.</p>
+<p>5. Solve two independent ODEs. Total energy: $E = E_x + E_y$.</p>
+</div>
+
+<h3>Worked Example: 2D SHO (2025 Final Q1 style)</h3>
+
+<p><strong>Problem:</strong> Given $U(x,y) = \frac{1}{2}kx^2 + \frac{1}{2}k'y^2$, find the energy levels.</p>
+
+<div class="box tip">
+<div class="box-title">Step 1 — Write the 2D Schrödinger equation <span class="prio must">MUST KNOW</span></div>
+<p>Start from the general 2D TISE:
+$$-\frac{\hbar^2}{2m}\left(\frac{\partial^2 \psi}{\partial x^2} + \frac{\partial^2 \psi}{\partial y^2}\right) + \left(\tfrac{1}{2}kx^2 + \tfrac{1}{2}k'y^2\right)\psi = E\,\psi$$
+</p>
+<p><strong>Key observation:</strong> The potential is a sum of an x-only part and a y-only part: $U(x,y) = U_x(x) + U_y(y)$. This is the signal that separation of variables will work!</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 2 — Guess a product solution <span class="prio must">MUST KNOW</span></div>
+<p>Assume $\psi(x,y) = X(x)\,Y(y)$. Substitute into the Schrödinger equation:</p>
+$$-\frac{\hbar^2}{2m}\left(X''Y + XY''\right) + \tfrac{1}{2}kx^2 XY + \tfrac{1}{2}k'y^2 XY = E\,XY$$
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 3 — Divide through by $XY$ <span class="prio must">MUST KNOW</span></div>
+<p>Divide every term by $X(x)Y(y)$:</p>
+$$\underbrace{-\frac{\hbar^2}{2m}\frac{X''}{X} + \tfrac{1}{2}kx^2}_{\text{depends only on } x} \;+\; \underbrace{-\frac{\hbar^2}{2m}\frac{Y''}{Y} + \tfrac{1}{2}k'y^2}_{\text{depends only on } y} \;=\; E$$
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 4 — The Separation Argument (this is the key logic!) <span class="prio must">MUST KNOW</span></div>
+<p>The left side has [function of $x$ only] + [function of $y$ only] = constant. If you change $x$ while holding $y$ fixed, the $x$-part changes but the $y$-part doesn't — yet the sum must still equal $E$. The only way this works is if <strong>each part is individually constant</strong>:</p>
+$$-\frac{\hbar^2}{2m}\frac{X''}{X} + \tfrac{1}{2}kx^2 = E_x \qquad \text{and} \qquad -\frac{\hbar^2}{2m}\frac{Y''}{Y} + \tfrac{1}{2}k'y^2 = E_y$$
+<p>where $E_x + E_y = E$. We now have <strong>two independent 1D problems</strong>.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 5 — Solve each 1D problem (we already know the answer!) <span class="prio must">MUST KNOW</span></div>
+<p>Each equation is just a 1D SHO! From Section 3, the 1D SHO with spring constant $k$ has $E_n = (n + \frac{1}{2})\hbar\omega$ where $\omega = \sqrt{k/m}$. So:</p>
+$$E_x = \left(n_x + \tfrac{1}{2}\right)\hbar\omega_x, \quad \omega_x = \sqrt{k/m} \qquad\qquad E_y = \left(n_y + \tfrac{1}{2}\right)\hbar\omega_y, \quad \omega_y = \sqrt{k'/m}$$
+<p><strong>Total energy:</strong></p>
+$$\boxed{E_{n_x,n_y} = \left(n_x + \tfrac{1}{2}\right)\hbar\omega_x + \left(n_y + \tfrac{1}{2}\right)\hbar\omega_y} \qquad n_x, n_y = 0, 1, 2, \ldots$$
+<p><strong>Total wavefunction:</strong> $\psi_{n_x,n_y}(x,y) = X_{n_x}(x) \cdot Y_{n_y}(y)$ — product of two 1D SHO wavefunctions. For the ground state $(0,0)$: $\psi_{0,0} = A\,e^{-x^2/2b_x^2}\,e^{-y^2/2b_y^2}$ where $b_x = \sqrt{\hbar/m\omega_x}$, $b_y = \sqrt{\hbar/m\omega_y}$.</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">When does separation of variables work? <span class="prio good">GOOD TO KNOW</span></div>
+<p>It works when $U(x,y) = f(x) + g(y)$ — the potential splits into independent parts. It does <strong>NOT</strong> work if there's a cross-term like $U = kxy$. Also works in polar/spherical when $U = U(r)$ only (central force → Section 7).</p>
+</div>
+
+<div class="connection">
+<div class="connection-title">Same method, different potentials</div>
+<p>The separation technique is identical for every 2D/3D problem — only Step 5 changes depending on what 1D problem you get:</p>
+<p>• $U = 0$ inside a box → 1D infinite wells → $\sin$ solutions<br/>
+• $U = \frac{1}{2}kx^2 + \frac{1}{2}k'y^2$ → 1D SHOs → Gaussian × Hermite solutions<br/>
+• $U = U(r)$ in spherical coords → radial equation + angular equation → $R_{nl}(r) \cdot Y_l^m(\theta,\phi)$</p>
+</div>
+
+<h3>2D Infinite Square Box</h3>
+$$\psi_{n_x, n_y} = A\sin\!\left(\frac{n_x \pi x}{a}\right)\sin\!\left(\frac{n_y \pi y}{b}\right), \qquad \boxed{E = \frac{\hbar^2\pi^2}{2m}\left(\frac{n_x^2}{a^2} + \frac{n_y^2}{b^2}\right)}$$
+
+<h3>Degeneracy in a Square Box ($a = b$)</h3>
+
+<!-- FIGURE: 2D box degeneracy -->
+<div class="fig">
+<svg viewBox="0 0 700 280" width="700" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="280" fill="#f8fafc" rx="8"/>
+
+  <!-- Energy level diagram -->
+  <line x1="80" y1="250" x2="80" y2="30" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrowBlack2)"/>
+  <text x="75" y="20" text-anchor="end" font-size="12" fill="#1e293b">E/E₀</text>
+
+  <!-- Levels -->
+  <line x1="100" y1="230" x2="250" y2="230" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="260" y="234" font-size="11" fill="#1e293b">(1,1) → E = 2E₀</text>
+  <text x="440" y="234" font-size="11" fill="#64748b">degeneracy = 1</text>
+
+  <line x1="100" y1="185" x2="200" y2="185" stroke="#dc2626" stroke-width="2.5"/>
+  <line x1="210" y1="185" x2="310" y2="185" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="320" y="189" font-size="11" fill="#1e293b">(1,2), (2,1) → E = 5E₀</text>
+  <text x="440" y="200" font-size="11" fill="#dc2626" font-weight="bold">degeneracy = 2</text>
+
+  <line x1="100" y1="140" x2="250" y2="140" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="260" y="144" font-size="11" fill="#1e293b">(2,2) → E = 8E₀</text>
+  <text x="440" y="144" font-size="11" fill="#64748b">degeneracy = 1</text>
+
+  <line x1="100" y1="100" x2="200" y2="100" stroke="#9333ea" stroke-width="2.5"/>
+  <line x1="210" y1="100" x2="310" y2="100" stroke="#9333ea" stroke-width="2.5"/>
+  <text x="320" y="104" font-size="11" fill="#1e293b">(1,3), (3,1) → E = 10E₀</text>
+  <text x="440" y="115" font-size="11" fill="#9333ea" font-weight="bold">degeneracy = 2</text>
+
+  <line x1="100" y1="60" x2="183" y2="60" stroke="#f59e0b" stroke-width="2.5"/>
+  <line x1="193" y1="60" x2="276" y2="60" stroke="#f59e0b" stroke-width="2.5"/>
+  <line x1="286" y1="60" x2="370" y2="60" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="380" y="64" font-size="11" fill="#1e293b">(2,3), (3,2) → E = 13E₀</text>
+  <text x="440" y="75" font-size="11" fill="#f59e0b" font-weight="bold">degeneracy = 2</text>
+
+  <defs><marker id="arrowBlack2" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker></defs>
+</svg>
+<div class="fig-caption">Fig 6.1 — Energy levels of a 2D square box. When different (n_x, n_y) combinations give the same n²_x + n²_y, the states are degenerate. Same energy, different spatial patterns.</div>
+</div>
+
+<h3>2D SHO</h3>
+$$\boxed{E_{n_x, n_y} = \left(n_x + \tfrac{1}{2}\right)\hbar\omega_x + \left(n_y + \tfrac{1}{2}\right)\hbar\omega_y}$$
+
+<div class="box exam">
+<div class="box-title">2025 Final Q1d: When $k' = 4k$ → $\omega_y = 2\omega_x$ <span class="prio must">MUST KNOW</span></div>
+<p>$E = (n_x + 2n_y + \frac{3}{2})\hbar\omega_x$. First four levels:</p>
+<table>
+<tr><th>Level</th><th>$(n_x, n_y)$</th><th>$E/(\frac{1}{2}\hbar\omega_x)$</th><th>Degeneracy</th></tr>
+<tr><td>Ground</td><td>(0,0)</td><td>3</td><td>1</td></tr>
+<tr><td>1st</td><td>(1,0)</td><td>5</td><td>1</td></tr>
+<tr><td>2nd</td><td>(2,0) or (0,1)</td><td>7</td><td>2</td></tr>
+<tr><td>3rd</td><td>(3,0) or (1,1)</td><td>9</td><td>2</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<div class="separator">· · · POST-MIDTERM MATERIAL · · ·</div>
+
+<h2 id="s7">7. Central Forces & Angular Momentum</h2>
+
+<div class="box warn">
+<div class="box-title">This section builds the framework for hydrogen <span class="prio ctx">CONTEXT</span></div>
+<p>The central force separation gives you quantum numbers $l$ and $m$, the angular functions, and quantized angular momentum — all needed for hydrogen.</p>
+</div>
+
+<h3>Separation in Spherical Coordinates</h3>
+
+<p><strong>Why spherical?</strong> When $U(\vec{r}) = U(r)$ (depends only on distance from origin), Cartesian coordinates won't separate — you can't write $U(r) = f(x) + g(y) + h(z)$. But in spherical coordinates $(r, \theta, \phi)$, the potential only appears in the radial part, so the angular equations separate cleanly.</p>
+
+<div class="box tip">
+<div class="box-title">Step 1 — Write the Schrödinger equation in spherical coordinates <span class="prio must">MUST KNOW</span></div>
+<p>The Laplacian $\nabla^2$ in spherical coordinates is messy (you don't need to memorize it), but the key point is:</p>
+$$-\frac{\hbar^2}{2m}\nabla^2\psi + U(r)\psi = E\psi$$
+<p>where $\nabla^2$ has a radial part (involving $\frac{\partial}{\partial r}$) and an angular part (involving $\frac{\partial}{\partial\theta}$ and $\frac{\partial}{\partial\phi}$).</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 2 — Guess $\psi(r,\theta,\phi) = R(r)\,\Theta(\theta)\,\Phi(\phi)$ <span class="prio must">MUST KNOW</span></div>
+<p>Substitute and divide by $R\Theta\Phi$. Because $U(r)$ depends only on $r$, the equation separates into:</p>
+<p>• A <strong>radial equation</strong> for $R(r)$ — contains $U(r)$ and determines the energy.</p>
+<p>• An <strong>angular equation</strong> which further separates into $\Theta(\theta)$ and $\Phi(\phi)$ — these are the <strong>same for every central force</strong> (they don't depend on $U(r)$ at all!).</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 3 — Solve the $\Phi$ equation (easiest) <span class="prio must">MUST KNOW</span></div>
+$$\frac{d^2\Phi}{d\phi^2} = -m_l^2\,\Phi \qquad \Longrightarrow \qquad \Phi(\phi) = e^{im_l\phi}$$
+<p><strong>Boundary condition:</strong> $\Phi(\phi + 2\pi) = \Phi(\phi)$ (going around a full circle must return to the same value). This requires $e^{im_l \cdot 2\pi} = 1$, which forces $m_l$ to be an integer: $m_l = 0, \pm1, \pm2, \ldots$</p>
+<p>This is where the magnetic quantum number $m_l$ comes from — it's the quantization of $L_z = m_l\hbar$.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 4 — Solve the $\Theta$ equation <span class="prio must">MUST KNOW</span></div>
+<p>This gives the associated Legendre equation. The solutions are the <strong>associated Legendre polynomials</strong> $\Theta_{l,m}(\theta)$. The requirement that $\Theta$ stays finite at $\theta = 0$ and $\theta = \pi$ (the poles) forces:</p>
+<p>• $l = 0, 1, 2, \ldots$ (orbital angular momentum quantum number)</p>
+<p>• $|m_l| \le l$ (so for a given $l$, there are $2l + 1$ allowed values of $m_l$)</p>
+<p>Together, $\Theta_{l,m}(\theta)\,\Phi_{m}(\phi) = Y_l^m(\theta,\phi)$ are the <strong>spherical harmonics</strong> — the angular part of the wavefunction. These are universal for all central-force problems.</p>
+<p>The first few angular functions $\Theta_{l,m}(\theta)$ (note: $\Theta_{l,-m} = (-1)^m \Theta_{l,m}$):</p>
+<table>
+<tr><th></th><th>$l = 0$</th><th>$l = 1$</th><th>$l = 2$</th></tr>
+<tr><td>$m = 0$</td><td>$\sqrt{\frac{1}{4\pi}}$</td><td>$\sqrt{\frac{3}{4\pi}}\cos\theta$</td><td>$\sqrt{\frac{5}{16\pi}}(3\cos^2\theta - 1)$</td></tr>
+<tr><td>$m = 1$</td><td>—</td><td>$-\sqrt{\frac{3}{8\pi}}\sin\theta$</td><td>$-\sqrt{\frac{15}{8\pi}}\sin\theta\cos\theta$</td></tr>
+<tr><td>$m = 2$</td><td>—</td><td>—</td><td>$\sqrt{\frac{15}{32\pi}}\sin^2\theta$</td></tr>
+</table>
+</div>
+
+<div class="box tip">
+<div class="box-title">Step 5 — Solve the radial equation (depends on the specific $U(r)$) <span class="prio must">MUST KNOW</span></div>
+<p>The radial equation contains $U(r)$ and a centrifugal term $\frac{l(l+1)\hbar^2}{2mr^2}$:</p>
+$$-\frac{\hbar^2}{2m}\frac{d}{dr}\!\left(r^2\frac{dR}{dr}\right) + \left[U(r) + \frac{l(l+1)\hbar^2}{2mr^2}\right]R = E\,R$$
+<p>For hydrogen, $U(r) = -k_e e^2/r$, and solving gives $R_{nl}(r)$ with the constraint $l < n$ and energies $E_n = -13.6/n^2$ eV.</p>
+</div>
+
+<h3>Summary Table</h3>
+<table>
+<tr><th>Equation</th><th>Solution</th><th>Quantum number</th><th>What constrains it</th></tr>
+<tr><td>$\Phi'' + m_l^2\Phi = 0$</td><td>$\Phi = e^{im_l\phi}$</td><td>$m_l = 0, \pm1, \pm2, \ldots$</td><td>Periodicity: $\Phi(\phi+2\pi) = \Phi(\phi)$</td></tr>
+<tr><td>Legendre eqn for $\Theta$</td><td>$\Theta_{l,m}(\theta)$ (see table above)</td><td>$l = 0, 1, 2, \ldots$</td><td>Finiteness at poles; $l \ge |m_l|$</td></tr>
+<tr><td>Radial eqn for $R$</td><td>$R_{nl}(r)$ — depends on $U(r)$</td><td>$n = 1, 2, 3, \ldots$</td><td>Normalizability; $l < n$ (for hydrogen)</td></tr>
+</table>
+
+<div class="box warn">
+<div class="box-title">The big picture: what's universal vs. what changes <span class="prio good">GOOD TO KNOW</span></div>
+<p><strong>Universal</strong> (same for ANY central force): the angular solutions $Y_l^m(\theta,\phi)$, the quantum numbers $l$ and $m_l$, and the angular momentum quantization $|L| = \sqrt{l(l+1)}\hbar$, $L_z = m_l\hbar$.</p>
+<p><strong>Specific to the potential</strong>: the radial solutions $R(r)$, the energy levels $E$, and the constraint on $l$ relative to $n$. Change $U(r)$ and only the radial equation changes.</p>
+</div>
+
+<h3>How To Approach Central-Force Questions</h3>
+
+<div class="box key">
+<div class="box-title">Five-step workflow (use this every time) <span class="prio must">MUST KNOW</span></div>
+<p>1. <strong>Recognize the setup:</strong> if $U(\vec{r}) = U(r)$ only, or you see hydrogen / orbital labels / quantum numbers $n,l,m$ / angular functions like $\cos\theta$ or $e^{im\phi}$ → use spherical coordinates.</p>
+<p>2. <strong>Read $m$</strong> from the $\phi$ dependence (see pattern-matching table below).</p>
+<p>3. <strong>Read $l$</strong> from the $\theta$ shape or orbital label ($s \to 0$, $p \to 1$, $d \to 2$). Must satisfy $l \ge |m|$.</p>
+<p>4. <strong>Read $n$</strong> from the hydrogen label or radial factor.</p>
+<p>5. <strong>Compute what they ask:</strong> $|L| = \sqrt{l(l+1)}\hbar$, $L_z = m\hbar$, degeneracy $= 2l+1$, nodes = ($n-l-1$ radial, $l$ angular).</p>
+</div>
+
+<h3>Reading $l$ and $m$ — Pattern-Matching Table</h3>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">How to read $m$</div>
+  <p>If the angular part contains $e^{im\phi}$, then the value of $m$ is just the number multiplying $\phi$.</p>
+  <p>$e^{i\phi} \Rightarrow m=+1$</p>
+  <p>$e^{-i\phi} \Rightarrow m=-1$</p>
+  <p>$e^{2i\phi} \Rightarrow m=+2$</p>
+  <p>No $\phi$ dependence $\Rightarrow m=0$</p>
+</div>
+<div class="formula-card">
+  <div class="label">How to read $l$</div>
+  <p>Match the $\theta$-shape to the first few spherical harmonics:</p>
+  <p>constant $\Rightarrow l=0$</p>
+  <p>$\cos\theta$ or $\sin\theta$-type shape $\Rightarrow l=1$</p>
+  <p>$3\cos^2\theta-1$, $\sin\theta\cos\theta$, or $\sin^2\theta$-type shape $\Rightarrow l=2$</p>
+</div>
+</div>
+
+<div class="box warn">
+<div class="box-title">Very important: real orbitals often have definite $l$ but NOT definite $m$ <span class="prio good">GOOD TO KNOW</span></div>
+<p>If you see $\cos\phi$ or $\sin\phi$ instead of $e^{im\phi}$, rewrite them using exponentials:</p>
+$$\cos\phi = \frac{e^{i\phi}+e^{-i\phi}}{2}, \qquad \sin\phi = \frac{e^{i\phi}-e^{-i\phi}}{2i}$$
+<p>That means a real orbital like $p_x \propto \sin\theta\cos\phi$ is a combination of $m=+1$ and $m=-1$. So it has definite $l=1$, but it is <strong>not</strong> an eigenstate of $L_z$.</p>
+</div>
+
+<table>
+<tr><th>Angular factor</th><th>Read off $l$</th><th>Read off $m$</th><th>Usual name / comment</th></tr>
+<tr><td>$1$</td><td>$l=0$</td><td>$m=0$</td><td>$s$ orbital, spherically symmetric</td></tr>
+<tr><td>$\cos\theta$</td><td>$l=1$</td><td>$m=0$</td><td>$p_z$ type</td></tr>
+<tr><td>$\sin\theta\,e^{i\phi}$</td><td>$l=1$</td><td>$m=+1$</td><td>pure $p$ state with definite $L_z$</td></tr>
+<tr><td>$\sin\theta\,e^{-i\phi}$</td><td>$l=1$</td><td>$m=-1$</td><td>pure $p$ state with definite $L_z$</td></tr>
+<tr><td>$\sin\theta\cos\phi$</td><td>$l=1$</td><td>not definite; mix of $\pm1$</td><td>$p_x$</td></tr>
+<tr><td>$\sin\theta\sin\phi$</td><td>$l=1$</td><td>not definite; mix of $\pm1$</td><td>$p_y$</td></tr>
+<tr><td>$3\cos^2\theta-1$</td><td>$l=2$</td><td>$m=0$</td><td>$d_{z^2}$ type</td></tr>
+<tr><td>$\sin\theta\cos\theta\,e^{i\phi}$</td><td>$l=2$</td><td>$m=+1$</td><td>pure $d$ state</td></tr>
+<tr><td>$\sin\theta\cos\theta\,e^{-i\phi}$</td><td>$l=2$</td><td>$m=-1$</td><td>pure $d$ state</td></tr>
+<tr><td>$\sin^2\theta\,e^{2i\phi}$</td><td>$l=2$</td><td>$m=+2$</td><td>pure $d$ state</td></tr>
+<tr><td>$\sin^2\theta\,e^{-2i\phi}$</td><td>$l=2$</td><td>$m=-2$</td><td>pure $d$ state</td></tr>
+<tr><td>$\sin^2\theta\cos 2\phi$</td><td>$l=2$</td><td>not definite; mix of $\pm2$</td><td>$d_{x^2-y^2}$ type</td></tr>
+</table>
+
+<!-- FIGURE: what the quantum numbers control -->
+<div class="fig">
+<svg viewBox="0 0 720 220" width="720" height="220" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="720" height="220" fill="#f8fafc" rx="8"/>
+
+  <rect x="30" y="35" width="200" height="145" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="130" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#1d4ed8">Principal number n</text>
+  <text x="50" y="92" font-size="12" fill="#1e293b">Allowed values: 1, 2, 3, ...</text>
+  <text x="50" y="117" font-size="12" fill="#1e293b">Controls hydrogen energy:</text>
+  <text x="50" y="136" font-size="12" fill="#1d4ed8" font-weight="bold">E_n = -E_R / n²</text>
+  <text x="50" y="160" font-size="12" fill="#1e293b">Also sets overall size of the state</text>
+
+  <rect x="260" y="35" width="200" height="145" rx="10" fill="#ecfdf5" stroke="#bbf7d0"/>
+  <text x="360" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#15803d">Orbital number l</text>
+  <text x="280" y="92" font-size="12" fill="#1e293b">Allowed: 0 to n-1</text>
+  <text x="280" y="117" font-size="12" fill="#1e293b">Controls shape and total angular</text>
+  <text x="280" y="136" font-size="12" fill="#15803d" font-weight="bold">|L| = √(l(l+1)) ħ</text>
+  <text x="280" y="160" font-size="12" fill="#1e293b">Also: angular nodes = l</text>
+  <text x="280" y="176" font-size="12" fill="#1e293b">l = 0,1,2 ↔ s,p,d</text>
+
+  <rect x="490" y="35" width="200" height="145" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="590" y="62" text-anchor="middle" font-size="16" font-weight="bold" fill="#c2410c">Magnetic number m</text>
+  <text x="510" y="92" font-size="12" fill="#1e293b">Allowed: -l, ..., +l</text>
+  <text x="510" y="117" font-size="12" fill="#1e293b">Controls orientation and z-part:</text>
+  <text x="510" y="136" font-size="12" fill="#c2410c" font-weight="bold">L_z = m ħ</text>
+  <text x="510" y="160" font-size="12" fill="#1e293b">Number of orientations = 2l+1</text>
+
+  <line x1="230" y1="108" x2="260" y2="108" stroke="#94a3b8" stroke-width="2" marker-end="url(#qArrow)"/>
+  <line x1="460" y1="108" x2="490" y2="108" stroke="#94a3b8" stroke-width="2" marker-end="url(#qArrow)"/>
+
+  <defs>
+    <marker id="qArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#94a3b8"/>
+    </marker>
+  </defs>
+</svg>
+<div class="fig-caption">Fig 7.2 — What the three quantum numbers actually do. On exam questions, first identify $n$, $l$, and $m$, then everything else becomes mechanical.</div>
+</div>
+
+<h3>Angular Momentum Quantization</h3>
+
+<!-- FIGURE: Angular momentum vector model -->
+<div class="fig">
+<svg viewBox="0 0 650 340" width="650" height="340" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="650" height="340" fill="#f8fafc" rx="8"/>
+
+  <!-- z-axis -->
+  <line x1="200" y1="320" x2="200" y2="20" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrowBlack3)"/>
+  <text x="210" y="18" font-size="13" fill="#1e293b" font-weight="bold">z</text>
+
+  <!-- L_z levels for l=2 -->
+  <text x="35" y="22" font-size="13" font-weight="bold" fill="#2563eb">Example: l = 2</text>
+
+  <!-- m = +2 -->
+  <line x1="120" y1="60" x2="280" y2="60" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="115" y="64" text-anchor="end" font-size="11" fill="#1e293b">m = +2</text>
+  <text x="285" y="64" font-size="11" fill="#2563eb">L_z = +2ℏ</text>
+  <!-- Vector arrow tilted -->
+  <line x1="200" y1="170" x2="230" y2="60" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed2)"/>
+
+  <!-- m = +1 -->
+  <line x1="120" y1="115" x2="280" y2="115" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="115" y="119" text-anchor="end" font-size="11" fill="#1e293b">m = +1</text>
+  <text x="285" y="119" font-size="11" fill="#2563eb">L_z = +ℏ</text>
+  <line x1="200" y1="170" x2="248" y2="115" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed2)"/>
+
+  <!-- m = 0 -->
+  <line x1="120" y1="170" x2="280" y2="170" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="115" y="174" text-anchor="end" font-size="11" fill="#1e293b">m = 0</text>
+  <text x="285" y="174" font-size="11" fill="#2563eb">L_z = 0</text>
+  <line x1="200" y1="170" x2="260" y2="170" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed2)"/>
+
+  <!-- m = -1 -->
+  <line x1="120" y1="225" x2="280" y2="225" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="115" y="229" text-anchor="end" font-size="11" fill="#1e293b">m = -1</text>
+  <text x="285" y="229" font-size="11" fill="#2563eb">L_z = -ℏ</text>
+  <line x1="200" y1="170" x2="248" y2="225" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed2)"/>
+
+  <!-- m = -2 -->
+  <line x1="120" y1="280" x2="280" y2="280" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+  <text x="115" y="284" text-anchor="end" font-size="11" fill="#1e293b">m = -2</text>
+  <text x="285" y="284" font-size="11" fill="#2563eb">L_z = -2ℏ</text>
+  <line x1="200" y1="170" x2="230" y2="280" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed2)"/>
+
+  <!-- |L| circle -->
+  <ellipse cx="200" cy="170" rx="60" ry="20" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
+  <text x="155" y="198" font-size="10" fill="#16a34a">precession cone</text>
+
+  <!-- Right side formulas -->
+  <rect x="390" y="40" width="240" height="260" fill="#eff6ff" rx="6" stroke="#dbeafe"/>
+  <text x="510" y="65" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e40af">Angular Momentum</text>
+
+  <text x="410" y="95" font-size="12" fill="#1e293b">z-component:</text>
+  <text x="410" y="115" font-size="13" fill="#2563eb" font-weight="bold">L_z = m_l ℏ</text>
+  <text x="410" y="135" font-size="11" fill="#64748b">m_l = -l, ..., 0, ..., +l</text>
+
+  <text x="410" y="165" font-size="12" fill="#1e293b">Total magnitude:</text>
+  <text x="410" y="185" font-size="13" fill="#2563eb" font-weight="bold">|L| = √(l(l+1)) ℏ</text>
+  <text x="410" y="205" font-size="11" fill="#dc2626" font-weight="bold">NOT lℏ!</text>
+
+  <text x="410" y="235" font-size="12" fill="#1e293b">For l = 2:</text>
+  <text x="410" y="255" font-size="11" fill="#64748b">|L| = √6 ℏ ≈ 2.45ℏ</text>
+  <text x="410" y="275" font-size="11" fill="#64748b">L_z^max = 2ℏ</text>
+  <text x="410" y="290" font-size="10" fill="#dc2626">|L| > L_z^max always!</text>
+
+  <defs>
+    <marker id="arrowBlack3" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker>
+    <marker id="arrowRed2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#dc2626"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Fig 7.1 — Angular momentum vector model for l = 2. The vector L has magnitude √(l(l+1))ℏ = √6 ℏ and its z-projection can only take 2l+1 = 5 discrete values. |L| is always larger than L_z^max — the vector can never align perfectly with z (uncertainty principle for L_x, L_y).</div>
+</div>
+
+<h3>Worked Examples: How To Use $n$, $l$, and $m$</h3>
+
+<div class="box tip">
+<div class="box-title">Example 1 — Identify the state and angular momentum from a wavefunction <span class="prio must">MUST KNOW</span></div>
+<p>Suppose $\psi(r,\theta,\phi) \propto r\,e^{-r/2a_B}\cos\theta$.</p>
+<p><strong>Step 1:</strong> There is no $\phi$ dependence, so $\Phi = 1$ and therefore $m = 0$.</p>
+<p><strong>Step 2:</strong> The angular factor is $\cos\theta$, which matches the $l=1,\;m=0$ spherical harmonic. So $l = 1$.</p>
+<p><strong>Step 3:</strong> The radial factor looks like $r\,e^{-r/2a_B}$, which is the hydrogen $2p$ radial behavior. So $n = 2$.</p>
+<p><strong>Conclusion:</strong> This is the $2p_z$ state.</p>
+<p><strong>Now use the formulas:</strong> $|L| = \sqrt{1(1+1)}\hbar = \sqrt{2}\hbar$, and $L_z = 0$.</p>
+<p><strong>Node check:</strong> radial nodes $= n-l-1 = 2-1-1 = 0$, angular nodes $= l = 1$.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Example 2 — What does the label "3d" tell you immediately? <span class="prio must">MUST KNOW</span></div>
+<p>The label $3d$ means $n = 3$ and $l = 2$.</p>
+<p><strong>If $m$ is not specified:</strong> the possible values are $m = -2,-1,0,+1,+2$.</p>
+<p><strong>Total angular momentum:</strong> every one of these states has $|L| = \sqrt{2(2+1)}\hbar = \sqrt{6}\hbar$.</p>
+<p><strong>z-component:</strong> depends on which $m$ you choose, so $L_z = m\hbar$ can be $-2\hbar,-\hbar,0,+\hbar,+2\hbar$.</p>
+<p><strong>Degeneracy from orientation:</strong> $2l+1 = 5$ spatial states. Including spin, that becomes $10$ electron states.</p>
+<p><strong>Hydrogen node count:</strong> radial nodes $= n-l-1 = 0$, angular nodes $= l = 2$.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Example 3 — Read $m$ directly from the $\phi$ dependence <span class="prio must">MUST KNOW</span></div>
+<p>Suppose $\psi(r,\theta,\phi) \propto R(r)\,\sin^2\theta\,e^{-2i\phi}$.</p>
+<p><strong>Step 1:</strong> The factor $e^{-2i\phi}$ tells you immediately that $m=-2$.</p>
+<p><strong>Step 2:</strong> Since $|m|=2$, the orbital number must satisfy $l \ge 2$.</p>
+<p><strong>Step 3:</strong> The $\theta$ dependence is $\sin^2\theta$, which matches the $l=2$ pattern.</p>
+<p><strong>Conclusion:</strong> $l=2$, $m=-2$.</p>
+<p><strong>Angular momentum:</strong> $|L|=\sqrt{6}\hbar$, $L_z=-2\hbar$.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Example 4 — Recognize a real orbital: $p_x$ <span class="prio must">MUST KNOW</span></div>
+<p>Suppose the angular part is $\sin\theta\cos\phi$.</p>
+<p><strong>Step 1:</strong> The $\sin\theta$ shape says this is a $p$-type angular shape, so $l=1$.</p>
+<p><strong>Step 2:</strong> But $\cos\phi$ is not a single exponential. Rewrite it:
+$$\sin\theta\cos\phi = \frac{1}{2}\sin\theta e^{i\phi} + \frac{1}{2}\sin\theta e^{-i\phi}$$</p>
+<p>So this is a combination of $m=+1$ and $m=-1$ states.</p>
+<p><strong>Conclusion:</strong> definite $l=1$, but <strong>not</strong> definite $m$.</p>
+<p><strong>Exam meaning:</strong> if they ask for $|L|$, you can still say $|L|=\sqrt{2}\hbar$. But you should <strong>not</strong> give a single value of $L_z$.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Example 5 — Recognize a real orbital: $d_{x^2-y^2}$ <span class="prio must">MUST KNOW</span></div>
+<p>Suppose the angular part is $\sin^2\theta\cos 2\phi$.</p>
+<p><strong>Step 1:</strong> The $\sin^2\theta$ pattern is a $d$-type shape, so $l=2$.</p>
+<p><strong>Step 2:</strong> Rewrite the $\phi$ dependence:
+$$\cos 2\phi = \frac{e^{2i\phi}+e^{-2i\phi}}{2}$$</p>
+<p>So this state is a combination of $m=+2$ and $m=-2$.</p>
+<p><strong>Conclusion:</strong> definite $l=2$, but not definite $m$.</p>
+<p><strong>Angular momentum:</strong> $|L|=\sqrt{6}\hbar$, but there is no single $L_z$ value.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Example 6 — Quick exam decoding <span class="prio must">MUST KNOW</span></div>
+<p>If $\psi \propto R_{31}(r)\sin\theta\,e^{i\phi}$, then:</p>
+<p>• $R_{31}$ tells you $n=3$, $l=1$.</p>
+<p>• The $e^{i\phi}$ gives $m=+1$.</p>
+<p>• Therefore $|L|=\sqrt{2}\hbar$ and $L_z=+\hbar$.</p>
+<p>• Radial nodes $= n-l-1 = 1$, angular nodes $= l = 1$.</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">Why the centrifugal term matters physically <span class="prio good">GOOD TO KNOW</span></div>
+<p>The radial equation contains an effective repulsion:
+$$U_{\text{eff}}(r) = U(r) + \frac{l(l+1)\hbar^2}{2mr^2}$$
+The second term gets bigger when $l$ is bigger, so large-$l$ states are pushed away from the origin. That is why s-states penetrate closest to the nucleus, p-states less, and d-states even less. This is exactly the idea used later to explain why 4s fills before 3d in multi-electron atoms.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s8">8. The Hydrogen Atom</h2>
+
+<div class="box exam">
+<div class="box-title">2025 Final Q2 — Hydrogen atom (34 pts) <span class="prio must">MUST KNOW</span></div>
+<p>This question tested radial probability, integration with the formula-sheet integrals, and expectation values.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Q2(a): Write $P(r)$ for the ground state [7 marks] <span class="prio must">MUST KNOW</span></div>
+<p>Given: $P(r) = 4\pi r^2|\Psi(r,\theta,\phi)|^2$. For hydrogen ground state ($1s$): $n=1, l=0, m=0$.</p>
+<div class="step"><span class="step-num">1</span> From Table 8.2 on formula sheet: $R_{10}(r) = \frac{2}{\sqrt{a^3}}e^{-r/a}$ (where $a = a_B$)</div>
+<div class="step"><span class="step-num">2</span> Angular part: $\Theta_{0,0} = \sqrt{1/4\pi}$ (from Table 8.1)</div>
+<div class="step"><span class="step-num">3</span> Full wavefunction: $\Psi = R_{10}\cdot\Theta_{00}\cdot\Phi_0 = \frac{2}{\sqrt{a^3}}\cdot\frac{1}{\sqrt{4\pi}}\cdot e^{-r/a} = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}$</div>
+<div class="step"><span class="step-num">4</span> $P(r) = 4\pi r^2 \cdot \frac{1}{\pi a^3}e^{-2r/a} = \frac{4r^2}{a^3}e^{-2r/a}$</div>
+</div>
+
+<div class="box key">
+<div class="box-title">Q2(b): Probability that electron is inside $a_B$ [13 marks] <span class="prio must">MUST KNOW</span></div>
+<div class="step"><span class="step-num">1</span> $P(r < a_B) = \int_0^{a_B} P(r)\,dr = \frac{4}{a^3}\int_0^{a} r^2 e^{-2r/a}\,dr$</div>
+<div class="step"><span class="step-num">2</span> Substitute $y = 2r/a$, so $r = ay/2$, $dr = a\,dy/2$, limits $0$ to $2$:</div>
+<div class="step"><span class="step-num">3</span> $= \frac{4}{a^3}\cdot\frac{a^3}{8}\int_0^{2} y^2 e^{-y}\,dy \cdot a/2 = \frac{1}{2}\int_0^2 y^2 e^{-y}\,dy$</div>
+<div class="step"><span class="step-num">4</span> Use the $J_n$ integral from the formula sheet (page 21): $J_2 = \int_0^x y^2 e^{-y/b}\,dy$ with $b=1$, giving $-(2+2y+y^2)e^{-y}\Big|_0^2$</div>
+<div class="step"><span class="step-num">5</span> $= -(2+4+4)e^{-2} + 2 = 2 - 10e^{-2} \approx 2 - 1.353 = 0.647$</div>
+<p>So there's about a <strong>32%</strong> chance of finding the electron within the Bohr radius. (The factor $1/2$ may differ depending on exact substitution — double-check your algebra.)</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Q2(c): Expectation value $\langle r \rangle$ [14 marks] <span class="prio must">MUST KNOW</span></div>
+<div class="step"><span class="step-num">1</span> $\langle r \rangle = \int_0^{\infty} r\,P(r)\,dr = \frac{4}{a^3}\int_0^{\infty} r^3 e^{-2r/a}\,dr$</div>
+<div class="step"><span class="step-num">2</span> Use $I_n = \int_0^\infty x^n e^{-\lambda x^2}dx$ — wait, this is $e^{-\alpha r}$ not $e^{-\alpha r^2}$! Use the $J_n$ integral instead.</div>
+<div class="step"><span class="step-num">3</span> $\int_0^\infty r^3 e^{-2r/a}dr$: set $b = a/2$, this is $J_3$ as $x\to\infty$. From formula sheet: $J_3 = -(6b^4 + 6b^3x + 3b^2x^2 + bx^3)e^{-x/b}$. At $x\to\infty$ the exponential kills everything, at $x=0$: $-(-6b^4) = 6b^4 = 6(a/2)^4 = 6a^4/16$</div>
+<div class="step"><span class="step-num">4</span> $\langle r \rangle = \frac{4}{a^3}\cdot\frac{6a^4}{16} = \frac{3a}{2} = \frac{3}{2}a_B$</div>
+<p><strong>Key result:</strong> The average distance is $\frac{3}{2}a_B$, larger than $a_B$ because $P(r)$ has a long exponential tail.</p>
+</div>
+
+<h3>Energy Levels & Quantum Numbers</h3>
+$$\boxed{E_n = -\frac{E_R}{n^2}}, \quad E_R = 13.6\;\text{eV}, \qquad a_B = \frac{\hbar^2}{m_e k_e e^2} \approx 0.529\;\text{Å}$$
+
+<!-- FIGURE: Hydrogen energy levels -->
+<div class="fig">
+<svg viewBox="0 0 680 300" width="680" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="680" height="300" fill="#f8fafc" rx="8"/>
+
+  <!-- Energy axis -->
+  <line x1="60" y1="280" x2="60" y2="20" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrowBlk)"/>
+  <text x="55" y="15" text-anchor="end" font-size="12" fill="#1e293b">E</text>
+  <line x1="55" y1="40" x2="65" y2="40" stroke="#1e293b" stroke-width="1"/>
+  <text x="50" y="44" text-anchor="end" font-size="10" fill="#1e293b">0</text>
+
+  <!-- n=1 -->
+  <line x1="100" y1="260" x2="200" y2="260" stroke="#2563eb" stroke-width="3"/>
+  <text x="80" y="264" text-anchor="end" font-size="12" fill="#1e293b" font-weight="bold">n=1</text>
+  <text x="210" y="264" font-size="11" fill="#2563eb">-13.6 eV</text>
+  <text x="210" y="278" font-size="10" fill="#64748b">1s only (1 state × 2 spin = 2)</text>
+
+  <!-- n=2 -->
+  <line x1="100" y1="150" x2="160" y2="150" stroke="#dc2626" stroke-width="3"/>
+  <line x1="170" y1="150" x2="230" y2="150" stroke="#dc2626" stroke-width="3"/>
+  <text x="80" y="154" text-anchor="end" font-size="12" fill="#1e293b" font-weight="bold">n=2</text>
+  <text x="240" y="154" font-size="11" fill="#dc2626">-3.4 eV</text>
+  <text x="108" y="140" font-size="9" fill="#64748b">2s</text>
+  <text x="180" y="140" font-size="9" fill="#64748b">2p (×3)</text>
+  <text x="240" y="168" font-size="10" fill="#64748b">4 states × 2 spin = 8</text>
+
+  <!-- n=3 -->
+  <line x1="100" y1="95" x2="140" y2="95" stroke="#16a34a" stroke-width="3"/>
+  <line x1="150" y1="95" x2="190" y2="95" stroke="#16a34a" stroke-width="3"/>
+  <line x1="200" y1="95" x2="240" y2="95" stroke="#16a34a" stroke-width="3"/>
+  <text x="80" y="99" text-anchor="end" font-size="12" fill="#1e293b" font-weight="bold">n=3</text>
+  <text x="250" y="99" font-size="11" fill="#16a34a">-1.5 eV</text>
+  <text x="105" y="85" font-size="9" fill="#64748b">3s</text>
+  <text x="155" y="85" font-size="9" fill="#64748b">3p</text>
+  <text x="205" y="85" font-size="9" fill="#64748b">3d</text>
+  <text x="250" y="113" font-size="10" fill="#64748b">9 states × 2 spin = 18</text>
+
+  <!-- n=∞ -->
+  <line x1="100" y1="50" x2="250" y2="50" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+  <text x="80" y="54" text-anchor="end" font-size="11" fill="#94a3b8">n=∞</text>
+  <text x="260" y="54" font-size="11" fill="#94a3b8">0 (ionized)</text>
+
+  <!-- Transitions -->
+  <path d="M150,260 L150,150" fill="none" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+  <text x="155" y="210" font-size="10" fill="#f59e0b">Lyman α</text>
+  <text x="155" y="222" font-size="10" fill="#f59e0b">10.2 eV</text>
+
+  <!-- Quantum number summary box -->
+  <rect x="380" y="40" width="280" height="245" fill="#fff" rx="6" stroke="#e2e8f0"/>
+  <text x="520" y="65" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Quantum Numbers</text>
+  <text x="400" y="90" font-size="11" fill="#1e293b">n = 1, 2, 3, ...  (energy)</text>
+  <text x="400" y="112" font-size="11" fill="#1e293b">l = 0, 1, ..., n-1  (ang. mom.)</text>
+  <text x="400" y="134" font-size="11" fill="#1e293b">m = -l, ..., +l  (z-component)</text>
+  <text x="400" y="156" font-size="11" fill="#1e293b">m_s = ±½  (spin)</text>
+
+  <line x1="400" y1="168" x2="640" y2="168" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="400" y="190" font-size="11" fill="#dc2626" font-weight="bold">In H: all l values at same n</text>
+  <text x="400" y="207" font-size="11" fill="#dc2626" font-weight="bold">have SAME energy</text>
+  <text x="400" y="224" font-size="11" fill="#64748b">(accidental degeneracy)</text>
+
+  <text x="400" y="250" font-size="11" fill="#1e293b" font-weight="bold">Degeneracy per n: n²</text>
+  <text x="400" y="268" font-size="11" fill="#64748b">(or 2n² with spin)</text>
+
+  <defs>
+    <marker id="arrowBlk" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker>
+    <marker id="arrowAmber" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#f59e0b"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Fig 8.1 — Hydrogen energy levels. E_n = -13.6/n² eV. In hydrogen, all l states at the same n are degenerate (same energy). Transitions between levels emit/absorb photons (Lyman, Balmer, Paschen series).</div>
+</div>
+
+<h3>Radial Probability Distribution</h3>
+$$\boxed{P(r) = r^2|R_{nl}(r)|^2}$$
+
+<div class="box key">
+<div class="box-title">Why some notes write $P(r) = 4\pi r^2|\psi|^2$ instead <span class="prio ctx">CONTEXT</span></div>
+<p>These are the same idea written in two different ways. If you already separated the angular part and it is normalized, use $P(r) = r^2|R_{nl}(r)|^2$. If you are using the full angle-independent 1s wavefunction $\psi(r)$, then integrating over all angles gives $P(r) = 4\pi r^2|\psi(r)|^2$.</p>
+</div>
+
+<p>For the ground state: $P_{1s}(r) = \frac{4}{a_B^3}\,r^2\,e^{-2r/a_B}$. Most probable radius at $r = a_B$, average $\langle r \rangle = \frac{3}{2}a_B$.</p>
+
+<!-- FIGURE: Radial probability -->
+<div class="fig">
+<svg viewBox="0 0 700 300" width="700" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="300" fill="#f8fafc" rx="8"/>
+
+  <!-- Axes -->
+  <line x1="60" y1="260" x2="660" y2="260" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrowB)"/>
+  <line x1="60" y1="260" x2="60" y2="20" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrowB)"/>
+  <text x="660" y="280" font-size="12" fill="#1e293b">r/a_B</text>
+  <text x="30" y="20" font-size="12" fill="#1e293b">P(r)</text>
+
+  <!-- Tick marks for r/a_B -->
+  <line x1="160" y1="260" x2="160" y2="265" stroke="#1e293b" stroke-width="1"/>
+  <text x="160" y="278" text-anchor="middle" font-size="10" fill="#64748b">1</text>
+  <line x1="260" y1="260" x2="260" y2="265" stroke="#1e293b" stroke-width="1"/>
+  <text x="260" y="278" text-anchor="middle" font-size="10" fill="#64748b">2</text>
+  <line x1="360" y1="260" x2="360" y2="265" stroke="#1e293b" stroke-width="1"/>
+  <text x="360" y="278" text-anchor="middle" font-size="10" fill="#64748b">4</text>
+  <line x1="460" y1="260" x2="460" y2="265" stroke="#1e293b" stroke-width="1"/>
+  <text x="460" y="278" text-anchor="middle" font-size="10" fill="#64748b">6</text>
+  <line x1="560" y1="260" x2="560" y2="265" stroke="#1e293b" stroke-width="1"/>
+  <text x="560" y="278" text-anchor="middle" font-size="10" fill="#64748b">8</text>
+
+  <!-- 1s curve: P = (4/aB³) r² exp(-2r/aB), peak at r = aB -->
+  <path d="M60,260 C80,260 100,240 120,185 C135,135 150,98 160,85 C175,98 195,140 215,175 C250,220 300,248 360,256 C420,259 480,260 550,260" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="175" y="76" font-size="12" fill="#2563eb" font-weight="bold">1s</text>
+  <!-- Peak marker -->
+  <circle cx="160" cy="85" r="4" fill="#2563eb"/>
+  <line x1="160" y1="85" x2="160" y2="260" stroke="#2563eb" stroke-width="1" stroke-dasharray="3"/>
+  <text x="165" y="100" font-size="10" fill="#2563eb">r_mp = a_B</text>
+
+  <!-- 2s curve: two peaks, node at r=2aB -->
+  <path d="M60,260 C70,258 80,252 90,245 C105,230 115,222 120,220 C130,225 135,232 140,240 C155,254 165,258 180,258 C200,257 220,252 240,230 C260,205 280,178 310,160 C340,150 360,155 390,180 C420,210 460,240 510,253 C550,258 600,260 640,260" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="320" y="145" font-size="12" fill="#dc2626" font-weight="bold">2s</text>
+  <text x="120" y="215" font-size="9" fill="#dc2626">small peak</text>
+  <text x="290" y="175" font-size="9" fill="#dc2626">big peak ≈ 5.2a_B</text>
+
+  <!-- 2p curve: single peak at r=4aB -->
+  <path d="M60,260 C80,260 100,258 140,250 C200,225 260,190 310,165 C340,155 360,150 370,150 C385,155 410,175 440,200 C480,225 520,245 570,255 C610,259 640,260 650,260" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="345" y="140" font-size="12" fill="#16a34a" font-weight="bold">2p</text>
+  <text x="380" y="170" font-size="9" fill="#16a34a">peak at 4a_B</text>
+
+  <!-- <r> marker for 1s -->
+  <line x1="210" y1="50" x2="210" y2="65" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="210" y="45" text-anchor="middle" font-size="10" fill="#2563eb">⟨r⟩₁ₛ = 3/2 a_B</text>
+
+  <defs><marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker></defs>
+</svg>
+<div class="fig-caption">Fig 8.2 — Radial probability P(r) for the 1s, 2s, and 2p states. The 1s peaks at r = a_B. The 2s has two peaks (inner shell penetration). The 2p starts at zero (l ≠ 0 → no probability at nucleus) and peaks at 4a_B.</div>
+</div>
+
+<h3>Radial Wavefunctions $R_{nl}(r)$ — Complete Table</h3>
+<p>Using $\rho = r/a_B$ and $a = a_B$. The general solution is $\psi_{n,l,m}(r,\theta,\phi) = R_{nl}(r)\,\Theta_{lm}(\theta)\,e^{im\phi}$.</p>
+
+<table>
+<tr><th></th><th>$n = 1$</th><th>$n = 2$</th><th>$n = 3$</th></tr>
+<tr><td>$l = 0$ (s)</td>
+<td>$\dfrac{2}{\sqrt{a^3}}\,e^{-\rho}$</td>
+<td>$\dfrac{1}{\sqrt{2a^3}}\!\left(1 - \tfrac{1}{2}\rho\right)e^{-\rho/2}$</td>
+<td>$\dfrac{2}{\sqrt{27a^3}}\!\left(1 - \tfrac{2}{3}\rho + \tfrac{2}{27}\rho^2\right)e^{-\rho/3}$</td>
+</tr>
+<tr><td>$l = 1$ (p)</td>
+<td>—</td>
+<td>$\dfrac{1}{\sqrt{24a^3}}\,\rho\,e^{-\rho/2}$</td>
+<td>$\dfrac{8}{27\sqrt{6a^3}}\!\left(1 - \tfrac{1}{6}\rho\right)\rho\,e^{-\rho/3}$</td>
+</tr>
+<tr><td>$l = 2$ (d)</td>
+<td>—</td>
+<td>—</td>
+<td>$\dfrac{4}{81\sqrt{30a^3}}\,\rho^2\,e^{-\rho/3}$</td>
+</tr>
+</table>
+
+<div class="box warn">
+<div class="box-title">Patterns to remember instead of memorizing the whole table <span class="prio must">MUST KNOW</span></div>
+<p>• Every $R_{nl}$ contains $e^{-\rho/n}$ — the exponential decay length scales with $n$.</p>
+<p>• The $l$-dependence near origin: $R_{nl} \propto \rho^l$ as $r \to 0$. So $l = 0$ (s-states) are nonzero at the nucleus; $l = 1$ (p) go as $r$; $l = 2$ (d) go as $r^2$. <strong>Only s-states can be found at $r = 0$.</strong></p>
+<p>• The s-state polynomials have $(n - 1)$ terms and $(n - 1)$ radial nodes. The number of radial nodes is always $n - l - 1$.</p>
+</div>
+
+<h3>Key Wavefunctions You Should Know</h3>
+<p><strong>Ground state (1s):</strong> $\psi_{1s} = \frac{1}{\sqrt{\pi}\,a_B^{3/2}}\,e^{-r/a_B}$ — spherically symmetric ($\Theta_{00} = 1/\sqrt{4\pi}$, so $\theta$ and $\phi$ dependence is just a constant).</p>
+
+<p><strong>2p, $m = 0$:</strong> $\psi_{2,1,0} = A_{2p}\,r\cos\theta\,e^{-r/2a_B}$. Since $r\cos\theta = z$, this is $\propto z\,e^{-r/2a_B}$ — probability peaks along $\pm z$ axis.</p>
+
+<p><strong>2p, $m = \pm1$:</strong> $\psi_{2,1,\pm1} = A\,r\sin\theta\,e^{\pm i\phi}\,e^{-r/2a_B}$. Linear combinations give the "real" orbitals:</p>
+<p>• $\psi_{2p_x} \propto r\sin\theta\cos\phi\,e^{-r/2a_B} = x\,e^{-r/2a_B}$ (peaks along $\pm x$)</p>
+<p>• $\psi_{2p_y} \propto r\sin\theta\sin\phi\,e^{-r/2a_B} = y\,e^{-r/2a_B}$ (peaks along $\pm y$)</p>
+
+<p><strong>2s:</strong> $\psi_{2s} = A_{2s}\left(2 - \frac{r}{a_B}\right)e^{-r/2a_B}$ — spherically symmetric, radial node at $r = 2a_B$.</p>
+
+<div class="box tip">
+<div class="box-title">Only s-states (l = 0) have nonzero probability at r = 0 <span class="prio must">MUST KNOW</span></div>
+<p>$R_{nl}(r) \propto r^l$ near $r = 0$. This means s-electrons penetrate closest to the nucleus → they're more tightly bound in multi-electron atoms. This breaks the hydrogen degeneracy.</p>
+</div>
+
+<h3>Expectation Values & Useful Integrals</h3>
+<p><strong>Key results for 1s:</strong> $\langle r \rangle_{1s} = \frac{3}{2}a_B$, $\langle U \rangle_{1s} = -\frac{k_e e^2}{a_B} = -2E_R = -27.2$ eV.</p>
+<p><strong>The integral you will need on the exam:</strong></p>
+$$\boxed{\int_0^{\infty} r^n\,e^{-r/b}\,dr = n!\,b^{n+1}}$$
+<p>Examples: $\int_0^{\infty} r^2 e^{-2r/a_B}dr = 2!\left(\frac{a_B}{2}\right)^3 = \frac{a_B^3}{4}$. For $\langle r \rangle_{1s}$: $\int_0^{\infty} r^3 e^{-2r/a_B}dr = 3!\left(\frac{a_B}{2}\right)^4 = \frac{3a_B^4}{8}$.</p>
+<p><strong>Radial probability:</strong> $P(r) = 4\pi r^2 |\psi|^2 = r^2|R_{nl}|^2$ (the $4\pi$ is absorbed if $\Theta_{lm}$ is already normalized over angles). To find $\langle r \rangle$, compute $\int_0^{\infty} r \cdot P(r)\,dr$.</p>
+
+<h3>Atomic Shells (8.9) — Most Probable Radii</h3>
+<p>Each orbital has a most probable radius where $P(r)$ peaks. These cluster into <strong>physical shells</strong> near $r \approx n^2 a_B$:</p>
+
+<table>
+<tr><th>Orbital</th><th>Most probable $r$</th><th>Shell ($\approx n^2 a_B$)</th></tr>
+<tr><td>$1s$</td><td>$a_B$</td><td>$1^2 a_B = a_B$</td></tr>
+<tr><td>$2s$</td><td>$5.2\,a_B$</td><td rowspan="2">$2^2 a_B = 4a_B$</td></tr>
+<tr><td>$2p$</td><td>$4\,a_B$</td></tr>
+<tr><td>$3s$</td><td>$13\,a_B$</td><td rowspan="3">$3^2 a_B = 9a_B$</td></tr>
+<tr><td>$3p$</td><td>$12\,a_B$</td></tr>
+<tr><td>$3d$</td><td>$9\,a_B$</td></tr>
+</table>
+
+<div class="box tip">
+<div class="box-title">Key physical picture <span class="prio ctx">CONTEXT</span></div>
+<p>Electrons are NOT orbiting at $r = n^2 a_B$, but their radial probability distributions cluster around these values. There is <strong>some overlap</strong> between shells (especially at small $n$), but in general they separate into distinct physical shells. Modern experiments confirm Schrödinger's predicted radial probabilities.</p>
+<p>Within a shell, $s$-states have their peak at the <strong>largest</strong> radius but also have probability close to the nucleus (penetration). This penetration is what makes $s$ orbitals lower-energy in multi-electron atoms.</p>
+</div>
+
+<h3>Spectral Series — Photon Transitions in Hydrogen</h3>
+<p>An ensemble of H-atoms can only have discrete energy transitions. The photon energy from $n_i \to n_f$ is:</p>
+$$E_{\text{photon}} = E_R\left(\frac{1}{n_f^2} - \frac{1}{n_i^2}\right)$$
+
+<div class="box key">
+<div class="box-title">Named series — grouped by the final level $n_f$ <span class="prio good">GOOD TO KNOW</span></div>
+<table>
+<tr><th>Series</th><th>$n_f$</th><th>Examples</th><th>Energy range</th><th>Region</th></tr>
+<tr><td><strong>Lyman</strong></td><td>1</td><td>$2\to1$ (10.2 eV), $3\to1$ (12.1 eV)</td><td>10–13.6 eV</td><td>UV</td></tr>
+<tr><td><strong>Balmer</strong></td><td>2</td><td>$3\to2$ (1.9 eV), $4\to2$ (2.5 eV)</td><td>1.9–3.4 eV</td><td>Visible</td></tr>
+<tr><td><strong>Paschen</strong></td><td>3</td><td>$4\to3$ (0.66 eV), $5\to3$ (0.97 eV)</td><td>0.66–1.5 eV</td><td>IR</td></tr>
+</table>
+<p>Different series are in <strong>markedly different energy ranges</strong> and don't overlap — this is why they were discovered separately by different experiments.</p>
+</div>
+
+<h3>Hydrogen-like Atoms (8.10) — One Electron, Nuclear Charge $Z$</h3>
+<p>Examples: He$^+$ ($Z=2$, 1 electron), Li$^{++}$ ($Z=3$, 1 electron). These are atoms with a single electron orbiting a nucleus with charge $+Ze$.</p>
+
+<div class="box key">
+<div class="box-title">Everything scales with $Z$ <span class="prio must">MUST KNOW</span></div>
+<p>Since the potential is still Coulomb ($U = -Zk_e e^2/r$), the hydrogen solution carries over with $e^2 \to Ze^2$:</p>
+$$\boxed{E_n = -\frac{Z^2 E_R}{n^2}}, \qquad \boxed{a_Z = \frac{a_B}{Z}}$$
+<p><strong>Wavefunctions:</strong> replace $a_B \to a_B/Z$ everywhere:</p>
+$$\psi_{1s} = A\,e^{-Zr/a_B}, \qquad \psi_{2p} = A'\left(\frac{Zr}{a_B}\right)e^{-Zr/2a_B}$$
+<p>Charge densities are pulled $1/Z$ closer to the nucleus → stronger binding → higher ionization energy.</p>
+<p>Angular wavefunctions $Y_{lm}(\theta,\phi)$ are <strong>completely unchanged</strong> — the $Z$ scaling only affects the radial part.</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">Why multi-electron atoms are different (leads to Ch 10) <span class="prio good">GOOD TO KNOW</span></div>
+<p>For He (neutral, $Z=2$, 2 electrons), the potential includes electron-electron repulsion:</p>
+$$U_{\text{total}} = \underbrace{-\frac{Zk_e e^2}{r_1}}_{\text{e}_1\text{-nucleus}} + \underbrace{-\frac{Zk_e e^2}{r_2}}_{\text{e}_2\text{-nucleus}} + \underbrace{\frac{k_e e^2}{|\vec{r}_1-\vec{r}_2|}}_{\text{e}_1\text{-e}_2 \text{ repulsion}}$$
+<p>The last term depends on where <strong>both</strong> electrons are simultaneously — this makes the problem unsolvable exactly. That's why we need approximations like the IPA and Hartree-Fock.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Screening picture for Li ($Z = 3$) <span class="prio good">GOOD TO KNOW</span></div>
+<p>Li has 3 electrons. The first two fill the $1s$ shell at radius $\sim a_B/3$ (inner shell).</p>
+<p>The third electron (in $2s$) is much farther out. When it's at $r > a_B/3$, it "sees" the nucleus ($+3e$) screened by the two inner electrons ($-2e$), for a net charge of $+1e$. So $Z_{\text{eff}} \approx 1$ for the outer electron.</p>
+<p>When the outer electron is at $r < a_B/3$ (inside the inner shell), it sees the full nuclear charge $Z_{\text{eff}} \approx 3$. This is why $s$-orbitals (which penetrate close to the nucleus) are lower in energy — they spend more time seeing $Z_{\text{eff}} > 1$.</p>
+</div>
+
+<h3>Total Degeneracy of Hydrogen</h3>
+<div class="box key">
+<div class="box-title">Degeneracy including spin = $2n^2$ <span class="prio must">MUST KNOW</span></div>
+<p>For a given $n$, the available states are: $l = 0, 1, \ldots, n-1$, each with $m_l = -l, \ldots, +l$ (that's $2l+1$ values), and each with $m_s = \pm\frac{1}{2}$.</p>
+$$\text{Total states} = \sum_{l=0}^{n-1} 2(2l+1) = 2n^2$$
+<p>Example: $n=2$ → $l=0$ gives 2 states, $l=1$ gives 6 states → total $= 8 = 2(2^2)$.</p>
+<p>You need <strong>all four quantum numbers</strong> ($n, l, m_l, m_s$) to completely specify a hydrogen state. Spatial probability distributions $|\psi_{nlm}|^2$ are not altered by $m_s$ — spin doesn't change where you find the electron.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s9">9. Electron Spin & Multi-electron Atoms</h2>
+
+<div class="box exam">
+<div class="box-title">2025 Final Q3 — Multi-electron atoms (33 pts) <span class="prio must">MUST KNOW</span></div>
+<p>This question tested electron configurations, the filling order, and understanding of excited states.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Q3(a): Lithium (₃Li) — which levels do the 3 electrons occupy? [8 marks] <span class="prio must">MUST KNOW</span></div>
+<div class="step"><span class="step-num">1</span> Li has $Z = 3$, so 3 electrons to place</div>
+<div class="step"><span class="step-num">2</span> Fill in order: 1s can hold 2, 2s can hold 2</div>
+<div class="step"><span class="step-num">3</span> Configuration: $1s^2\,2s^1$</div>
+<p><strong>Why 2s not 2p?</strong> In multi-electron atoms, $s$-orbitals penetrate closer to the nucleus (less shielded by inner electrons), so they have lower energy than $p$ at the same $n$. This breaks hydrogen's $l$-degeneracy.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Q3(b): Fluorine (₉F) and Carbon (₆C) configurations [13 marks] <span class="prio must">MUST KNOW</span></div>
+<p><strong>Fluorine</strong> ($Z = 9$): $1s^2\,2s^2\,2p^5$ — one electron short of filling the $2p$ shell.</p>
+<p><strong>Carbon</strong> ($Z = 6$): $1s^2\,2s^2\,2p^2$ — note that the two $2p$ electrons occupy different $m_l$ orbitals with parallel spins (Hund's rule: maximize total spin within a subshell).</p>
+<p>For each: identify how many electrons, then fill $1s \to 2s \to 2p \to 3s \to 3p \to 4s \to 3d \to \ldots$ Each $s$ holds 2, each $p$ holds 6, each $d$ holds 10.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Q3(c): First excited state of Neon (₁₀Ne) [12 marks] <span class="prio must">MUST KNOW</span></div>
+<div class="step"><span class="step-num">1</span> Ground state of Ne: $1s^2\,2s^2\,2p^6$ (all shells full — noble gas)</div>
+<div class="step"><span class="step-num">2</span> First excited state: promote the <strong>highest-energy</strong> electron (a $2p$ electron) to the next available level ($3s$)</div>
+<div class="step"><span class="step-num">3</span> Excited Ne: $1s^2\,2s^2\,2p^5\,3s^1$</div>
+<p><strong>Why $3s$ and not $3p$?</strong> Because $3s$ has lower energy than $3p$ in a multi-electron atom (penetration effect). The lowest-energy excitation is $2p \to 3s$.</p>
+<p><strong>Why not $2s \to 3s$?</strong> A $2s$ electron is more tightly bound (lower energy) than a $2p$ electron, so removing it costs more energy.</p>
+</div>
+
+<h3>Electron Spin & Pauli Exclusion</h3>
+<p>$s = \frac{1}{2}$ always, $m_s = \pm\frac{1}{2}$, $|\vec{S}| = \frac{\sqrt{3}}{2}\hbar$. Each orbital holds 2 electrons (Pauli exclusion: no two electrons share all four quantum numbers $n, l, m_l, m_s$).</p>
+
+<div class="box key">
+<div class="box-title">Pauli Exclusion Principle — Why the periodic table works <span class="prio must">MUST KNOW</span></div>
+<p><strong>Statement:</strong> No two electrons in a quantum system can occupy the same state (i.e., share all quantum numbers).</p>
+<p>This applies not just to electrons in atoms, but also to <strong>protons and neutrons in nuclei</strong>, and generally to all particles with half-integer spin.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Fermions vs Bosons — know the difference <span class="prio good">GOOD TO KNOW</span></div>
+<table>
+<tr><th></th><th>Fermions</th><th>Bosons</th></tr>
+<tr><td><strong>Spin</strong></td><td>Half-integer ($\frac12, \frac32, \frac52, \ldots$)</td><td>Integer ($0, 1, 2, \ldots$)</td></tr>
+<tr><td><strong>Pauli exclusion?</strong></td><td>Yes — at most one per state</td><td>No — unlimited number in same state</td></tr>
+<tr><td><strong>Examples</strong></td><td>Electrons, protons, neutrons</td><td>Photons, ${}^4$He atoms, gluons</td></tr>
+<tr><td><strong>Key consequence</strong></td><td>Periodic table, white dwarfs</td><td>Bose-Einstein condensate, lasers</td></tr>
+</table>
+</div>
+
+<div class="box tip">
+<div class="box-title">Bose-Einstein Condensate (BEC) <span class="prio ctx">CONTEXT</span></div>
+<p>Because bosons have no exclusion principle, at very low temperatures they can <strong>all pile into the same quantum ground state</strong>. This creates a macroscopic quantum state called a Bose-Einstein condensate.</p>
+<p><strong>Example:</strong> Superfluid helium-4 (${}^4$He has integer total spin → boson). Below about 2.2 K, liquid ${}^4$He flows with zero viscosity — a macroscopic quantum effect.</p>
+<p><strong>Contrast:</strong> If electrons (fermions) could do this, every electron in an atom would drop to $1s$ and chemistry would not exist.</p>
+</div>
+
+<h3>Screening, $Z_{\text{eff}}$, and Why Multi-electron Atoms Are Harder Than Hydrogen</h3>
+<p>Hydrogen is simple because there is only one electron, so the potential is exactly Coulomb:</p>
+$$U(r) = -\frac{k_e e^2}{r}$$
+<p>In a multi-electron atom, each electron feels the nucleus <em>and</em> repulsion from the other electrons. So the true potential is not just a simple $1/r$ form anymore.</p>
+
+<div class="box tip">
+<div class="box-title">Independent-particle idea <span class="prio ctx">CONTEXT</span></div>
+<p>We often approximate each electron as moving in an effective spherically symmetric potential:</p>
+$$U_{\text{eff}}(r) = -Z_{\text{eff}}(r)\frac{k_e e^2}{r}$$
+<p>Here $Z_{\text{eff}}(r)$ is the <strong>effective nuclear charge</strong>. Inner electrons screen the nucleus, so outer electrons feel less than the full charge $+Ze$.</p>
+<p>Close to the nucleus, screening is weaker and $Z_{\text{eff}}(r)$ is larger. Farther out, screening is stronger and $Z_{\text{eff}}(r)$ is smaller.</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">What this changes compared with hydrogen <span class="prio ctx">CONTEXT</span></div>
+<p>In hydrogen, energy depends only on $n$. In multi-electron atoms, energy depends on <strong>both</strong> $n$ and $l$ because different orbitals penetrate the electron cloud differently.</p>
+<p>s-states penetrate closest to the nucleus, so they feel a larger $Z_{\text{eff}}$ and lie lower in energy than p-states with the same $n$. That is the physical reason behind $2s &lt; 2p$, $3s &lt; 3p &lt; 3d$, and especially <strong>4s below 3d</strong>.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Hartree-Fock Method <span class="prio ctx">CONTEXT</span></div>
+<p>The <strong>Hartree-Fock method</strong> is a numerical/computer approach that treats each electron as feeling the influence of:</p>
+<p>• The nuclear charge $+Ze$, <strong>and</strong></p>
+<p>• The $Z-1$ other electrons (not just their average position — it includes exchange effects from Pauli exclusion)</p>
+<p>This is more accurate than the simple IPA below, but requires a computer to solve iteratively.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Independent Particle Approximation (IPA) — the exam-level version <span class="prio good">GOOD TO KNOW</span></div>
+<p>The IPA is the simpler model: treat every electron as if it moves in its own effective single-particle potential:</p>
+$$\boxed{U_{\text{IPA}}(r) = -Z_{\text{eff}}(r)\frac{k_e e^2}{r}}$$
+<p><strong>Key assumptions:</strong></p>
+<p>• All other electrons are spherically distributed around the nucleus</p>
+<p>• An electron at small $r$ (close to nucleus) "sees" the full nuclear charge → $Z_{\text{eff}} \approx Z$</p>
+<p>• An electron at large $r$ has $Z-1$ inner electrons screening $Z-1$ protons → $Z_{\text{eff}} \approx 1$</p>
+<p>• $Z_{\text{eff}}(r)$ varies smoothly between these limits: $1 \le Z_{\text{eff}}(r) \le Z$</p>
+<p><strong>Energy levels in the IPA:</strong></p>
+$$\boxed{E_n \approx -\frac{Z_{\text{eff}}^2}{n^2}\,E_R}$$
+<p>where $E_R = 13.6\,\text{eV}$ is the Rydberg energy (hydrogen ground state). This is just the hydrogen formula with $Z \to Z_{\text{eff}}$.</p>
+<p><strong>Physical takeaway:</strong> Screening breaks hydrogen's $l$-degeneracy and changes the filling order. Different $l$ values at the same $n$ have different $Z_{\text{eff}}$ because they penetrate the electron cloud differently.</p>
+</div>
+
+<h3>Magnetic Moments and the Bohr Magneton</h3>
+
+<div class="box key">
+<div class="box-title">Classical derivation: why orbiting electrons have magnetic moments <span class="prio ctx">CONTEXT</span></div>
+<p>A charged particle moving in a loop is a <strong>current loop</strong> with magnetic moment $\vec{\mu} = i\vec{A}$.</p>
+<p>For an electron orbiting with speed $v$ at radius $r$:</p>
+<p>• Current: $i = \dfrac{e}{T} = \dfrac{e}{2\pi r / v} = \dfrac{ev}{2\pi r}$</p>
+<p>• Loop area: $A = \pi r^2$</p>
+<p>• So $\mu = iA = \dfrac{ev}{2\pi r}\cdot\pi r^2 = \dfrac{1}{2}evr$</p>
+<p>Since the classical angular momentum is $L = m_e v r$, we get:</p>
+$$\boxed{\frac{\mu}{L} = \frac{e}{2m_e}} \quad\Longrightarrow\quad \vec{\mu}_{\text{orbital}} = -\frac{e}{2m_e}\vec{L}$$
+<p>The negative sign is because the electron has charge $-e$ (current flows opposite to electron motion).</p>
+<p><strong>Key point:</strong> the ratio $\mu/L = e/2m_e$ depends <strong>only on charge-to-mass ratio</strong>, not on the radius or speed — so it works quantum-mechanically too. Just replace $L$ with the quantized $L_z = m_l\hbar$.</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">Gyromagnetic ratio $\gamma$ <span class="prio good">GOOD TO KNOW</span></div>
+<p>The <strong>gyromagnetic ratio</strong> $\gamma$ relates the magnetic moment to angular momentum: $\vec{\mu} = -\gamma\vec{L}$.</p>
+<p>• For <strong>orbital</strong> motion: $\gamma_{\text{orb}} = \dfrac{e}{2m_e}$</p>
+<p>• For <strong>spin</strong>: $\gamma_{\text{spin}} \approx \dfrac{e}{m_e}$ (about <strong>twice</strong> the orbital value!)</p>
+<p>The factor-of-2 difference for spin is what makes the Zeeman effect "anomalous." Just memorize: orbital gives $e/2m_e$, spin gives $e/m_e$.</p>
+</div>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Orbital magnetic moment</div>
+  $$\vec{\mu}_L = -\frac{e}{2m_e}\vec{L}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Negative sign because electron charge is $-e$. Uses $L_z = m_l\hbar$.</p>
+</div>
+<div class="formula-card">
+  <div class="label">Spin magnetic moment (factor of 2!)</div>
+  $$\vec{\mu}_S \approx -\frac{e}{m_e}\vec{S}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Note: the coefficient is $e/m_e$, <strong>twice</strong> the orbital value $e/2m_e$. This is the "anomalous" magnetic moment.</p>
+</div>
+</div>
+
+<div class="box key">
+<div class="box-title">Bohr magneton $\mu_B$ <span class="prio must">MUST KNOW</span></div>
+$$\boxed{\mu_B = \frac{e\hbar}{2m_e} \approx 9.27 \times 10^{-24}\,\text{J/T} \approx 5.79 \times 10^{-5}\,\text{eV/T}}$$
+<p>This is the natural unit for atomic magnetic moments. It appears everywhere in Zeeman splitting.</p>
+<p>In terms of $\mu_B$: &nbsp; $\mu_{L,z} = -\mu_B m_l$ &nbsp; and &nbsp; $\mu_{S,z} \approx -2\mu_B m_s$</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Total atomic magnetic moment <span class="prio must">MUST KNOW</span></div>
+<p>Combining orbital and spin contributions:</p>
+$$\boxed{\vec{\mu}_{\text{atom}} = -\frac{e}{2m_e}(\vec{L}+2\vec{S})}$$
+<p>The total angular momentum is $\vec{J} = \vec{L} + \vec{S}$, but $\vec{\mu}$ is <strong>not</strong> simply proportional to $\vec{J}$ because of the factor of 2 in front of $\vec{S}$. This is the fundamental reason spin complicates atomic spectra.</p>
+</div>
+
+<h3>Normal Zeeman Effect: Orbital Splitting In A Magnetic Field</h3>
+<p>A magnetic moment in a magnetic field has potential energy:</p>
+$$\Delta E = -\vec{\mu}\cdot\vec{B}$$
+<p>The $\vec{B}$ field defines the $z$-axis. Take $\vec{B} = B_z\hat{z}$. Then using $\mu_{L,z} = -\frac{e}{2m_e}L_z$ with $L_z = m_l\hbar$:</p>
+
+<div class="box key">
+<div class="box-title">Normal Zeeman energy shift <span class="prio must">MUST KNOW</span></div>
+$$\boxed{\Delta E = \mu_B\,m_l\,B_z}$$
+<p>A level with orbital quantum number $l$ splits into <strong>$2l+1$ sublevels</strong>, one for each $m_l=-l,\ldots,+l$.</p>
+<p>Adjacent Zeeman levels are separated by:</p>
+$$\boxed{\Delta E_{\text{adjacent}} = \mu_B B}$$
+<p>$m_l$ is often called the <strong>"magnetic quantum number"</strong> — this is exactly the reason: it labels the energy shifts in a magnetic field.</p>
+</div>
+
+<!-- FIGURE: Zeeman splitting -->
+<div class="fig">
+<svg viewBox="0 0 700 340" width="700" height="340" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="340" fill="#f8fafc" rx="8"/>
+  <text x="350" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">Normal Zeeman Splitting — Helium 2p level (l = 1)</text>
+
+  <!-- B = 0 side -->
+  <text x="120" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">B = 0</text>
+  <text x="120" y="72" text-anchor="middle" font-size="11" fill="#64748b">(degenerate)</text>
+  <!-- single thick level -->
+  <line x1="50" y1="170" x2="190" y2="170" stroke="#2563eb" stroke-width="4"/>
+  <text x="200" y="175" font-size="12" fill="#2563eb" font-weight="bold">2p</text>
+  <text x="200" y="190" font-size="10" fill="#64748b">E = E₂,₂p</text>
+
+  <!-- Arrow indicating B turns on -->
+  <line x1="250" y1="170" x2="330" y2="170" stroke="#1e293b" stroke-width="1.5" marker-end="url(#zArrow)"/>
+  <text x="290" y="160" text-anchor="middle" font-size="11" fill="#1e293b">Turn on B</text>
+
+  <!-- B ≠ 0 side — 3 split levels -->
+  <text x="490" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">B ≠ 0</text>
+  <text x="490" y="72" text-anchor="middle" font-size="11" fill="#64748b">(split into 2l+1 = 3 levels)</text>
+
+  <!-- m_l = +1 (shifted up) -->
+  <line x1="380" y1="120" x2="530" y2="120" stroke="#dc2626" stroke-width="3"/>
+  <text x="545" y="124" font-size="12" fill="#dc2626">m_l = +1</text>
+  <text x="640" y="124" font-size="11" fill="#1e293b">ΔE = +μ_B·B</text>
+
+  <!-- m_l = 0 (no shift) -->
+  <line x1="380" y1="170" x2="530" y2="170" stroke="#2563eb" stroke-width="3"/>
+  <text x="545" y="174" font-size="12" fill="#2563eb">m_l = 0</text>
+  <text x="640" y="174" font-size="11" fill="#1e293b">ΔE = 0</text>
+
+  <!-- m_l = -1 (shifted down) -->
+  <line x1="380" y1="220" x2="530" y2="220" stroke="#16a34a" stroke-width="3"/>
+  <text x="545" y="224" font-size="12" fill="#16a34a">m_l = −1</text>
+  <text x="640" y="224" font-size="11" fill="#1e293b">ΔE = −μ_B·B</text>
+
+  <!-- Dashed lines connecting degenerate to split -->
+  <line x1="190" y1="170" x2="380" y2="120" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="190" y1="170" x2="380" y2="170" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="190" y1="170" x2="380" y2="220" stroke="#16a34a" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Spacing bracket -->
+  <line x1="365" y1="120" x2="365" y2="170" stroke="#1e293b" stroke-width="1"/>
+  <line x1="360" y1="120" x2="370" y2="120" stroke="#1e293b" stroke-width="1"/>
+  <line x1="360" y1="170" x2="370" y2="170" stroke="#1e293b" stroke-width="1"/>
+  <text x="350" y="148" text-anchor="end" font-size="10" fill="#1e293b">μ_B·B</text>
+
+  <!-- Spectral line splitting note -->
+  <rect x="50" y="260" width="600" height="55" fill="#eff6ff" rx="6" stroke="#dbeafe"/>
+  <text x="350" y="280" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">Spectral Lines Split Into 3 Frequencies</text>
+  <text x="350" y="300" text-anchor="middle" font-size="12" fill="#1e293b">f₀ − μ_B·B/h     ,     f₀     ,     f₀ + μ_B·B/h</text>
+
+  <defs><marker id="zArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker></defs>
+</svg>
+<div class="fig-caption">Fig 9.2 — Normal Zeeman Effect. A 2p level (l=1) splits into 3 sublevels in a magnetic field, one for each m_l value. Adjacent levels are separated by μ_B·B. This is the "normal" Zeeman effect — orbital angular momentum only, no spin.</div>
+</div>
+
+<div class="box tip">
+<div class="box-title">Helium example (He with 2p electron) <span class="prio good">GOOD TO KNOW</span></div>
+<p>He atom: 1st electron in $1s$ ($l=0$, $\vec{\mu}_L=0$), 2nd electron promoted to $2p$ ($l=1$).</p>
+<p>At $B=0$: the energy is $E_n \sim Z_{\text{eff}}^2 E_R/n^2$. For $n=2$: $E_{2,2p} \approx -21\,\text{eV}$.</p>
+<p>At $B \neq 0$: the $2p$ level splits into $m_l = -1, 0, +1$ with shifts $\pm\mu_B B$ and $0$.</p>
+<p>A single spectral line from the $2p \to 1s$ transition now becomes <strong>three</strong> closely spaced lines — the normal Zeeman triplet.</p>
+</div>
+
+<h3>Anomalous Zeeman Effect: When Spin Changes Everything</h3>
+
+<div class="box warn">
+<div class="box-title">Why it is called "anomalous" <span class="prio good">GOOD TO KNOW</span></div>
+<p>The normal Zeeman effect only uses orbital angular momentum and gives $2l+1$ equally spaced levels. But real electrons also have spin, and spin's magnetic moment is <strong>twice as strong</strong> per unit angular momentum ($\gamma_{\text{spin}} = 2\gamma_{\text{orb}}$). This changes both the number of split levels and the size of the splitting.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">Spin-only splitting: ground state of hydrogen ($l = 0$) <span class="prio must">MUST KNOW</span></div>
+<p>Consider H ground state: $n=1$, $l=0$, so $\vec{\mu}_L = 0$. Only spin contributes:</p>
+$$\vec{\mu}_{\text{atom}} = \vec{\mu}_S = -\frac{e}{m_e}\vec{S}$$
+<p>In a field $B\hat{z}$, with $S_z = m_s\hbar$ and $m_s = \pm\frac12$:</p>
+$$\boxed{\Delta E = 2\mu_B m_s B = \pm\mu_B B}$$
+<p>This gives <strong>two</strong> levels separated by $2\mu_B B$.</p>
+</div>
+
+<!-- FIGURE: Anomalous Zeeman — spin splitting -->
+<div class="fig">
+<svg viewBox="0 0 700 260" width="700" height="260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="260" fill="#f8fafc" rx="8"/>
+  <text x="350" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">Anomalous Zeeman — Spin Splitting (l = 0, s = ½)</text>
+
+  <!-- B = 0 -->
+  <text x="120" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">B = 0</text>
+  <line x1="50" y1="130" x2="190" y2="130" stroke="#2563eb" stroke-width="4"/>
+  <text x="200" y="134" font-size="12" fill="#2563eb">1s</text>
+
+  <!-- Arrow -->
+  <line x1="240" y1="130" x2="320" y2="130" stroke="#1e293b" stroke-width="1.5" marker-end="url(#zArrow)"/>
+  <text x="280" y="120" text-anchor="middle" font-size="11" fill="#1e293b">Turn on B</text>
+
+  <!-- B ≠ 0 — 2 spin levels -->
+  <text x="480" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#64748b">B ≠ 0</text>
+
+  <!-- m_s = +1/2 -->
+  <line x1="370" y1="90" x2="520" y2="90" stroke="#dc2626" stroke-width="3"/>
+  <text x="535" y="94" font-size="12" fill="#dc2626">m_s = +½</text>
+  <text x="640" y="94" font-size="11" fill="#1e293b">ΔE = +μ_B·B</text>
+
+  <!-- m_s = -1/2 -->
+  <line x1="370" y1="170" x2="520" y2="170" stroke="#16a34a" stroke-width="3"/>
+  <text x="535" y="174" font-size="12" fill="#16a34a">m_s = −½</text>
+  <text x="640" y="174" font-size="11" fill="#1e293b">ΔE = −μ_B·B</text>
+
+  <!-- Dashed connections -->
+  <line x1="190" y1="130" x2="370" y2="90" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="190" y1="130" x2="370" y2="170" stroke="#16a34a" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Spacing bracket -->
+  <line x1="355" y1="90" x2="355" y2="170" stroke="#1e293b" stroke-width="1"/>
+  <line x1="350" y1="90" x2="360" y2="90" stroke="#1e293b" stroke-width="1"/>
+  <line x1="350" y1="170" x2="360" y2="170" stroke="#1e293b" stroke-width="1"/>
+  <text x="340" y="134" text-anchor="end" font-size="10" fill="#1e293b">2μ_B·B</text>
+
+  <!-- Anomalous box -->
+  <rect x="50" y="205" width="600" height="40" fill="#fef3c7" rx="6" stroke="#f59e0b"/>
+  <text x="350" y="230" text-anchor="middle" font-size="12" fill="#92400e">Anomalous: only 2 levels (not 2l+1 = 1), and separation is 2μ_B·B (not μ_B·B) — factor of 2 from spin!</text>
+</svg>
+<div class="fig-caption">Fig 9.3 — Anomalous Zeeman Effect. For an l=0 state, only spin contributes. The factor-of-2 enhancement of the spin magnetic moment (γ_spin = 2γ_orb) means the splitting is 2μ_B·B instead of the "normal" μ_B·B.</div>
+</div>
+
+<div class="box tip">
+<div class="box-title">Normal vs Anomalous — quick comparison <span class="prio good">GOOD TO KNOW</span></div>
+<table>
+<tr><th></th><th>Normal Zeeman</th><th>Anomalous Zeeman</th></tr>
+<tr><td><strong>Source</strong></td><td>Orbital angular momentum $\vec{L}$ only</td><td>Spin $\vec{S}$ (or $\vec{L}+\vec{S}$ together)</td></tr>
+<tr><td><strong>Number of levels</strong></td><td>$2l+1$</td><td>Different — depends on spin</td></tr>
+<tr><td><strong>Level spacing</strong></td><td>$\mu_B B$</td><td>$2\mu_B B$ for pure spin</td></tr>
+<tr><td><strong>When observed</strong></td><td>Total spin $= 0$ (paired electrons)</td><td>Total spin $\neq 0$</td></tr>
+</table>
+</div>
+
+<div class="box tip">
+<div class="box-title">40 T numerical estimate <span class="prio ctx">CONTEXT</span></div>
+<p>Using $\mu_B \approx 5.8\times10^{-5}\,\text{eV/T}$, at $B=40\,\text{T}$:</p>
+$$\mu_B B \approx (5.8\times10^{-5})(40)\,\text{eV} \approx 2.3\times10^{-3}\,\text{eV}$$
+<p>Compare with atomic energy scales: $E_{1s}^{\text{He}} = -13.6\,\text{eV}$, $E_{2p}^{\text{He}} \approx -3.4\,\text{eV}$, $1s\to2p$ gap $\approx 21\,\text{eV}$.</p>
+<p>So Zeeman shifts are $\sim 10^{-4}$ of the absolute energy levels — <strong>tiny corrections</strong>, but measurable in spectral lines.</p>
+</div>
+
+<h3>Energy Level Ordering in Multi-electron Atoms</h3>
+
+<!-- FIGURE: Multi-electron energy levels -->
+<div class="fig">
+<svg viewBox="0 0 700 380" width="700" height="380" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="700" height="380" fill="#f8fafc" rx="8"/>
+
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">Multi-electron Atom Energy Levels (NOT hydrogen!)</text>
+
+  <!-- Energy axis -->
+  <line x1="40" y1="360" x2="40" y2="40" stroke="#1e293b" stroke-width="1.5" marker-end="url(#aB2)"/>
+  <text x="25" y="40" font-size="11" fill="#1e293b">E ↑</text>
+
+  <!-- Levels with filling order numbers -->
+  <!-- 1s -->
+  <line x1="80" y1="340" x2="160" y2="340" stroke="#2563eb" stroke-width="3"/>
+  <text x="170" y="344" font-size="12" fill="#2563eb" font-weight="bold">1s</text>
+  <text x="200" y="344" font-size="10" fill="#64748b">(2 electrons)</text>
+  <circle cx="70" cy="340" r="10" fill="#2563eb" opacity="0.2" stroke="#2563eb"/>
+  <text x="70" y="344" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="bold">1</text>
+
+  <!-- 2s -->
+  <line x1="80" y1="295" x2="160" y2="295" stroke="#2563eb" stroke-width="3"/>
+  <text x="170" y="299" font-size="12" fill="#2563eb" font-weight="bold">2s</text>
+  <text x="200" y="299" font-size="10" fill="#64748b">(2 electrons)</text>
+  <circle cx="70" cy="295" r="10" fill="#2563eb" opacity="0.2" stroke="#2563eb"/>
+  <text x="70" y="299" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="bold">2</text>
+
+  <!-- 2p -->
+  <line x1="80" y1="265" x2="120" y2="265" stroke="#dc2626" stroke-width="3"/>
+  <line x1="130" y1="265" x2="170" y2="265" stroke="#dc2626" stroke-width="3"/>
+  <line x1="180" y1="265" x2="220" y2="265" stroke="#dc2626" stroke-width="3"/>
+  <text x="230" y="269" font-size="12" fill="#dc2626" font-weight="bold">2p</text>
+  <text x="260" y="269" font-size="10" fill="#64748b">(6 electrons)</text>
+  <circle cx="70" cy="265" r="10" fill="#dc2626" opacity="0.2" stroke="#dc2626"/>
+  <text x="70" y="269" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold">3</text>
+
+  <!-- 3s -->
+  <line x1="80" y1="225" x2="160" y2="225" stroke="#2563eb" stroke-width="3"/>
+  <text x="170" y="229" font-size="12" fill="#2563eb" font-weight="bold">3s</text>
+  <circle cx="70" cy="225" r="10" fill="#2563eb" opacity="0.2" stroke="#2563eb"/>
+  <text x="70" y="229" text-anchor="middle" font-size="10" fill="#2563eb" font-weight="bold">4</text>
+
+  <!-- 3p -->
+  <line x1="80" y1="195" x2="120" y2="195" stroke="#dc2626" stroke-width="3"/>
+  <line x1="130" y1="195" x2="170" y2="195" stroke="#dc2626" stroke-width="3"/>
+  <line x1="180" y1="195" x2="220" y2="195" stroke="#dc2626" stroke-width="3"/>
+  <text x="230" y="199" font-size="12" fill="#dc2626" font-weight="bold">3p</text>
+  <circle cx="70" cy="195" r="10" fill="#dc2626" opacity="0.2" stroke="#dc2626"/>
+  <text x="70" y="199" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold">5</text>
+
+  <!-- 4s (BEFORE 3d!) -->
+  <line x1="80" y1="155" x2="160" y2="155" stroke="#2563eb" stroke-width="3"/>
+  <text x="170" y="159" font-size="12" fill="#2563eb" font-weight="bold">4s</text>
+  <circle cx="70" cy="155" r="10" fill="#f59e0b" opacity="0.3" stroke="#f59e0b"/>
+  <text x="70" y="159" text-anchor="middle" font-size="10" fill="#f59e0b" font-weight="bold">6</text>
+
+  <!-- 3d -->
+  <line x1="80" y1="125" x2="108" y2="125" stroke="#16a34a" stroke-width="3"/>
+  <line x1="118" y1="125" x2="146" y2="125" stroke="#16a34a" stroke-width="3"/>
+  <line x1="156" y1="125" x2="184" y2="125" stroke="#16a34a" stroke-width="3"/>
+  <line x1="194" y1="125" x2="222" y2="125" stroke="#16a34a" stroke-width="3"/>
+  <line x1="232" y1="125" x2="260" y2="125" stroke="#16a34a" stroke-width="3"/>
+  <text x="270" y="129" font-size="12" fill="#16a34a" font-weight="bold">3d</text>
+  <text x="300" y="129" font-size="10" fill="#64748b">(10 electrons)</text>
+  <circle cx="70" cy="125" r="10" fill="#16a34a" opacity="0.2" stroke="#16a34a"/>
+  <text x="70" y="129" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">7</text>
+
+  <!-- 4p -->
+  <line x1="80" y1="88" x2="120" y2="88" stroke="#dc2626" stroke-width="3"/>
+  <line x1="130" y1="88" x2="170" y2="88" stroke="#dc2626" stroke-width="3"/>
+  <line x1="180" y1="88" x2="220" y2="88" stroke="#dc2626" stroke-width="3"/>
+  <text x="230" y="92" font-size="12" fill="#dc2626" font-weight="bold">4p</text>
+  <circle cx="70" cy="88" r="10" fill="#dc2626" opacity="0.2" stroke="#dc2626"/>
+  <text x="70" y="92" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold">8</text>
+
+  <!-- Warning box -->
+  <rect x="390" y="120" width="290" height="110" fill="#fef3c7" rx="6" stroke="#f59e0b" stroke-width="2"/>
+  <text x="535" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">4s fills BEFORE 3d!</text>
+  <text x="405" y="168" font-size="11" fill="#1e293b">Why? s-orbitals penetrate closer</text>
+  <text x="405" y="186" font-size="11" fill="#1e293b">to the nucleus → they "see" more</text>
+  <text x="405" y="204" font-size="11" fill="#1e293b">nuclear charge → lower energy.</text>
+  <text x="405" y="222" font-size="10" fill="#dc2626">Within same n: E_s &lt; E_p &lt; E_d &lt; E_f</text>
+
+  <!-- Example configs -->
+  <rect x="390" y="250" width="290" height="110" fill="#eff6ff" rx="6" stroke="#dbeafe"/>
+  <text x="535" y="272" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e40af">2025 Final Examples</text>
+  <text x="405" y="295" font-size="11" fill="#1e293b">Li (Z=3): 1s² 2s¹</text>
+  <text x="405" y="313" font-size="11" fill="#1e293b">C (Z=6): 1s² 2s² 2p²</text>
+  <text x="405" y="331" font-size="11" fill="#1e293b">F (Z=9): 1s² 2s² 2p⁵</text>
+  <text x="405" y="349" font-size="11" fill="#dc2626">Ne* excited: 1s² 2s² 2p⁵ 3s¹</text>
+
+  <defs><marker id="aB2" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1e293b"/></marker></defs>
+</svg>
+<div class="fig-caption">Fig 9.1 — Energy level ordering in multi-electron atoms. Unlike hydrogen, energy depends on BOTH n and l. The numbered circles show filling order. Key exam point: 4s fills before 3d because s-electrons penetrate closer to the nucleus.</div>
+</div>
+
+<h3>Shell Capacity</h3>
+<table>
+<tr><th>Shell ($n$)</th><th>Subshells</th><th>Orbitals</th><th>Max electrons</th></tr>
+<tr><td>$n=1$</td><td>1s</td><td>1</td><td>2</td></tr>
+<tr><td>$n=2$</td><td>2s, 2p</td><td>1+3 = 4</td><td>8</td></tr>
+<tr><td>$n=3$</td><td>3s, 3p, 3d</td><td>1+3+5 = 9</td><td>18</td></tr>
+</table>
+
+<h3>First Excited States</h3>
+<p>Promote the highest-energy electron to the next available level. For Ne (1s² 2s² 2p⁶): promote one 2p electron to 3s → <strong>1s² 2s² 2p⁵ 3s¹</strong>.</p>
+
+<!-- ============================================================ -->
+<h2 id="s10">10. Master Formula Map & Decision Tree</h2>
+
+<h3>Decision Tree: What Formula Do I Use?</h3>
+<div class="box">
+<p><strong>Step 1: What kind of potential?</strong></p>
+<p>→ Infinite well → $\psi_n = \sqrt{2/a}\sin(n\pi x/a)$, $E_n = n^2 E_0$</p>
+<p>→ Finite well → curvature rules to sketch; exponential decay outside</p>
+<p>→ Harmonic ($\frac{1}{2}kx^2$) → $E_n = (n+\frac{1}{2})\hbar\omega$, ground state Gaussian</p>
+<p>→ Step or barrier → scattering/tunneling (match boundary conditions)</p>
+<p>→ Coulomb ($-ke^2/r$) → hydrogen: $E_n = -E_R/n^2$</p>
+<p>→ Something weird → sketch using curvature rules; maybe approximate as SHO near minimum</p>
+<p><strong>Step 2: How many dimensions?</strong></p>
+<p>→ 1D: solve directly</p>
+<p>→ Multi-D with $U = U_x + U_y$: separate in Cartesian, $E = E_x + E_y$</p>
+<p>→ Multi-D with $U = U(r)$: separate in polar/spherical</p>
+<p><strong>Step 3: What are they asking?</strong></p>
+<p>→ Energy levels → eigenvalue equation &nbsp; → Probability → integrate $|\psi|^2$</p>
+<p>→ Expectation value → $\langle A \rangle = \int \psi^* A \psi\,dx$ &nbsp; → Degeneracy → count states with same $E$</p>
+</div>
+
+<h3>Formula Quick Reference</h3>
+<table>
+<tr><th>System</th><th>Energy levels</th><th>Key feature</th></tr>
+<tr><td>Infinite well (1D)</td><td>$E_n = \frac{n^2\pi^2\hbar^2}{2ma^2}$</td><td>$\propto n^2$, levels spread out</td></tr>
+<tr><td>SHO (1D)</td><td>$E_n = (n+\frac{1}{2})\hbar\omega$</td><td>Equally spaced by $\hbar\omega$</td></tr>
+<tr><td>2D box</td><td>$\frac{\hbar^2\pi^2}{2m}(\frac{n_x^2}{a^2}+\frac{n_y^2}{b^2})$</td><td>Sum of two 1D wells</td></tr>
+<tr><td>2D SHO</td><td>$(n_x+\frac{1}{2})\hbar\omega_x + (n_y+\frac{1}{2})\hbar\omega_y$</td><td>Sum of two SHOs</td></tr>
+<tr><td>Hydrogen</td><td>$-E_R/n^2$</td><td>$n^2$ degeneracy</td></tr>
+<tr><td>H-like ($Z$)</td><td>$-Z^2 E_R/n^2$</td><td>$a_Z = a_B/Z$</td></tr>
+</table>
+
+<h3>Integral Toolkit</h3>
+<table>
+<tr><th>Integral</th><th>Result</th><th>Where used</th></tr>
+<tr><td>$\int_{-\infty}^{\infty} e^{-\lambda x^2}dx$</td><td>$\sqrt{\pi/\lambda}$</td><td>SHO normalization</td></tr>
+<tr><td>$\int_0^{\infty} r^n e^{-r/b}dr$</td><td>$n!\,b^{n+1}$</td><td>Hydrogen everything</td></tr>
+</table>
+
+<h3>Common Exam Traps</h3>
+<div class="box warn">
+<div class="box-title">Watch out for these <span class="prio must">MUST KNOW</span></div>
+<p>1. <strong>$T \neq |B/A_0|^2$</strong> — don't forget the $k_2/k_1$ factor in transmission.</p>
+<p>2. <strong>$|\vec{L}| = \sqrt{l(l+1)}\hbar$, NOT $l\hbar$.</strong></p>
+<p>3. <strong>$l$ goes from $0$ to $n-1$</strong>, not $n$.</p>
+<p>4. <strong>Radial probability is $P(r) = r^2|R|^2$</strong>, not $|R|^2$.</p>
+<p>5. <strong>4s fills before 3d</strong> in multi-electron atoms.</p>
+<p>6. <strong>Dimensions of $\psi$:</strong> 1D: $1/\sqrt{\text{m}}$; 3D: $1/\text{m}^{3/2}$.</p>
+<p>7. <strong>Degeneracy:</strong> Don't forget spin (×2) when counting electron states.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s11">11. Predicted Quantum Question Types</h2>
+
+<p>Based on the 2025 final, Quiz II, and how the post-midterm material was taught, these are the question types I would put the most time into.</p>
+
+<div class="box exam">
+<div class="box-title">Most likely long question #1: separation of variables / setup of a multi-dimensional problem <span class="prio must">MUST KNOW</span></div>
+<p><strong>Why:</strong> 2025 Q1 was exactly this for the 2D SHO, and separation of variables is the master method connecting 2D boxes, 2D SHO, and central-force problems.</p>
+<p><strong>Be ready to do:</strong> write the full Schrödinger equation, assume a product form, separate variables, introduce separation constants, and write the energy as a sum of 1D pieces.</p>
+<p><strong>My guess:</strong> if this appears again, it could be either another 2D setup or a central-force setup where you explain why spherical coordinates are the right move.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">Most likely long question #2: hydrogen probability or expectation value <span class="prio must">MUST KNOW</span></div>
+<p><strong>Why:</strong> 2025 Q2 asked for $P(r)$, the probability inside $a_B$, and $\langle r\rangle$. Quiz II also focused on hydrogen expectation values and the physical meaning of $E_R$.</p>
+<p><strong>Be ready to do:</strong> write the correct $R_{nl}(r)$, build $P(r)$, set up or evaluate integrals, and keep track of the extra powers of $r$.</p>
+<p><strong>Minimum states to know cold:</strong> 1s, 2s, 2p and how $n$, $l$, and $m$ are read from them.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">Very likely sub-question: angular momentum from a state label or angular dependence <span class="prio must">MUST KNOW</span></div>
+<p><strong>Why:</strong> This was not a standalone 2025 question, but it is the natural bridge between separation in spherical coordinates and hydrogen/multi-electron atoms. It is also easy to test cleanly.</p>
+<p><strong>Be ready to do:</strong> identify $l$ and $m$, then compute $|L|$, $L_z$, the number of possible orientations $2l+1$, and the node count.</p>
+<p><strong>Typical formats:</strong> "For a 3d electron, what values of $L_z$ are possible?" or "What state is proportional to $r e^{-r/2a_B}\cos\theta$?"</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">Most likely long question #3: multi-electron atom filling and first excited states <span class="prio must">MUST KNOW</span></div>
+<p><strong>Why:</strong> 2025 Q3 was entirely about filling lithium, fluorine, magnesium, and an excited neon atom. This is one of the easiest big-mark topics to write.</p>
+<p><strong>Be ready to do:</strong> fill orbitals in the right order, explain why 4s is below 3d, count shell capacities, and write the first excited configuration of a neutral atom.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">Possible shorter conceptual part from pre-midterm material <span class="prio good">GOOD TO KNOW</span></div>
+<p><strong>Most plausible:</strong> sketching wavefunctions with curvature rules, degeneracy in a 2D box, or a quick superposition/tunneling concept check.</p>
+<p><strong>Less likely as a full long question:</strong> a long barrier-transmission derivation, since the 2025 final did not spend a full question on scattering.</p>
+</div>
+
+<h3>My Best Guess For The Quantum Portion Structure</h3>
+<div class="box">
+<p>1. One question built around separation of variables and energy levels.</p>
+<p>2. One question built around hydrogen wavefunctions, probability, or expectation values.</p>
+<p>3. One question built around late-course atomic structure: angular momentum, spin, orbital labels, and multi-electron filling.</p>
+</div>
+
+<h3>What To Memorize Since You Do NOT Get A Quantum Table</h3>
+<div class="box key">
+<div class="box-title">Absolute minimum memory list <span class="prio must">MUST KNOW</span></div>
+<p>• $|L| = \sqrt{l(l+1)}\hbar$, $L_z = m\hbar$, $m = -l,\ldots,+l$.</p>
+<p>• Hydrogen: $E_n = -E_R/n^2$, $l = 0,\ldots,n-1$, radial nodes $= n-l-1$.</p>
+<p>• Radial probability: $P(r) = r^2|R_{nl}(r)|^2$ and for 1s specifically $P(r)=4r^2e^{-2r/a_B}/a_B^3$.</p>
+<p>• The first few angular functions: $1$, $\cos\theta$, $\sin\theta$, $\sin\theta e^{\pm i\phi}$.</p>
+<p>• The orbital meaning of $s,p,d$ and the filling order in multi-electron atoms.</p>
+</div>
+
+<hr>
+<p style="text-align:center; color:var(--dim); font-size:0.9rem; margin-top:2rem;">
+Created for Cheryl · PHY294 Final Exam Prep · April 2026<br>
+Next step: practice problems modeled on Prof. Russo's 2025 final
+</p>
+
+</body>
+</html>
