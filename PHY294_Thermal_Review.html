@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHY294 Thermal Review — Final Exam Study Guide</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root { --accent: #059669; --bg: #fafafa; --card: #fff; --border: #e2e8f0; --text: #1e293b; --dim: #64748b; --highlight: #fef3c7; --green: #dcfce7; --red: #fee2e2; --blue: #eff6ff; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); line-height: 1.7; max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.8rem; text-align: center; margin-bottom: 0.3rem; color: var(--accent); }
+  .subtitle { text-align: center; color: var(--dim); margin-bottom: 2rem; font-style: italic; }
+  h2 { font-size: 1.4rem; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 0.3rem; margin: 2.5rem 0 1rem; }
+  h3 { font-size: 1.15rem; color: #334155; margin: 1.5rem 0 0.5rem; }
+  p { margin-bottom: 0.8rem; }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem; }
+  .toc h3 { margin-top: 0; }
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.3rem 0; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; }
+  .box.key { border-left: 4px solid var(--accent); background: #ecfdf5; }
+  .box.warn { border-left: 4px solid #f59e0b; background: var(--highlight); }
+  .box.tip { border-left: 4px solid #22c55e; background: var(--green); }
+  .box.exam { border-left: 4px solid #ef4444; background: var(--red); }
+  .box.sheet { border-left: 4px solid #6366f1; background: #eef2ff; }
+  .box-title { font-weight: bold; margin-bottom: 0.4rem; font-size: 0.95rem; }
+  .formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1rem 0; }
+  @media (max-width: 600px) { .formula-grid { grid-template-columns: 1fr; } }
+  .formula-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem; }
+  .formula-card .label { font-size: 0.85rem; color: var(--dim); margin-bottom: 0.3rem; }
+  .tag { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 12px; font-weight: bold; margin-right: 0.3rem; }
+  .tag.pre { background: #dbeafe; color: #1d4ed8; }
+  .tag.post { background: #fce7f3; color: #be185d; }
+  .tag.heavy { background: #fee2e2; color: #dc2626; }
+  .tag.onsheet { background: #e0e7ff; color: #4338ca; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid var(--border); padding: 0.5rem 0.8rem; text-align: left; }
+  th { background: #f1f5f9; font-weight: bold; }
+  .separator { text-align: center; margin: 3rem 0 1rem; font-size: 0.85rem; color: var(--dim); letter-spacing: 0.3em; }
+  .connection { background: linear-gradient(135deg, #ecfdf5, #f0fdf4); border: 1px dashed var(--accent); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .connection-title { font-weight: bold; color: var(--accent); margin-bottom: 0.3rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .fig { text-align: center; margin: 1.5rem 0; }
+  .fig svg { max-width: 100%; height: auto; }
+  .fig-caption { font-size: 0.85rem; color: var(--dim); margin-top: 0.4rem; font-style: italic; }
+  .step { background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem; margin: 0.5rem 0; }
+  .step-num { display: inline-block; background: var(--accent); color: white; width: 1.5rem; height: 1.5rem; border-radius: 50%; text-align: center; line-height: 1.5rem; font-size: 0.8rem; font-weight: bold; margin-right: 0.5rem; }
+</style>
+</head>
+<body>
+
+<h1>PHY294 Thermal Physics — Final Exam Review</h1>
+<p class="subtitle">Cheryl Shi · 2026<br/>Prof. Bhatt · Lectures 9–17 (Mar 16 – Apr 6) · Schroeder, <em>An Introduction to Thermal Physics</em><br/>You <strong>get an equation sheet</strong> for this part of the exam.</p>
+
+<div class="box sheet">
+<div class="box-title">About Your Equation Sheet</div>
+<p>Formulas marked <span class="tag onsheet">ON SHEET</span> are provided on the official formula sheet (pages 23–25). You don't need to memorize them — but you <strong>must</strong> know <em>when</em> and <em>how</em> to use each one. This guide focuses on building that intuition.</p>
+</div>
+
+<div class="toc">
+<h3>Contents</h3>
+<ol start="0">
+  <li><a href="#s0">Your Formula Sheet — Decoded</a> <span class="tag heavy">Start here</span></li>
+  <li><a href="#s1">Ideal Gas & Kinetic Theory Foundations</a> <span class="tag pre">L9</span></li>
+  <li><a href="#s2">Energy, Heat, Work & the First Law</a> <span class="tag pre">L9–10</span></li>
+  <li><a href="#s3">Entropy & the Second Law</a> <span class="tag pre">L10–11</span></li>
+  <li><a href="#s4">Thermodynamic Identity & Heat Capacity</a> <span class="tag pre">L11</span></li>
+  <li><a href="#s5">Heat Engines, Refrigerators & Cycles</a> <span class="tag pre">L12</span></li>
+  <li><a href="#s6">Free Energy: Helmholtz & Gibbs</a> <span class="tag post">L12–13</span></li>
+  <li><a href="#s7">Phase Transitions & Clausius-Clapeyron</a> <span class="tag post">L13</span></li>
+  <li><a href="#s8">Mixtures, Chemical Equilibrium & Le Chatelier</a> <span class="tag post">L13–14</span></li>
+  <li><a href="#s9">Boltzmann Statistics & Partition Function</a> <span class="tag post">L15–16</span> <span class="tag heavy">Exam-heavy</span></li>
+  <li><a href="#s10">From Z to Thermodynamics: The Master Framework</a> <span class="tag post">L16–17</span> <span class="tag heavy">Exam-heavy</span></li>
+  <li><a href="#s11">Maxwell-Boltzmann Speed Distribution</a> <span class="tag post">L17</span></li>
+  <li><a href="#s12">Ideal Gas from Partition Function</a> <span class="tag post">L17</span> <span class="tag heavy">Exam-heavy</span></li>
+  <li><a href="#s13">Master Formula Map & Decision Trees</a></li>
+  <li><a href="#s14">2025 Final Exam — Thermal Questions Walkthrough</a> <span class="tag heavy">Must study</span></li>
+  <li><a href="#s15">Predicted 2026 Exam Questions</a></li>
+</ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s0">0. Your Formula Sheet — Decoded</h2>
+<p>Every formula below is <strong>exactly as it appears on your sheet</strong> (pages 23–25). For each one: what it says → what it means → what you actually use it for.</p>
+
+<h3>Gas Basics</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $PV = nRT = NkT$</div>
+<p><strong>What it is:</strong> Ideal gas law. Relates pressure, volume, temperature, and amount of gas.</p>
+<p><strong>Use it when:</strong> You know any 3 of $P, V, N, T$ and need the 4th. Also use to eliminate $P$ or $V$ in other formulas.</p>
+<p><strong>Watch out:</strong> $n$ = moles, $N$ = number of molecules. $R = 8.31$ J/mol·K, $k = 1.38\times10^{-23}$ J/K. They're related by $R = N_A k$.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $P = \frac{N}{3}\frac{m\langle v^2\rangle}{V}$</div>
+<p><strong>What it is:</strong> Kinetic theory — pressure from molecular collisions.</p>
+<p><strong>Derivation →</strong> Combine with $PV = NkT$ to get the important result:</p>
+$$\frac{1}{2}m\langle v^2\rangle = \frac{3}{2}kT$$
+<p><strong>Use it when:</strong> Finding average molecular speed or kinetic energy from temperature. This is where the equipartition $\frac{1}{2}kT$ per degree of freedom comes from (3 translational directions → $\frac{3}{2}kT$).</p>
+</div>
+
+<h3>Energy & First Law</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $\Delta U = Q + W$</div>
+<p><strong>What it is:</strong> First law of thermodynamics. Energy is conserved.</p>
+<p><strong>Sign convention:</strong> $Q > 0$ = heat flows IN. $W > 0$ = work done ON the system (compression). Some books use $W$ = work done BY, which flips the sign.</p>
+<p><strong>Use it when:</strong> Any process — find the unknown among $\Delta U$, $Q$, $W$ from the other two.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $C = \frac{Q}{\Delta T}$</div>
+<p><strong>What it is:</strong> Definition of heat capacity — heat needed per degree of temperature rise.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $C_V = \frac{\text{dof}}{2}Nk = T\left(\frac{\partial S}{\partial T}\right)_V$</div>
+<p><strong>What it is:</strong> Heat capacity at constant volume.</p>
+<p><strong>Derivation →</strong> From equipartition: each degree of freedom gets $\frac{1}{2}kT$ of energy, so $U = \frac{\text{dof}}{2}NkT$, and $C_V = dU/dT = \frac{\text{dof}}{2}Nk$.</p>
+<p><strong>Common values:</strong> Monatomic (3 dof): $C_V = \frac{3}{2}Nk$. Diatomic at room temp (5 dof): $C_V = \frac{5}{2}Nk$.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $\frac{C_P}{N} = \left(\frac{\text{dof}}{2}+1\right)k$</div>
+<p><strong>What it is:</strong> Heat capacity at constant pressure (per particle).</p>
+<p><strong>Derivation →</strong> At constant $P$, the gas expands as it heats, doing extra $PdV$ work. This costs an extra $Nk$ of energy per degree: $C_P = C_V + Nk$.</p>
+<p><strong>Use it when:</strong> Process at constant pressure (open-air heating, atmospheric processes). The ratio $\gamma = C_P/C_V = (\text{dof}+2)/\text{dof}$ appears in adiabatic processes.</p>
+</div>
+
+<h3>Enthalpy</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $H = U + PV$</div>
+<p><strong>What it is:</strong> Enthalpy — the "total energy including the work to make room for the system."</p>
+<p><strong>Why it exists:</strong> At constant pressure, $\Delta H = Q_P$ (heat absorbed). That's much simpler than tracking $\Delta U$ and $W$ separately.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Hess' Law — $\Delta H = \sum \Delta H_i$</div>
+<p><strong>What it is:</strong> Enthalpy changes are additive. Break a reaction into steps, add the $\Delta H$ for each step.</p>
+<p><strong>Use it when:</strong> Computing $\Delta H$ for a reaction using tabulated formation enthalpies.</p>
+</div>
+
+<h3>Entropy & Multiplicity</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $\Omega(n) = \frac{N!}{n!(N-n)!} = \binom{N}{n}$</div>
+<p><strong>What it is:</strong> Multiplicity — number of ways to choose $n$ items from $N$. Same as two-state systems (coins, paramagnets, polymer links).</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $S = k\ln\Omega$</div>
+<p><strong>What it is:</strong> Boltzmann's definition of entropy. More microstates → more entropy.</p>
+<p><strong>Use it when:</strong> Connecting microscopic counting to thermodynamic quantities. Also: $\frac{1}{T} = \left(\frac{dS}{dU}\right)_{V,N}$ — this is how temperature is defined from entropy.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Stirling's approximation — $\ln N! = N\ln N - N$</div>
+<p><strong>Use it when:</strong> Simplifying $\ln\binom{N}{n}$ for large $N$. This shows up in derivations of the Sackur-Tetrode equation, mixing entropy, and the rubber band problem.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Sackur-Tetrode — $S = Nk\left[\ln\left(\frac{V}{N}\beta\right) + \frac{5}{2}\right]$, $\;\beta = \left(\frac{4\pi mU}{3Nh^2}\right)^{3/2}$</div>
+<p><strong>What it is:</strong> Exact entropy of an ideal gas as a function of $V$, $N$, and $U$.</p>
+<p><strong>Use it when:</strong> Computing entropy changes for ideal gas processes (free expansion, isothermal compression, etc.).</p>
+<p><strong>Key derivation →</strong> Take partial derivatives to recover the ideal gas law and equipartition:</p>
+<p>$\frac{1}{T} = \left(\frac{\partial S}{\partial U}\right)_{V,N}$ gives $U = \frac{3}{2}NkT$. &nbsp; $\frac{P}{T} = \left(\frac{\partial S}{\partial V}\right)_{U,N}$ gives $PV = NkT$.</p>
+</div>
+
+<h3>Thermodynamic Identity & Potentials</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $dU = TdS - PdV$ (+ $\mu\,dN$ when particles exchange)</div>
+<p><strong>What it is:</strong> THE master equation. Every thermodynamic potential and identity derives from this.</p>
+<p><strong>Read off the natural variables:</strong> $U$ is naturally a function of $S$ and $V$. From this:</p>
+<p>$T = (\partial U/\partial S)_{V}$, &nbsp; $-P = (\partial U/\partial V)_{S}$, &nbsp; $\mu = (\partial U/\partial N)_{S,V}$</p>
+<p><strong>Use it when:</strong> Literally everything — engines, phase transitions, equilibrium, free energy.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: The four thermodynamic potentials</div>
+<table>
+<tr><th>Potential</th><th>Definition</th><th>Identity</th><th>Natural variables</th><th>Use when</th></tr>
+<tr><td>$U$</td><td>(fundamental)</td><td>$dU = TdS - PdV + \mu dN$</td><td>$S, V, N$</td><td>Isolated systems</td></tr>
+<tr><td>$H = U + PV$</td><td>Enthalpy</td><td>$dH = TdS + VdP + \mu dN$</td><td>$S, P, N$</td><td>Constant pressure</td></tr>
+<tr><td>$F = U - TS$</td><td>Helmholtz</td><td>$dF = -SdT - PdV + \mu dN$</td><td>$T, V, N$</td><td>Constant $T$ & $V$ (lab)</td></tr>
+<tr><td>$G = H - TS$</td><td>Gibbs</td><td>$dG = -SdT + VdP + \mu dN$</td><td>$T, P, N$</td><td>Constant $T$ & $P$ (chem)</td></tr>
+</table>
+<p><strong>Key pattern:</strong> Each identity lets you read off partial derivatives. E.g., from $dF = -SdT - PdV + \mu dN$:</p>
+<p>$S = -(\partial F/\partial T)_{V,N}$, &nbsp; $P = -(\partial F/\partial V)_{T,N}$, &nbsp; $\mu = (\partial F/\partial N)_{T,V}$</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $F = U - TS$, &nbsp; $\Delta G = \Delta H - T\Delta S$</div>
+<p><strong>Helmholtz $F$:</strong> At constant $T$ and $V$, systems minimize $F$. Connect to partition function: $F = -kT\ln Z$.</p>
+<p><strong>Gibbs $G$:</strong> At constant $T$ and $P$, systems minimize $G$. This determines which phase is stable and drives chemical equilibrium.</p>
+<p><strong>Key result →</strong> $\Delta G < 0$: reaction proceeds spontaneously. $\Delta G = 0$: equilibrium.</p>
+</div>
+
+<h3>Entropy of Mixing</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $S = xS_A + (1-x)S_B$ where $x$ is the proportion of A</div>
+<p><strong>What it is:</strong> Entropy of a mixture of two substances.</p>
+<p><strong>Derivation →</strong> For ideal mixing, there's an additional mixing entropy: $\Delta S_{\text{mix}} = -Nk[x\ln x + (1-x)\ln(1-x)]$. This is always positive — mixing always increases entropy.</p>
+<p><strong>Use it when:</strong> Phase diagrams, chemical potential of mixtures, determining solubility.</p>
+</div>
+
+<h3>Heat Engines</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Rankine efficiency — $e = \frac{W_{\text{net}}}{Q_{\text{in}}} = 1 - \frac{H_4 - H_1}{H_3 - H_2}$</div>
+<p><strong>What it is:</strong> Efficiency of a Rankine cycle (steam power plant). Uses enthalpy at 4 points in the cycle.</p>
+<p><strong>Use it when:</strong> They give you a Rankine cycle problem with enthalpy values at each stage.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: COP $= \frac{H_1 - H_4}{H_2 - H_3 - H_1 + H_4}$</div>
+<p><strong>What it is:</strong> Coefficient of performance for a heat pump or refrigerator (Rankine-based).</p>
+<p><strong>Remember:</strong> General Carnot COP for a fridge is $Q_c/(Q_h - Q_c) = T_c/(T_h - T_c)$. For a heat pump it's $Q_h/(Q_h - Q_c) = T_h/(T_h - T_c)$.</p>
+</div>
+
+<h3>Boltzmann Statistics & Partition Function</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $P(s) = \frac{1}{Z}e^{-E(s)/kT}$, &nbsp; $Z = \sum_s e^{-E(s)/kT}$</div>
+<p><strong>What it is:</strong> The Boltzmann distribution gives the probability of a system being in state $s$ with energy $E(s)$. $Z$ is the partition function — the normalizing sum.</p>
+<p><strong>Use it when:</strong> Finding probabilities of energy levels, average energy, or connecting to thermodynamics.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $F = -kT\ln Z$</div>
+<p><strong>What it is:</strong> THE bridge from microscopic (partition function) to macroscopic (thermodynamics).</p>
+<p><strong>Derivation →</strong> Once you have $F$, you get EVERYTHING from partial derivatives:</p>
+<p>$S = -\left(\frac{\partial F}{\partial T}\right)_{V,N}$ &nbsp;→&nbsp; $P = -\left(\frac{\partial F}{\partial V}\right)_{T,N}$ &nbsp;→&nbsp; $\mu = \left(\frac{\partial F}{\partial N}\right)_{T,V}$</p>
+<p>And $U = F + TS = -T^2\frac{\partial}{\partial T}\left(\frac{F}{T}\right)$.</p>
+<p><strong>This is probably the single most important formula chain for the exam.</strong></p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $K = e^{-\Delta G^0/RT}$</div>
+<p><strong>What it is:</strong> Equilibrium constant from Gibbs free energy.</p>
+<p><strong>Use it when:</strong> Chemical equilibrium. $\Delta G^0$ is the standard Gibbs energy change. If $K \gg 1$, products are favored. If $K \ll 1$, reactants are favored.</p>
+<p><strong>Le Chatelier →</strong> Increasing $T$ shifts equilibrium toward endothermic side ($\Delta H > 0$). Increasing $P$ shifts toward fewer moles of gas.</p>
+</div>
+
+<h3>Many-Particle Systems</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Indistinguishable: $Z_{\text{total}} = Z_A Z_B Z_C \cdots Z_N$</div>
+<div class="box-title">ON SHEET: Distinguishable: $Z_{\text{total}} = \frac{1}{N!}Z_A^N$</div>
+<p><strong>What it is:</strong> How to build the total partition function from single-particle ones.</p>
+<p><strong>Indistinguishable</strong> (like identical gas molecules): divide by $N!$ to avoid overcounting swaps.</p>
+<p><strong>Distinguishable</strong> (like spins on a lattice, each at a fixed site): just multiply.</p>
+<p><strong>Watch out:</strong> The labels on the sheet look swapped from what you'd expect! "Indistinguishable" on the sheet shows the product form (each particle potentially different), while "Distinguishable" shows the $\frac{1}{N!}Z_A^N$ form. Read the sheet carefully on the exam.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Quantum volume $v_q = \left(\sqrt{\frac{h^2}{2\pi mkT}}\right)^3$</div>
+<p><strong>What it is:</strong> The thermal de Broglie wavelength cubed. Sets the scale for when quantum effects matter.</p>
+<p><strong>Use it when:</strong> Building the ideal gas partition function. Classical (non-quantum) behavior when $V/N \gg v_q$.</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: $Z_N = \frac{1}{N!}\left(\frac{V \cdot Z_{\text{int}}}{v_q}\right)^N$</div>
+<p><strong>What it is:</strong> Full partition function for $N$ identical ideal gas molecules. $Z_{\text{int}}$ accounts for internal degrees of freedom (rotation, vibration).</p>
+<p><strong>Derivation → Full thermodynamics of ideal gas:</strong></p>
+<p>$F = -kT\ln Z_N = -NkT\left[\ln\left(\frac{V\cdot Z_{\text{int}}}{Nv_q}\right) + 1\right]$</p>
+<p>Then $P = -(\partial F/\partial V)_T = NkT/V$ → recovers ideal gas law.</p>
+<p>$S = -(\partial F/\partial T)_T$ → recovers Sackur-Tetrode.</p>
+</div>
+
+<h3>Integrals You'll Need</h3>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Gaussian — $I_n = \int_0^\infty x^n e^{-\lambda x^2}dx$</div>
+<p>$n=0$: $\sqrt{\pi/4\lambda}$ &nbsp;|&nbsp; $n=1$: $\frac{1}{2\lambda}$ &nbsp;|&nbsp; $n=2$: $\frac{1}{4}\sqrt{\pi/\lambda^3}$ &nbsp;|&nbsp; $n=3$: $\frac{1}{2\lambda^2}$</p>
+<p><strong>Use it when:</strong> Maxwell-Boltzmann speed distribution calculations ($\langle v \rangle$, $\langle v^2 \rangle$, $v_{\text{rms}}$).</p>
+</div>
+
+<div class="box sheet">
+<div class="box-title">ON SHEET: Exponential — $J_n = \int_0^x y^n e^{-y/b}dy$</div>
+<p>$n=0$: $-be^{-x/b}$ &nbsp;|&nbsp; $n=1$: $-(b^2+bx)e^{-x/b}$ &nbsp;|&nbsp; etc. &nbsp; General: $J_n = b^2 \frac{\partial J_{n-1}}{\partial b}$</p>
+<p><strong>Use it when:</strong> Integrating radial wavefunctions (quantum side), or any integral with $e^{-x/b}$ factors.</p>
+</div>
+
+
+<!-- ============================================================ -->
+<h2 id="s1">1. Ideal Gas & Kinetic Theory Foundations</h2>
+
+<h3>The Ideal Gas Law</h3>
+<p>The starting point for almost everything in thermal physics. Know both forms:</p>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Molar form <span class="tag onsheet">ON SHEET</span></div>
+  $$PV = nRT$$
+  <p style="font-size:0.85rem; color:var(--dim);">$n$ = number of moles, $R = 8.31$ J/(K·mol)</p>
+</div>
+<div class="formula-card">
+  <div class="label">Molecular form <span class="tag onsheet">ON SHEET</span></div>
+  $$PV = NkT$$
+  <p style="font-size:0.85rem; color:var(--dim);">$N$ = number of molecules, $k = 1.38 \times 10^{-23}$ J/K. Note $R = N_A k$.</p>
+</div>
+</div>
+
+<div class="box key">
+<div class="box-title">When to use which form?</div>
+<p>Use $nR$ when working with <strong>moles and bulk chemistry</strong> (e.g., chemical equilibrium, enthalpy). Use $Nk$ when working with <strong>individual particles and statistical mechanics</strong> (e.g., partition functions, Boltzmann factors, Sackur-Tetrode). The exam freely switches between them — always check which variables the question gives you.</p>
+</div>
+
+<h3>Kinetic Theory: Connecting Microscopic to Macroscopic</h3>
+<p>Pressure comes from molecules bouncing off container walls. The key result:</p>
+
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label">Kinetic pressure <span class="tag onsheet">ON SHEET</span></div>
+  $$P = \frac{N}{3}\frac{m\langle v^2\rangle}{V}$$
+</div>
+
+<p>Comparing with $PV = NkT$ immediately gives the fundamental temperature–energy connection:</p>
+$$\frac{1}{2}m\langle v^2\rangle = \frac{3}{2}kT \qquad \Longrightarrow \qquad v_{\text{RMS}} = \sqrt{\frac{3kT}{m}}$$
+
+<div class="box tip">
+<div class="box-title">Physical insight</div>
+<p>Temperature is a measure of the average translational kinetic energy per molecule. Each translational degree of freedom (x, y, z) gets $\frac{1}{2}kT$ of energy on average — this is the <strong>equipartition theorem</strong>.</p>
+</div>
+
+<h3>Degrees of Freedom (DOF) and Equipartition</h3>
+<p>Each <strong>quadratic</strong> term in the energy (like $\frac{1}{2}mv_x^2$ or $\frac{1}{2}kx^2$) contributes $\frac{1}{2}kT$ per molecule on average.</p>
+
+<table>
+<tr><th>Molecule Type</th><th>DOF $f$</th><th>Example</th><th>$C_V/Nk$</th></tr>
+<tr><td>Monatomic</td><td>3 (translation only)</td><td>He, Ne, Ar</td><td>$\frac{3}{2}$</td></tr>
+<tr><td>Diatomic (low T)</td><td>3 translation</td><td>$\text{H}_2$ below ~80 K</td><td>$\frac{3}{2}$</td></tr>
+<tr><td>Diatomic (room T)</td><td>3 trans + 2 rot = 5</td><td>$\text{N}_2, \text{O}_2$ at 300 K</td><td>$\frac{5}{2}$</td></tr>
+<tr><td>Diatomic (high T)</td><td>3 trans + 2 rot + 2 vib = 7</td><td>$\text{N}_2$ above ~3000 K</td><td>$\frac{7}{2}$</td></tr>
+</table>
+
+<div class="box warn">
+<div class="box-title">Why vibrational modes "freeze out"</div>
+<p>Vibrational energy levels are quantized: $E_n = (n+\frac{1}{2})\hbar\omega$. At room temperature, $kT \ll \hbar\omega$ for most diatomics, so molecules can't access excited vibrational states. Only when $kT \gtrsim \hbar\omega$ do vibrational modes contribute. This is why the $C_V$ of $\text{H}_2$ increases in steps as $T$ rises — a triumph of quantum mechanics over classical equipartition!</p>
+</div>
+
+<!-- SVG: C_V vs T for diatomic, showing DOF freeze-out -->
+<div class="fig">
+<svg viewBox="0 0 560 300" width="560" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="560" height="300" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="70" y1="260" x2="520" y2="260" stroke="#334155" stroke-width="1.5"/>
+  <line x1="70" y1="260" x2="70" y2="25" stroke="#334155" stroke-width="1.5"/>
+  <text x="295" y="290" text-anchor="middle" font-size="13" fill="#334155">T (log scale)</text>
+  <text x="18" y="142" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,18,142)">C_V / Nk</text>
+  <!-- Grid lines for C_V values -->
+  <line x1="70" y1="220" x2="520" y2="220" stroke="#e2e8f0" stroke-width="0.8" stroke-dasharray="3"/>
+  <text x="60" y="224" text-anchor="end" font-size="11" fill="#64748b">3/2</text>
+  <line x1="70" y1="155" x2="520" y2="155" stroke="#e2e8f0" stroke-width="0.8" stroke-dasharray="3"/>
+  <text x="60" y="159" text-anchor="end" font-size="11" fill="#64748b">5/2</text>
+  <line x1="70" y1="90" x2="520" y2="90" stroke="#e2e8f0" stroke-width="0.8" stroke-dasharray="3"/>
+  <text x="60" y="94" text-anchor="end" font-size="11" fill="#64748b">7/2</text>
+  <!-- Staircase curve -->
+  <path d="M80,250 Q100,248 120,245 Q140,235 155,222 Q165,220 240,220 Q260,218 290,200 Q320,170 340,157 Q350,155 430,155 Q450,150 470,135 Q490,110 505,92" fill="none" stroke="#059669" stroke-width="3"/>
+  <!-- Phase labels with background boxes -->
+  <rect x="132" y="225" width="85" height="22" rx="4" fill="#dbeafe" opacity="0.7"/>
+  <text x="175" y="240" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">Translation</text>
+  <text x="175" y="253" text-anchor="middle" font-size="10" fill="#1d4ed8">3 DOF</text>
+  <rect x="340" y="160" width="80" height="22" rx="4" fill="#dcfce7" opacity="0.7"/>
+  <text x="380" y="175" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">+ Rotation</text>
+  <text x="380" y="188" text-anchor="middle" font-size="10" fill="#059669">5 DOF</text>
+  <rect x="465" y="95" width="80" height="22" rx="4" fill="#fce7f3" opacity="0.7"/>
+  <text x="505" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#be185d">+ Vibration</text>
+  <text x="505" y="123" text-anchor="middle" font-size="10" fill="#be185d">7 DOF</text>
+  <!-- Temperature markers -->
+  <text x="155" y="275" text-anchor="middle" font-size="10" fill="#64748b">~80 K</text>
+  <text x="340" y="275" text-anchor="middle" font-size="10" fill="#64748b">~300 K</text>
+  <text x="470" y="275" text-anchor="middle" font-size="10" fill="#64748b">~3000 K</text>
+</svg>
+<div class="fig-caption">Heat capacity of a diatomic gas (e.g. H₂) vs temperature. Each plateau corresponds to a set of DOF becoming thermally active. This "staircase" is direct evidence for quantized energy levels.</div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s2">2. Energy, Heat, Work & the First Law</h2>
+
+<h3>The First Law of Thermodynamics</h3>
+
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label">First Law <span class="tag onsheet">ON SHEET</span></div>
+  $$\Delta U = Q + W$$
+  <p style="font-size:0.85rem; color:var(--dim);">$Q$ = heat added to system, $W$ = work done <em>on</em> system. (Physics sign convention: $W = -P\Delta V$ for compression.)</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">Sign conventions matter!</div>
+<p>In Schroeder's convention used in this course: $W$ is work done <strong>on</strong> the system ($W = -\int P\,dV$). Compression → $W > 0$, expansion → $W < 0$. Some textbooks use $W$ as work done <em>by</em> the system — always check!</p>
+</div>
+
+<h3>Heat Capacity</h3>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">General definition <span class="tag onsheet">ON SHEET</span></div>
+  $$C = \frac{Q}{\Delta T}$$
+</div>
+<div class="formula-card">
+  <div class="label">Constant volume <span class="tag onsheet">ON SHEET</span></div>
+  $$C_V = \frac{f}{2}Nk = T\left(\frac{\partial S}{\partial T}\right)_V$$
+  <p style="font-size:0.85rem; color:var(--dim);">$f$ = number of DOF</p>
+</div>
+</div>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Constant pressure <span class="tag onsheet">ON SHEET</span></div>
+  $$\frac{C_P}{N} = \left(\frac{f}{2} + 1\right)k$$
+  <p style="font-size:0.85rem; color:var(--dim);">For an ideal gas: $C_P = C_V + Nk$</p>
+</div>
+<div class="formula-card">
+  <div class="label">Adiabatic exponent</div>
+  $$\gamma = \frac{C_P}{C_V} = \frac{f+2}{f}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Monatomic: $\gamma = 5/3$. Diatomic (RT): $\gamma = 7/5$.</p>
+</div>
+</div>
+
+<h3>Enthalpy</h3>
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label">Definition <span class="tag onsheet">ON SHEET</span></div>
+  $$H = U + PV$$
+  <p style="font-size:0.85rem; color:var(--dim);">At constant pressure: $\Delta H = Q_P$ (heat absorbed). This is why enthalpy is the "heat content" at constant $P$.</p>
+</div>
+
+<div class="connection">
+<div class="connection-title">Connecting $C_V$ and $C_P$</div>
+<p>At constant $V$: all heat goes into raising $U$ → $Q = \Delta U = C_V \Delta T$.</p>
+<p>At constant $P$: the gas also does work expanding → needs more heat → $Q = \Delta H = C_P \Delta T$, where $C_P = C_V + Nk$.</p>
+<p>The extra $Nk$ is the work done against constant pressure during expansion. This is why $C_P > C_V$ always.</p>
+</div>
+
+<h3>Hess's Law</h3>
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$\Delta H = \sum \Delta H_i = \Delta H_1 + \Delta H_2 + \cdots$$
+  <p style="font-size:0.85rem; color:var(--dim);">Since $H$ is a state function, the total enthalpy change is path-independent. Break any reaction into known sub-reactions.</p>
+</div>
+
+<h3>Types of Processes</h3>
+<table>
+<tr><th>Process</th><th>Held Constant</th><th>Key Relations</th></tr>
+<tr><td><strong>Isothermal</strong></td><td>$T$</td><td>$\Delta U = 0$ (ideal gas), $Q = -W = NkT\ln(V_f/V_i)$</td></tr>
+<tr><td><strong>Isobaric</strong></td><td>$P$</td><td>$Q = C_P \Delta T = \Delta H$, $W = -P\Delta V$</td></tr>
+<tr><td><strong>Isochoric</strong></td><td>$V$</td><td>$W = 0$, $Q = C_V \Delta T = \Delta U$</td></tr>
+<tr><td><strong>Adiabatic</strong></td><td>$Q = 0$</td><td>$\Delta U = W$, $PV^\gamma = \text{const}$, $TV^{\gamma-1} = \text{const}$</td></tr>
+</table>
+
+<!-- SVG: PV diagram comparing the four process types -->
+<div class="fig">
+<svg viewBox="0 0 480 320" width="480" height="320" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="480" height="320" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="60" y1="270" x2="440" y2="270" stroke="#334155" stroke-width="1.5"/>
+  <line x1="60" y1="270" x2="60" y2="30" stroke="#334155" stroke-width="1.5"/>
+  <text x="250" y="300" text-anchor="middle" font-size="13" fill="#334155">V</text>
+  <text x="25" y="150" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,25,150)">P</text>
+  <!-- Starting point -->
+  <circle cx="140" cy="80" r="5" fill="#334155"/>
+  <text x="125" y="72" font-size="11" fill="#334155" font-weight="bold">(V₁, P₁)</text>
+  <!-- Isothermal: PV = const, hyperbola -->
+  <path d="M140,80 Q200,100 260,120 Q320,140 400,155" fill="none" stroke="#059669" stroke-width="2.5"/>
+  <text x="405" y="152" font-size="11" fill="#059669" font-weight="bold">Isothermal</text>
+  <text x="405" y="165" font-size="10" fill="#059669">(PV = const)</text>
+  <!-- Adiabatic: steeper curve, PV^γ = const -->
+  <path d="M140,80 Q200,120 260,160 Q320,200 380,220" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="385" y="218" font-size="11" fill="#ef4444" font-weight="bold">Adiabatic</text>
+  <text x="385" y="231" font-size="10" fill="#ef4444">(PV^γ = const)</text>
+  <!-- Isobaric: horizontal -->
+  <line x1="140" y1="80" x2="400" y2="80" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="405" y="78" font-size="11" fill="#3b82f6" font-weight="bold">Isobaric</text>
+  <text x="405" y="91" font-size="10" fill="#3b82f6">(P = const)</text>
+  <!-- Isochoric: vertical -->
+  <line x1="140" y1="80" x2="140" y2="240" stroke="#8b5cf6" stroke-width="2.5"/>
+  <text x="100" y="250" font-size="11" fill="#8b5cf6" font-weight="bold">Isochoric</text>
+  <text x="100" y="263" font-size="10" fill="#8b5cf6">(V = const)</text>
+  <!-- Note -->
+  <text x="260" y="40" text-anchor="middle" font-size="11" fill="#64748b">All curves start from the same point (expansion shown)</text>
+  <text x="260" y="55" text-anchor="middle" font-size="11" fill="#64748b">Adiabat is always steeper than isotherm (γ > 1)</text>
+</svg>
+<div class="fig-caption">The four fundamental processes on a PV diagram. Work done BY the gas = area under the curve. The adiabat drops faster because the gas cools as it expands (no heat input).</div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s3">3. Entropy & the Second Law</h2>
+
+<h3>Multiplicity and Entropy</h3>
+<p>The multiplicity $\Omega$ counts the number of microstates consistent with a given macrostate. Entropy is its logarithm:</p>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Entropy definition <span class="tag onsheet">ON SHEET</span></div>
+  $$S = k\ln\Omega$$
+</div>
+<div class="formula-card">
+  <div class="label">Einstein solid multiplicity <span class="tag onsheet">ON SHEET</span></div>
+  $$\Omega(N,q) = \binom{q+N-1}{q}$$
+  <p style="font-size:0.85rem; color:var(--dim);">$N$ oscillators, $q$ energy quanta</p>
+</div>
+</div>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Two-state multiplicity <span class="tag onsheet">ON SHEET</span></div>
+  $$\Omega(n) = \frac{N!}{n!(N-n)!} = \binom{N}{n}$$
+</div>
+<div class="formula-card">
+  <div class="label">Stirling's approximation <span class="tag onsheet">ON SHEET</span></div>
+  $$\ln N! = N\ln N - N$$
+</div>
+</div>
+
+<div class="box key">
+<div class="box-title">The Second Law, explained</div>
+<p>For any spontaneous process: $\Delta S_{\text{total}} \geq 0$. Systems evolve toward macrostates with the <strong>most microstates</strong>. This isn't a force — it's just statistics. A box of gas <em>could</em> spontaneously compress into one corner, but the probability is $\sim 2^{-10^{23}}$.</p>
+</div>
+
+<h3>Temperature from Entropy</h3>
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$\frac{1}{T} = \left(\frac{\partial S}{\partial U}\right)_{V,N}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Temperature is the "price" of energy in units of entropy. Two systems in thermal contact reach equilibrium when their $\partial S/\partial U$ are equal — same $T$.</p>
+</div>
+
+<!-- SVG: S vs U curve showing temperature as slope -->
+<div class="fig">
+<svg viewBox="0 0 480 260" width="480" height="260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="480" height="260" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="50" y1="230" x2="440" y2="230" stroke="#334155" stroke-width="1.5"/>
+  <line x1="50" y1="230" x2="50" y2="20" stroke="#334155" stroke-width="1.5"/>
+  <text x="245" y="252" text-anchor="middle" font-size="13" fill="#334155">U (internal energy)</text>
+  <text x="18" y="125" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,18,125)">S (entropy)</text>
+  <!-- Typical S(U) curve: concave, starts at origin, flattens out -->
+  <path d="M50,225 Q100,180 160,120 Q220,75 300,50 Q370,38 430,35" fill="none" stroke="#059669" stroke-width="2.5"/>
+  <!-- Tangent line at low U (steep = low T) -->
+  <line x1="90" y1="210" x2="175" y2="105" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="110" y="150" font-size="11" fill="#ef4444" font-weight="bold">steep slope</text>
+  <text x="110" y="164" font-size="10" fill="#ef4444">= low T</text>
+  <!-- Tangent line at high U (gentle = high T) -->
+  <line x1="260" y1="60" x2="420" y2="38" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="380" y="55" font-size="11" fill="#3b82f6" font-weight="bold">gentle slope</text>
+  <text x="380" y="69" font-size="10" fill="#3b82f6">= high T</text>
+  <!-- Formula -->
+  <rect x="220" y="150" width="220" height="55" rx="6" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="330" y="170" text-anchor="middle" font-size="12" fill="#334155">slope = ∂S/∂U = 1/T</text>
+  <text x="330" y="190" text-anchor="middle" font-size="11" fill="#64748b">Steeper curve → colder system</text>
+  <text x="330" y="204" text-anchor="middle" font-size="11" fill="#64748b">Flatter curve → hotter system</text>
+</svg>
+<div class="fig-caption">Temperature is the reciprocal of the slope of $S(U)$: $1/T = \partial S/\partial U$. Two systems in contact exchange energy until their slopes match (same $T$). Heat flows from the system with the <em>flatter</em> slope (higher $T$) to the one with the <em>steeper</em> slope (lower $T$).</div>
+</div>
+
+<h3>Sackur-Tetrode Equation</h3>
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label">Entropy of ideal gas <span class="tag onsheet">ON SHEET</span></div>
+  $$S = Nk\left[\ln\left(\frac{V}{N}\beta\right) + \frac{5}{2}\right], \qquad \beta = \left(\frac{4\pi m U}{3Nh^2}\right)^{3/2}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Note: this $\beta$ is <strong>not</strong> $1/kT$ — it's a separate symbol specific to Sackur-Tetrode. Be careful!</p>
+</div>
+
+<h3>Entropy of Mixing</h3>
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$S = xS_A + (1-x)S_B$$
+  <p style="font-size:0.85rem; color:var(--dim);">$x$ is proportion of substance A. Mixing identical gases → no entropy change (Gibbs paradox resolved by indistinguishability).</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s4">4. Thermodynamic Identity & Heat Capacity</h2>
+
+<h3>The Thermodynamic Identity</h3>
+<p>This is arguably the single most important equation in thermal physics — it connects $U$, $S$, $V$, and $N$:</p>
+
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$dU = TdS - PdV + \mu\, dN$$
+</div>
+
+<div class="box key">
+<div class="box-title">How to read this equation</div>
+<p>Each term represents a different way to change the internal energy:</p>
+<p>$TdS$ = energy transferred as heat (at constant $V, N$)</p>
+<p>$-PdV$ = energy transferred as compression work</p>
+<p>$\mu\,dN$ = energy from adding particles, where $\mu$ is the <strong>chemical potential</strong></p>
+</div>
+
+<h3>All Four Thermodynamic Identities</h3>
+<p>By Legendre transforms of $U$, we get four thermodynamic potentials. All four identities are on your equation sheet:</p>
+
+<table>
+<tr><th>Potential</th><th>Definition</th><th>Identity <span class="tag onsheet">ON SHEET</span></th><th>Natural Variables</th></tr>
+<tr><td>$U$</td><td>Internal energy</td><td>$dU = TdS - PdV + \mu\,dN$</td><td>$S, V, N$</td></tr>
+<tr><td>$H = U + PV$</td><td>Enthalpy</td><td>$dH = TdS + VdP + \mu\,dN$</td><td>$S, P, N$</td></tr>
+<tr><td>$F = U - TS$</td><td>Helmholtz free energy</td><td>$dF = -SdT - PdV + \mu\,dN$</td><td>$T, V, N$</td></tr>
+<tr><td>$G = U - TS + PV$</td><td>Gibbs free energy</td><td>$dG = -SdT + VdP + \mu\,dN$</td><td>$T, P, N$</td></tr>
+</table>
+
+<div class="connection">
+<div class="connection-title">How to pick the right potential</div>
+<p>Use the potential whose <strong>natural variables match what's held constant</strong>:</p>
+<p>Constant $T, V$ → use $F$ (minimized at equilibrium)</p>
+<p>Constant $T, P$ → use $G$ (minimized at equilibrium)</p>
+<p>Constant $S, V$ → use $U$ (minimized at equilibrium)</p>
+<p>Constant $S, P$ → use $H$ (minimized at equilibrium)</p>
+<p><strong>Most lab situations are constant $T, P$</strong> → Gibbs $G$ is the workhorse for phase transitions and chemical reactions.</p>
+</div>
+
+<h3>Extracting Quantities from Potentials</h3>
+<p>From each identity, you can read off partial derivatives. The most important ones:</p>
+
+<table>
+<tr><th>From $F$ <span class="tag onsheet">ON SHEET</span></th><th>From $G$</th></tr>
+<tr><td>$S = -\left(\frac{\partial F}{\partial T}\right)_{V,N}$</td><td>$S = -\left(\frac{\partial G}{\partial T}\right)_{P,N}$</td></tr>
+<tr><td>$P = -\left(\frac{\partial F}{\partial V}\right)_{T,N}$</td><td>$V = \left(\frac{\partial G}{\partial P}\right)_{T,N}$</td></tr>
+<tr><td>$\mu = \left(\frac{\partial F}{\partial N}\right)_{T,V}$</td><td>$\mu = \left(\frac{\partial G}{\partial N}\right)_{T,P}$</td></tr>
+</table>
+
+<div class="box exam">
+<div class="box-title">Exam favorite: deriving one quantity from another</div>
+<p>A common pattern: given $F$ or $Z$, derive $P$, $S$, $U$, $\mu$, or $C_V$ by taking appropriate partial derivatives. Know how to chain through: $Z \to F = -kT\ln Z \to S, P, U, \mu$.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s5">5. Heat Engines, Refrigerators & Cycles</h2>
+
+<h3>Heat Engine Basics</h3>
+<p>A heat engine takes in heat $Q_H$ from a hot reservoir, converts some to work $W$, and dumps $Q_C$ to a cold reservoir.</p>
+
+<!-- SVG: Heat engine diagram -->
+<div class="fig">
+<svg viewBox="0 0 400 280" width="400" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="400" height="280" fill="#f8fafc" rx="8"/>
+  <!-- Hot reservoir -->
+  <rect x="130" y="15" width="140" height="40" rx="6" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="200" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">T_H (hot)</text>
+  <!-- Engine -->
+  <rect x="155" y="100" width="90" height="55" rx="6" fill="#059669" opacity="0.15" stroke="#059669" stroke-width="2"/>
+  <text x="200" y="132" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669">Engine</text>
+  <!-- Cold reservoir -->
+  <rect x="130" y="210" width="140" height="40" rx="6" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="200" y="235" text-anchor="middle" font-size="14" font-weight="bold" fill="#2563eb">T_C (cold)</text>
+  <!-- Arrows -->
+  <line x1="200" y1="55" x2="200" y2="100" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowR)"/>
+  <text x="225" y="82" font-size="12" fill="#dc2626">Q_H</text>
+  <line x1="200" y1="155" x2="200" y2="210" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowB)"/>
+  <text x="225" y="188" font-size="12" fill="#2563eb">Q_C</text>
+  <line x1="245" y1="127" x2="310" y2="127" stroke="#059669" stroke-width="2" marker-end="url(#arrowG)"/>
+  <text x="280" y="118" font-size="12" fill="#059669">W</text>
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#ef4444"/></marker>
+    <marker id="arrowB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#3b82f6"/></marker>
+    <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#059669"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Heat engine: $Q_H = W + Q_C$ (energy conservation). Efficiency = $W/Q_H$.</div>
+</div>
+
+<h3>Efficiency</h3>
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Engine efficiency</div>
+  $$e = \frac{W}{Q_H} = 1 - \frac{Q_C}{Q_H}$$
+</div>
+<div class="formula-card">
+  <div class="label">Carnot (maximum possible)</div>
+  $$e_{\text{Carnot}} = 1 - \frac{T_C}{T_H}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Only achievable with reversible processes. Real engines always do worse.</p>
+</div>
+</div>
+
+<h3>Refrigerators & COP</h3>
+<p>A refrigerator runs the engine backwards: uses work $W$ to pump heat from cold to hot.</p>
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">COP (refrigerator)</div>
+  $$\text{COP} = \frac{Q_C}{W}$$
+</div>
+<div class="formula-card">
+  <div class="label">Carnot COP</div>
+  $$\text{COP}_{\text{Carnot}} = \frac{T_C}{T_H - T_C}$$
+</div>
+</div>
+
+<!-- SVG: Carnot cycle PV diagram -->
+<div class="fig">
+<svg viewBox="0 0 440 300" width="440" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="440" height="300" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="60" y1="260" x2="400" y2="260" stroke="#334155" stroke-width="1.5"/>
+  <line x1="60" y1="260" x2="60" y2="20" stroke="#334155" stroke-width="1.5"/>
+  <text x="230" y="290" text-anchor="middle" font-size="13" fill="#334155">V</text>
+  <text x="30" y="140" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,30,140)">P</text>
+  <!-- Points: A(top-left), B(top-right), C(bottom-right), D(bottom-left) -->
+  <!-- Isothermal expansion A→B (T_H) -->
+  <path d="M120,55 Q180,65 250,90" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="185" y="52" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="bold">T_H (isothermal)</text>
+  <!-- Adiabatic expansion B→C -->
+  <path d="M250,90 Q300,140 340,210" fill="none" stroke="#8b5cf6" stroke-width="2.5"/>
+  <text x="330" y="145" font-size="11" fill="#8b5cf6" font-weight="bold">Adiabatic</text>
+  <!-- Isothermal compression C→D (T_C) -->
+  <path d="M340,210 Q260,200 200,185" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="270" y="228" text-anchor="middle" font-size="11" fill="#3b82f6" font-weight="bold">T_C (isothermal)</text>
+  <!-- Adiabatic compression D→A -->
+  <path d="M200,185 Q155,120 120,55" fill="none" stroke="#8b5cf6" stroke-width="2.5"/>
+  <text x="120" y="130" font-size="11" fill="#8b5cf6" font-weight="bold">Adiabatic</text>
+  <!-- Points -->
+  <circle cx="120" cy="55" r="5" fill="#334155"/>
+  <text x="105" y="48" font-size="12" font-weight="bold" fill="#334155">A</text>
+  <circle cx="250" cy="90" r="5" fill="#334155"/>
+  <text x="262" y="85" font-size="12" font-weight="bold" fill="#334155">B</text>
+  <circle cx="340" cy="210" r="5" fill="#334155"/>
+  <text x="352" y="205" font-size="12" font-weight="bold" fill="#334155">C</text>
+  <circle cx="200" cy="185" r="5" fill="#334155"/>
+  <text x="188" y="178" font-size="12" font-weight="bold" fill="#334155">D</text>
+  <!-- W = shaded area -->
+  <text x="220" y="148" text-anchor="middle" font-size="13" fill="#059669" font-weight="bold">W = area</text>
+  <!-- Arrows on paths -->
+  <polygon points="185,62 190,58 188,67" fill="#ef4444"/>
+  <polygon points="300,155 295,148 304,150" fill="#8b5cf6"/>
+  <polygon points="265,198 270,203 261,202" fill="#3b82f6"/>
+  <polygon points="155,115 160,122 152,119" fill="#8b5cf6"/>
+</svg>
+<div class="fig-caption">Carnot cycle: two isotherms (at $T_H$ and $T_C$) connected by two adiabats. The enclosed area = net work output. Efficiency: $e = 1 - T_C/T_H$.</div>
+</div>
+
+<h3>Important Cycles</h3>
+
+<table>
+<tr><th>Cycle</th><th>Steps</th><th>Key Feature</th></tr>
+<tr><td><strong>Carnot</strong></td><td>2 isothermal + 2 adiabatic</td><td>Maximum efficiency; all heat transfer at $T_H$ or $T_C$</td></tr>
+<tr><td><strong>Stirling</strong></td><td>2 isothermal + 2 isochoric</td><td>Isochoric steps exchange heat but do no work</td></tr>
+<tr><td><strong>Otto</strong></td><td>2 adiabatic + 2 isochoric</td><td>Gasoline engine model; $e = 1 - r^{1-\gamma}$</td></tr>
+<tr><td><strong>Diesel</strong></td><td>2 adiabatic + 1 isobaric + 1 isochoric</td><td>Higher compression ratio than Otto</td></tr>
+<tr><td><strong>Rankine</strong></td><td>Involves phase changes (steam)</td><td>Uses enthalpy: $e = 1 - \frac{H_4 - H_1}{H_3 - H_2}$ <span class="tag onsheet">ON SHEET</span></td></tr>
+</table>
+
+<div class="box sheet">
+<div class="box-title">Rankine COP is on the sheet</div>
+$$\text{COP}_{\text{Rankine}} = \frac{H_1 - H_4}{H_2 - H_3 - H_1 + H_4}$$
+<p>The subscripts refer to points around the cycle. You need to know how to read an $H$-$S$ diagram to identify which enthalpies correspond to which states.</p>
+</div>
+
+<h3>Throttling (Joule-Thomson)</h3>
+<p>An irreversible expansion through a porous plug or valve at constant enthalpy ($\Delta H = 0$). The gas can cool or warm depending on whether $\mu_{JT} = (\partial T/\partial P)_H$ is positive or negative. Ideal gases don't change temperature during throttling.</p>
+
+<!-- ============================================================ -->
+<h2 id="s6">6. Free Energy: Helmholtz & Gibbs</h2>
+
+<h3>Helmholtz Free Energy $F$</h3>
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$F = U - TS$$
+  <p style="font-size:0.85rem; color:var(--dim);">The "available work" at constant $T$. At equilibrium (constant $T, V$): $F$ is minimized.</p>
+</div>
+
+<h3>Gibbs Free Energy $G$</h3>
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$\Delta G = \Delta H - T\Delta S$$
+  <p style="font-size:0.85rem; color:var(--dim);">At constant $T, P$: $G$ is minimized. A reaction proceeds spontaneously if $\Delta G < 0$.</p>
+</div>
+
+<div class="connection">
+<div class="connection-title">Why $G$ matters more than $S$ for spontaneity</div>
+<p>You might think "entropy always increases" means $\Delta S > 0$ for spontaneous processes. But that's $\Delta S_{\text{total}}$, including the surroundings! For the <em>system</em> alone at constant $T, P$:</p>
+$$\Delta S_{\text{total}} = -\frac{\Delta G}{T} \geq 0$$
+<p>So $\Delta G < 0$ ↔ $\Delta S_{\text{total}} > 0$ ↔ spontaneous. The $G$ condition is easier to check because you only need system quantities.</p>
+</div>
+
+<h3>Gibbs as a Function of $T$ and $P$</h3>
+<p>From $dG = -SdT + VdP + \mu\,dN$:</p>
+$$\left(\frac{\partial G}{\partial T}\right)_P = -S, \qquad \left(\frac{\partial G}{\partial P}\right)_T = V$$
+
+<div class="box tip">
+<div class="box-title">Key consequences</div>
+<p>Since $S > 0$ always, $G$ always <strong>decreases</strong> with increasing $T$ (steeper for phases with larger $S$: gas steeper than liquid steeper than solid).</p>
+<p>Since $V > 0$ always, $G$ always <strong>increases</strong> with increasing $P$ (steeper for phases with larger $V$: gas steeper than liquid).</p>
+<p>These facts determine which phase wins (has lower $G$) at any given $T, P$ — the basis of phase diagrams!</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s7">7. Phase Transitions & Clausius-Clapeyron</h2>
+
+<h3>Phase Diagram Basics</h3>
+<p>On a $P$-$T$ phase diagram, coexistence lines are where $G_{\text{phase 1}} = G_{\text{phase 2}}$. The stable phase at any point is whichever has <strong>lower</strong> $G$.</p>
+
+<!-- SVG: Simple phase diagram -->
+<div class="fig">
+<svg viewBox="0 0 420 300" width="420" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="420" height="300" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="60" y1="260" x2="390" y2="260" stroke="#334155" stroke-width="1.5"/>
+  <line x1="60" y1="260" x2="60" y2="20" stroke="#334155" stroke-width="1.5"/>
+  <text x="225" y="290" text-anchor="middle" font-size="13" fill="#334155">T</text>
+  <text x="30" y="140" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,30,140)">P</text>
+  <!-- Solid-liquid line -->
+  <path d="M160,30 L170,130 L175,180" fill="none" stroke="#059669" stroke-width="2"/>
+  <!-- Solid-gas line -->
+  <path d="M80,260 Q130,220 170,130" fill="none" stroke="#059669" stroke-width="2"/>
+  <!-- Liquid-gas line -->
+  <path d="M170,130 Q240,105 310,70" fill="none" stroke="#059669" stroke-width="2"/>
+  <!-- Triple point -->
+  <circle cx="170" cy="130" r="5" fill="#059669"/>
+  <text x="180" y="145" font-size="11" fill="#059669" font-weight="bold">Triple point</text>
+  <!-- Critical point -->
+  <circle cx="310" cy="70" r="5" fill="#ef4444"/>
+  <text x="320" y="65" font-size="11" fill="#ef4444" font-weight="bold">Critical point</text>
+  <!-- Phase labels -->
+  <text x="105" y="100" font-size="15" font-weight="bold" fill="#6366f1">SOLID</text>
+  <text x="230" y="170" font-size="15" font-weight="bold" fill="#3b82f6">LIQUID</text>
+  <text x="260" y="240" font-size="15" font-weight="bold" fill="#94a3b8">GAS</text>
+</svg>
+<div class="fig-caption">Generic $P$-$T$ phase diagram. The solid-liquid line slopes right for most substances (left for water/ice).</div>
+</div>
+
+<!-- SVG: G vs T for different phases -->
+<div class="fig">
+<svg viewBox="0 0 500 300" width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="500" height="300" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="50" y1="260" x2="460" y2="260" stroke="#334155" stroke-width="1.5"/>
+  <line x1="50" y1="260" x2="50" y2="20" stroke="#334155" stroke-width="1.5"/>
+  <text x="255" y="290" text-anchor="middle" font-size="13" fill="#334155">T</text>
+  <text x="18" y="140" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,18,140)">G</text>
+  <!-- Solid line (shallowest slope since S_solid is smallest) -->
+  <line x1="60" y1="50" x2="350" y2="200" stroke="#6366f1" stroke-width="2.5"/>
+  <text x="100" y="68" font-size="12" font-weight="bold" fill="#6366f1">Solid</text>
+  <text x="100" y="82" font-size="10" fill="#6366f1">(small S → gentle slope)</text>
+  <!-- Liquid line (steeper slope) -->
+  <line x1="60" y1="70" x2="400" y2="250" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="350" y="210" font-size="12" font-weight="bold" fill="#3b82f6">Liquid</text>
+  <!-- Gas line (steepest slope since S_gas is largest) -->
+  <line x1="60" y1="110" x2="430" y2="255" stroke="#94a3b8" stroke-width="2.5"/>
+  <text x="400" y="235" font-size="12" font-weight="bold" fill="#94a3b8">Gas</text>
+  <text x="400" y="249" font-size="10" fill="#94a3b8">(large S → steep slope)</text>
+  <!-- Intersection points (phase transitions) -->
+  <circle cx="175" cy="118" r="5" fill="#ef4444"/>
+  <text x="175" y="140" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="bold">T_melt</text>
+  <circle cx="310" cy="185" r="5" fill="#ef4444"/>
+  <text x="310" y="177" text-anchor="middle" font-size="11" fill="#ef4444" font-weight="bold">T_boil</text>
+  <!-- Highlight: stable phase has lowest G -->
+  <rect x="230" y="15" width="240" height="38" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="350" y="30" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Stable phase = lowest G</text>
+  <text x="350" y="46" text-anchor="middle" font-size="10" fill="#92400e">∂G/∂T = −S, so steeper = more entropy</text>
+</svg>
+<div class="fig-caption">Gibbs free energy vs temperature for three phases. At each crossing, two phases coexist. The stable phase is always the one with the lowest $G$. Lines are steeper for phases with more entropy.</div>
+</div>
+
+<h3>Clausius-Clapeyron Relation</h3>
+<p>The slope of any coexistence line on the $P$-$T$ diagram:</p>
+
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label">Clausius-Clapeyron</div>
+  $$\frac{dP}{dT} = \frac{L}{T\Delta V} = \frac{\Delta S}{\Delta V}$$
+  <p style="font-size:0.85rem; color:var(--dim);">$L$ = latent heat, $\Delta V = V_{\text{final phase}} - V_{\text{initial phase}}$</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">Classic exam problem: ice-water slope</div>
+<p>Water is unusual: ice is <em>less dense</em> than liquid water, so $\Delta V = V_{\text{liquid}} - V_{\text{solid}} < 0$ during melting. Since $L > 0$ and $T > 0$, the slope $dP/dT < 0$. The solid-liquid coexistence line slopes <strong>to the left</strong> — increasing pressure melts ice (ice skating argument).</p>
+</div>
+
+<h3>Diamond vs. Graphite</h3>
+<p>At room $T$ and $P$, graphite has lower $G$ (thermodynamically stable). Diamond persists because the conversion rate is astronomically slow — <strong>kinetics vs. thermodynamics</strong>. The conversion doesn't happen despite being thermodynamically favorable.</p>
+
+<!-- ============================================================ -->
+<h2 id="s8">8. Mixtures, Chemical Equilibrium & Le Chatelier</h2>
+
+<h3>Free Energy of Mixing</h3>
+<p>When two substances A and B are mixed:</p>
+$$G_{\text{mixed}} = (1-x)G_A + xG_B + RT\bigl[x\ln x + (1-x)\ln(1-x)\bigr]$$
+<p>The last term ($< 0$ always) is the entropy of mixing contribution $-T\Delta S_{\text{mix}}$ — mixing always lowers $G$ for ideal solutions.</p>
+
+<div class="box key">
+<div class="box-title">Miscibility from $G$ curvature</div>
+<p>Plot $G(x)$ at fixed $T$:</p>
+<p><strong>Concave up</strong> (bowl-shaped) → mixed state has lowest $G$ → <strong>miscible</strong></p>
+<p><strong>Concave down</strong> (dome) → mixed state is a local maximum → <strong>immiscible</strong>, system separates into two phases</p>
+<p>Non-ideal mixing adds a $\Delta U_{\text{mix}}$ term that can be concave down, competing with the always concave-up entropy term. At low $T$, the $\Delta U$ term can win → phase separation.</p>
+</div>
+
+<!-- SVG: G(x) mixing diagrams - miscible vs immiscible -->
+<div class="fig">
+<svg viewBox="0 0 560 260" width="560" height="260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="560" height="260" fill="#f8fafc" rx="8"/>
+  <!-- LEFT PANEL: Miscible (high T) -->
+  <text x="140" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#059669">Miscible (high T)</text>
+  <line x1="40" y1="230" x2="260" y2="230" stroke="#334155" stroke-width="1"/>
+  <line x1="40" y1="230" x2="40" y2="40" stroke="#334155" stroke-width="1"/>
+  <text x="150" y="250" text-anchor="middle" font-size="11" fill="#334155">x (fraction of B)</text>
+  <text x="28" y="135" text-anchor="middle" font-size="11" fill="#334155" transform="rotate(-90,28,135)">G</text>
+  <text x="40" y="244" font-size="10" fill="#64748b">0</text>
+  <text x="260" y="244" font-size="10" fill="#64748b">1</text>
+  <!-- Endpoints -->
+  <circle cx="40" cy="90" r="4" fill="#6366f1"/>
+  <text x="55" y="85" font-size="10" fill="#6366f1">G_A</text>
+  <circle cx="260" cy="110" r="4" fill="#6366f1"/>
+  <text x="245" y="105" font-size="10" fill="#6366f1">G_B</text>
+  <!-- Straight line (no mixing) -->
+  <line x1="40" y1="90" x2="260" y2="110" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4"/>
+  <!-- Concave-up curve (mixed) -->
+  <path d="M40,90 Q100,140 150,145 Q200,140 260,110" fill="none" stroke="#059669" stroke-width="2.5"/>
+  <!-- Arrow showing G is lowered -->
+  <line x1="150" y1="100" x2="150" y2="140" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+  <text x="170" y="125" font-size="10" fill="#ef4444">ΔG_mix < 0</text>
+  <!-- Divider -->
+  <line x1="285" y1="20" x2="285" y2="250" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- RIGHT PANEL: Immiscible (low T) -->
+  <text x="420" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#ef4444">Immiscible (low T)</text>
+  <line x1="310" y1="230" x2="530" y2="230" stroke="#334155" stroke-width="1"/>
+  <line x1="310" y1="230" x2="310" y2="40" stroke="#334155" stroke-width="1"/>
+  <text x="420" y="250" text-anchor="middle" font-size="11" fill="#334155">x</text>
+  <text x="310" y="244" font-size="10" fill="#64748b">0</text>
+  <text x="530" y="244" font-size="10" fill="#64748b">1</text>
+  <!-- Endpoints -->
+  <circle cx="310" cy="90" r="4" fill="#6366f1"/>
+  <circle cx="530" cy="110" r="4" fill="#6366f1"/>
+  <!-- Concave-down curve (ΔU_mix dominates) -->
+  <path d="M310,90 Q370,60 420,55 Q470,60 530,110" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <!-- Tangent line showing phase separation -->
+  <line x1="310" y1="90" x2="530" y2="110" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4"/>
+  <!-- Arrow showing G is raised -->
+  <line x1="420" y1="100" x2="420" y2="60" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowDown2)"/>
+  <text x="440" y="75" font-size="10" fill="#ef4444">ΔG_mix > 0!</text>
+  <text x="420" y="118" text-anchor="middle" font-size="10" fill="#64748b">System separates into</text>
+  <text x="420" y="130" text-anchor="middle" font-size="10" fill="#64748b">A-rich + B-rich phases</text>
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowDown" markerWidth="8" markerHeight="6" refX="4" refY="0" orient="auto"><polygon points="0,0 8,0 4,6" fill="#ef4444"/></marker>
+    <marker id="arrowDown2" markerWidth="8" markerHeight="6" refX="4" refY="6" orient="auto"><polygon points="0,6 8,6 4,0" fill="#ef4444"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">Left: at high $T$, entropy of mixing dominates → $G$ is concave up → fully miscible. Right: at low $T$, unfavorable $\Delta U_{\text{mix}}$ dominates → $G$ is concave down → system phase-separates to stay on the lower tangent line.</div>
+</div>
+
+<h3>Chemical Potential of Ideal Gas</h3>
+$$\mu = \mu^0 + kT\ln\left(\frac{P}{P^0}\right)$$
+<p>where $\mu^0$ is the chemical potential at reference pressure $P^0$. Higher pressure → higher $\mu$.</p>
+
+<h3>Chemical Equilibrium</h3>
+<p>At equilibrium, $dG = 0$ along any reaction path, which gives $\sum_i \mu_i\,dN_i = 0$ constrained by stoichiometry.</p>
+
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label">Equilibrium constant <span class="tag onsheet">ON SHEET</span></div>
+  $$K = e^{-\Delta G^0/RT}$$
+  <p style="font-size:0.85rem; color:var(--dim);">$\Delta G^0$ = standard Gibbs energy of reaction. $K$ = product of (partial pressures / $P^0$) raised to stoichiometric powers.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Example: $\text{N}_2 + 3\text{H}_2 \rightleftharpoons 2\text{NH}_3$</div>
+<p>Equilibrium condition: $\mu_{\text{N}_2} + 3\mu_{\text{H}_2} = 2\mu_{\text{NH}_3}$</p>
+<p>Equilibrium constant: $K = \frac{(P_{\text{NH}_3}/P^0)^2}{(P_{\text{N}_2}/P^0)(P_{\text{H}_2}/P^0)^3}$</p>
+<p>Large $K$ → products favored. Small $K$ → reactants favored. $K$ depends only on $T$ (through $\Delta G^0$).</p>
+</div>
+
+<h3>Le Chatelier's Principle</h3>
+<p>When a system at equilibrium is disturbed, it shifts to partially offset the disturbance:</p>
+<table>
+<tr><th>Disturbance</th><th>System Response</th><th>Why</th></tr>
+<tr><td>Add reactant</td><td>Shifts toward products</td><td>To consume excess reactant</td></tr>
+<tr><td>Increase $P$</td><td>Shifts toward fewer gas moles</td><td>To reduce pressure</td></tr>
+<tr><td>Increase $T$</td><td>Shifts in endothermic direction</td><td>To absorb excess heat; $K$ changes with $T$</td></tr>
+</table>
+
+<h3>Dilute Solutions & Osmotic Pressure</h3>
+$$\Delta P = \frac{n_B RT}{V} = i\,n_B \frac{RT}{V}$$
+<p>Van't Hoff formula for osmotic pressure. Solute lowers chemical potential of solvent → solvent flows across semipermeable membrane toward solute side until pressure difference balances.</p>
+
+<!-- ============================================================ -->
+<h2 id="s9">9. Boltzmann Statistics & Partition Function</h2>
+
+<p>This is the most important section for the exam. The 2025 exam had <strong>three</strong> questions (IV, V, VI) that were fundamentally about partition functions.</p>
+
+<h3>Boltzmann Distribution</h3>
+<p>For a system in thermal contact with a reservoir at temperature $T$, the probability of the system being in state $s$ with energy $E(s)$:</p>
+
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$P(s) = \frac{1}{Z}e^{-E(s)/kT}$$
+</div>
+
+<div class="box key">
+<div class="box-title">Where does this come from?</div>
+<p>Consider a small system coupled to a huge reservoir. The probability of the system being in state $s$ is proportional to the reservoir's multiplicity $\Omega_R$. Since adding energy $E(s)$ to the system removes it from the reservoir:</p>
+$$P(s) \propto \Omega_R(U_{\text{total}} - E(s)) = e^{S_R/k} \approx e^{-E(s)/kT}$$
+<p>The Taylor expansion uses $\partial S_R/\partial U_R = 1/T$. This is the Boltzmann factor!</p>
+</div>
+
+<h3>Partition Function $Z$</h3>
+
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$Z = \sum_s e^{-E(s)/kT}$$
+  <p style="font-size:0.85rem; color:var(--dim);">Sum over ALL microstates $s$ (not energy levels — if a level has degeneracy $g$, it appears $g$ times).</p>
+</div>
+
+<!-- SVG: Boltzmann factor / energy level visualization -->
+<div class="fig">
+<svg viewBox="0 0 560 280" width="560" height="280" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="560" height="280" fill="#f8fafc" rx="8"/>
+  <!-- LEFT: Energy levels with occupation -->
+  <text x="140" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">Energy Levels & Occupation</text>
+  <!-- Energy levels -->
+  <line x1="70" y1="240" x2="200" y2="240" stroke="#059669" stroke-width="3"/>
+  <text x="55" y="244" text-anchor="end" font-size="11" fill="#334155">E₀</text>
+  <line x1="70" y1="190" x2="200" y2="190" stroke="#059669" stroke-width="3"/>
+  <text x="55" y="194" text-anchor="end" font-size="11" fill="#334155">E₁</text>
+  <line x1="70" y1="140" x2="200" y2="140" stroke="#059669" stroke-width="3"/>
+  <text x="55" y="144" text-anchor="end" font-size="11" fill="#334155">E₂</text>
+  <line x1="70" y1="90" x2="200" y2="90" stroke="#059669" stroke-width="3"/>
+  <text x="55" y="94" text-anchor="end" font-size="11" fill="#334155">E₃</text>
+  <line x1="70" y1="50" x2="200" y2="50" stroke="#059669" stroke-width="3"/>
+  <text x="55" y="54" text-anchor="end" font-size="11" fill="#334155">E₄</text>
+  <!-- Dots showing occupation (more at bottom) -->
+  <circle cx="100" cy="236" r="6" fill="#3b82f6"/><circle cx="120" cy="236" r="6" fill="#3b82f6"/><circle cx="140" cy="236" r="6" fill="#3b82f6"/><circle cx="160" cy="236" r="6" fill="#3b82f6"/><circle cx="180" cy="236" r="6" fill="#3b82f6"/>
+  <circle cx="110" cy="186" r="6" fill="#3b82f6"/><circle cx="135" cy="186" r="6" fill="#3b82f6"/><circle cx="160" cy="186" r="6" fill="#3b82f6"/>
+  <circle cx="120" cy="136" r="6" fill="#3b82f6"/><circle cx="150" cy="136" r="6" fill="#3b82f6"/>
+  <circle cx="135" cy="86" r="6" fill="#3b82f6"/>
+  <!-- RIGHT: Bar chart of probabilities -->
+  <text x="400" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#334155">P(s) = e^(−E/kT) / Z</text>
+  <!-- Bars -->
+  <rect x="310" y="130" width="150" height="25" rx="3" fill="#3b82f6" opacity="0.7"/>
+  <text x="300" y="147" text-anchor="end" font-size="10" fill="#334155">E₀</text>
+  <rect x="310" y="160" width="100" height="25" rx="3" fill="#3b82f6" opacity="0.6"/>
+  <text x="300" y="177" text-anchor="end" font-size="10" fill="#334155">E₁</text>
+  <rect x="310" y="190" width="60" height="25" rx="3" fill="#3b82f6" opacity="0.5"/>
+  <text x="300" y="207" text-anchor="end" font-size="10" fill="#334155">E₂</text>
+  <rect x="310" y="220" width="30" height="25" rx="3" fill="#3b82f6" opacity="0.4"/>
+  <text x="300" y="237" text-anchor="end" font-size="10" fill="#334155">E₃</text>
+  <rect x="310" y="250" width="12" height="25" rx="3" fill="#3b82f6" opacity="0.3"/>
+  <text x="300" y="267" text-anchor="end" font-size="10" fill="#334155">E₄</text>
+  <!-- Arrow -->
+  <text x="400" y="85" text-anchor="middle" font-size="11" fill="#64748b">Exponential decay:</text>
+  <text x="400" y="100" text-anchor="middle" font-size="11" fill="#64748b">higher E → less probable</text>
+  <text x="400" y="115" text-anchor="middle" font-size="11" fill="#ef4444">Ground state most populated</text>
+</svg>
+<div class="fig-caption">The Boltzmann distribution: probability drops exponentially with energy. At finite $T$, higher states are occupied but with exponentially decreasing probability. The partition function $Z$ normalizes these probabilities.</div>
+</div>
+
+<div class="box tip">
+<div class="box-title">$Z$ as an "effective number of states"</div>
+<p><strong>Low $T$</strong> ($kT \ll$ energy gaps): only the ground state matters, $Z \approx 1$ (or $g_0$ if degenerate).</p>
+<p><strong>High $T$</strong> ($kT \gg$ all energy gaps): all states equally likely, $Z \approx$ total number of states.</p>
+<p>$Z$ interpolates between these limits — it counts how many states are thermally accessible.</p>
+</div>
+
+<h3>Average Energy from $Z$</h3>
+
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label">Two equivalent forms</div>
+  $$\langle E \rangle = \frac{1}{Z}\sum_s E(s)\,e^{-E(s)/kT} = -\frac{1}{Z}\frac{\partial Z}{\partial \beta} = -\frac{\partial \ln Z}{\partial \beta}$$
+  <p style="font-size:0.85rem; color:var(--dim);">where $\beta = 1/kT$. The $\partial/\partial\beta$ trick is extremely useful for calculations.</p>
+</div>
+
+<h3>Key Property: Only Relative Energies Matter</h3>
+<p>If you shift all energies by a constant $E_0$: $E(s) \to E(s) + E_0$, then $Z \to Z \cdot e^{-\beta E_0}$ and probabilities are unchanged (the $e^{-\beta E_0}$ cancels in $P(s) = e^{-\beta E(s)}/Z$). However, $\langle E \rangle$ shifts by $E_0$.</p>
+
+<div class="box exam">
+<div class="box-title">2025 Exam Q V.1: Effect of zero-point energy</div>
+<p>Asked: what happens to $Z$ and thermodynamic quantities if you keep $\hbar\omega/2$ in $E_n = (n+\frac{1}{2})\hbar\omega$? Answer: $Z$ picks up a factor $e^{-\beta\hbar\omega/2}$, $F$ shifts by $+\hbar\omega/2$, $U$ shifts by $+\hbar\omega/2$, but $S$ and $C_V$ are <strong>unchanged</strong> because they depend on derivatives that cancel the constant shift.</p>
+</div>
+
+<h3>Worked Example: Einstein Solid Partition Function</h3>
+<p>Single SHO with $E_n = n\hbar\omega$ (neglecting zero-point energy), $n = 0, 1, 2, \ldots$:</p>
+<div class="step"><span class="step-num">1</span> $Z_1 = \sum_{n=0}^{\infty} e^{-n\beta\hbar\omega} = \frac{1}{1 - e^{-\beta\hbar\omega}}$ (geometric series)</div>
+<div class="step"><span class="step-num">2</span> $\langle E \rangle = -\frac{\partial}{\partial\beta}\ln Z_1 = \frac{\hbar\omega}{e^{\beta\hbar\omega} - 1}$ (Planck distribution)</div>
+<div class="step"><span class="step-num">3</span> For $N$ distinguishable SHOs (they're at fixed lattice sites): $Z_N = Z_1^N$</div>
+<div class="step"><span class="step-num">4</span> Total $\langle E \rangle = N \cdot \frac{\hbar\omega}{e^{\beta\hbar\omega}-1}$, and $C_V = \frac{\partial\langle E\rangle}{\partial T}$</div>
+
+<h3>Rotational Partition Function</h3>
+<p>Diatomic molecule with rotational energy $E_j = j(j+1)\epsilon$ where $\epsilon = \hbar^2/(8\pi^2 I)$, and degeneracy $2j+1$:</p>
+$$Z_{\text{rot}} = \sum_{j=0}^{\infty}(2j+1)\,e^{-j(j+1)\epsilon/kT}$$
+
+<p>At high $T$ ($kT \gg \epsilon$): $Z_{\text{rot}} \approx kT/\epsilon$ (heteronuclear like HCl) or $kT/2\epsilon$ (homonuclear like H$_2$, N$_2$ — divide by 2 for identical nuclei).</p>
+<p>Average rotational energy: $\langle E_{\text{rot}}\rangle = kT$ per molecule (2 DOF × $\frac{1}{2}kT$).</p>
+
+<!-- ============================================================ -->
+<h2 id="s10">10. From $Z$ to Thermodynamics: The Master Framework</h2>
+
+<p>This is the punchline of statistical mechanics: <strong>if you know $Z$, you know everything</strong>.</p>
+
+<h3>The Bridge Equation</h3>
+<div class="formula-card" style="max-width:400px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$\boxed{F = -kT\ln Z}$$
+  <p style="font-size:0.85rem; color:var(--dim);">This connects microscopic physics (partition function) to macroscopic thermodynamics (free energy). Everything else follows.</p>
+</div>
+
+<h3>Proof sketch (know this!)</h3>
+<p>Start from Gibbs entropy $S = -k\sum P(s)\ln P(s)$, substitute $P(s) = e^{-\beta E_s}/Z$:</p>
+$$S = -k\sum P(s)\bigl[-\beta E_s - \ln Z\bigr] = k\beta\langle E\rangle + k\ln Z = \frac{U}{T} + k\ln Z$$
+<p>Rearranging: $TS = U + kT\ln Z$, so $F = U - TS = -kT\ln Z$.</p>
+
+<h3>Everything from $F = -kT\ln Z$</h3>
+<p>Once you have $F$, take partial derivatives to get <strong>all</strong> thermodynamic quantities:</p>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Entropy <span class="tag onsheet">ON SHEET</span></div>
+  $$S = -\left(\frac{\partial F}{\partial T}\right)_{V,N}$$
+</div>
+<div class="formula-card">
+  <div class="label">Pressure <span class="tag onsheet">ON SHEET</span></div>
+  $$P = -\left(\frac{\partial F}{\partial V}\right)_{T,N}$$
+</div>
+</div>
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Chemical potential <span class="tag onsheet">ON SHEET</span></div>
+  $$\mu = \left(\frac{\partial F}{\partial N}\right)_{T,V}$$
+</div>
+<div class="formula-card">
+  <div class="label">Internal energy</div>
+  $$U = F + TS = -\frac{\partial}{\partial\beta}\ln Z$$
+</div>
+</div>
+
+<div class="box exam">
+<div class="box-title">2025 Exam pattern: "derive all properties from $Z$"</div>
+<p>Q IV asked: calculate $Z$ for Einstein solid → find $\langle E\rangle$ → find $\langle E^2\rangle$ → show $\sigma_E^2$ relates to $C_V$.</p>
+<p>Q VI asked: use formulas on cheat sheet to find $F(T,V,N)$ → derive $P$ (recover ideal gas law) → go backwards to find $Z(T,V,N)$.</p>
+<p><strong>Practice the chain: write down $Z$ → compute $F = -kT\ln Z$ → take derivatives to get $S$, $P$, $U$, $\mu$.</strong></p>
+</div>
+
+<h3>Distinguishable vs. Indistinguishable Particles</h3>
+<p>For $N$ non-interacting particles with single-particle partition function $Z_1$:</p>
+
+<div class="formula-grid">
+<div class="formula-card">
+  <div class="label">Distinguishable <span class="tag onsheet">ON SHEET</span></div>
+  $$Z_{\text{total}} = Z_A Z_B Z_C \cdots Z_N = Z_1^N$$
+  <p style="font-size:0.85rem; color:var(--dim);">Use for: Einstein solid (oscillators at fixed lattice sites), paramagnets</p>
+</div>
+<div class="formula-card">
+  <div class="label">Indistinguishable <span class="tag onsheet">ON SHEET</span></div>
+  $$Z_{\text{total}} = \frac{1}{N!}Z_1^N$$
+  <p style="font-size:0.85rem; color:var(--dim);">Use for: ideal gas (atoms free to swap). The $N!$ corrects for overcounting.</p>
+</div>
+</div>
+
+<div class="box warn">
+<div class="box-title">How to decide: distinguishable or indistinguishable?</div>
+<p><strong>Can you tell the particles apart?</strong> If they're stuck at fixed, labeled sites (solid lattice) → distinguishable. If they're freely moving and identical (gas) → indistinguishable. The $1/N!$ factor is essential — without it, the entropy of an ideal gas is not extensive (Gibbs paradox).</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s11">11. Maxwell-Boltzmann Speed Distribution</h2>
+
+<h3>From Velocity Vectors to Speed</h3>
+<p>Each velocity vector $(v_x, v_y, v_z)$ is a distinct microstate. The Boltzmann factor gives the probability of each:</p>
+$$P(\vec{v}) \propto e^{-mv^2/2kT}, \qquad v = |\vec{v}| = \sqrt{v_x^2+v_y^2+v_z^2}$$
+
+<p>But we usually care about <strong>speed</strong>, not direction. The number of velocity vectors with speed between $v$ and $v+dv$ is the surface area of a sphere of radius $v$ in velocity space: $4\pi v^2\,dv$. This "degeneracy factor" competes with the Boltzmann factor:</p>
+
+<div class="formula-card" style="max-width:550px; margin: 1rem auto;">
+  <div class="label">Maxwell-Boltzmann speed distribution</div>
+  $$P(v) = \left(\frac{m}{2\pi kT}\right)^{3/2} 4\pi v^2\, e^{-mv^2/2kT}$$
+</div>
+
+<!-- SVG: MB distribution -->
+<div class="fig">
+<svg viewBox="0 0 500 250" width="500" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="500" height="250" fill="#f8fafc" rx="8"/>
+  <!-- Axes -->
+  <line x1="50" y1="210" x2="470" y2="210" stroke="#334155" stroke-width="1.5"/>
+  <line x1="50" y1="210" x2="50" y2="20" stroke="#334155" stroke-width="1.5"/>
+  <text x="260" y="240" text-anchor="middle" font-size="13" fill="#334155">v</text>
+  <text x="25" y="115" text-anchor="middle" font-size="13" fill="#334155" transform="rotate(-90,25,115)">P(v)</text>
+  <!-- Curve: starts at 0, rises parabolically, peaks, decays exponentially -->
+  <path d="M50,210 Q65,210 80,205 Q110,175 150,115 Q175,70 200,55 Q230,50 260,65 Q310,95 360,145 Q400,175 440,198 L470,205" fill="none" stroke="#059669" stroke-width="2.5"/>
+  <!-- v_p marker -->
+  <line x1="210" y1="50" x2="210" y2="210" stroke="#ef4444" stroke-width="1" stroke-dasharray="4"/>
+  <text x="210" y="225" text-anchor="middle" font-size="11" fill="#ef4444">v_p</text>
+  <!-- v_avg marker -->
+  <line x1="250" y1="62" x2="250" y2="210" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4"/>
+  <text x="250" y="225" text-anchor="middle" font-size="11" fill="#3b82f6">v̄</text>
+  <!-- v_rms marker -->
+  <line x1="280" y1="78" x2="280" y2="210" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="4"/>
+  <text x="280" y="225" text-anchor="middle" font-size="11" fill="#8b5cf6">v_rms</text>
+  <!-- Labels -->
+  <text x="100" y="195" font-size="10" fill="#64748b">∝ v²</text>
+  <text x="390" y="160" font-size="10" fill="#64748b">∝ e^(-mv²/2kT)</text>
+</svg>
+<div class="fig-caption">Maxwell-Boltzmann distribution: the $v^2$ factor pushes the peak away from zero, while the exponential kills the tail. Always $v_p < \bar{v} < v_{\text{rms}}$.</div>
+</div>
+
+<h3>Three Characteristic Speeds</h3>
+<table>
+<tr><th>Speed</th><th>Definition</th><th>Formula</th></tr>
+<tr><td>Most probable $v_p$</td><td>$dP/dv = 0$</td><td>$\displaystyle v_p = \sqrt{\frac{2kT}{m}}$</td></tr>
+<tr><td>Average $\bar{v}$</td><td>$\int_0^\infty v\,P(v)\,dv$</td><td>$\displaystyle \bar{v} = \sqrt{\frac{8kT}{\pi m}}$</td></tr>
+<tr><td>RMS $v_{\text{rms}}$</td><td>$\sqrt{\langle v^2\rangle}$</td><td>$\displaystyle v_{\text{rms}} = \sqrt{\frac{3kT}{m}}$</td></tr>
+</table>
+
+<div class="box key">
+<div class="box-title">Why $v_p \neq 0$ even though most likely velocity vector is $\vec{0}$?</div>
+<p>The most probable <em>velocity vector</em> is indeed $\vec{v} = 0$ (Boltzmann factor maximized). But the most probable <em>speed</em> $v_p > 0$ because there are far more velocity vectors with speed $v$ (proportional to $4\pi v^2$) than with speed $0$ (just one vector). The degeneracy wins at small $v$.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s12">12. Ideal Gas from the Partition Function</h2>
+
+<p>The crown jewel: deriving <strong>everything</strong> about the ideal gas from first principles, using only $Z$.</p>
+
+<h3>Single Atom in a Box</h3>
+<p>Particle in a 3D box of side $L$ ($V = L^3$), energy levels:</p>
+$$E = \frac{h^2}{8mL^2}(n_x^2 + n_y^2 + n_z^2), \qquad n_x, n_y, n_z = 1, 2, 3, \ldots$$
+
+<p>Converting the sum to an integral (valid when $kT \gg$ level spacing):</p>
+$$Z_1 = \int_0^\infty\int_0^\infty\int_0^\infty e^{-\beta h^2(n_x^2+n_y^2+n_z^2)/8mL^2}\,dn_x\,dn_y\,dn_z = \left(\sqrt{\frac{2\pi mkT}{h^2}}\cdot L\right)^3 = \frac{V}{v_q}$$
+
+<h3>Quantum Volume</h3>
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$v_q = \left(\sqrt{\frac{h^2}{2\pi mkT}}\right)^3$$
+  <p style="font-size:0.85rem; color:var(--dim);">The "quantum volume" — volume of a cube with side = thermal de Broglie wavelength. It's the volume per quantum state for a particle with thermal energy $kT$.</p>
+</div>
+
+<div class="box tip">
+<div class="box-title">Physical meaning of $Z_1 = V/v_q$</div>
+<p>$Z_1$ counts how many de Broglie wavelength cubes fit in the box — the number of thermally accessible translational states. For the classical (Boltzmann) limit to hold, we need $V/N \gg v_q$: each particle has many available states. If $V/N \lesssim v_q$, wavefunctions overlap and we need quantum statistics (Bose-Einstein or Fermi-Dirac).</p>
+</div>
+
+<h3>$N$-Atom Partition Function</h3>
+<div class="formula-card" style="max-width:500px; margin: 1rem auto;">
+  <div class="label"><span class="tag onsheet">ON SHEET</span></div>
+  $$Z_N = \frac{1}{N!}\left(\frac{V\,Z_{\text{int}}}{v_q}\right)^N$$
+  <p style="font-size:0.85rem; color:var(--dim);">$Z_{\text{int}}$ accounts for internal DOF (rotation, vibration). For monatomic gas, $Z_{\text{int}} = 1$.</p>
+</div>
+
+<h3>Deriving Everything from $Z_N$</h3>
+<p>Using Stirling's ($\ln N! \approx N\ln N - N$):</p>
+$$F = -kT\ln Z_N = -NkT\bigl[\ln V - \ln N - \ln v_q + 1\bigr] + F_{\text{int}}$$
+
+<div class="step"><span class="step-num">P</span> <strong>Pressure</strong>: $P = -\left(\frac{\partial F}{\partial V}\right)_{T,N} = \frac{NkT}{V}$ → <strong>ideal gas law recovered!</strong></div>
+
+<div class="step"><span class="step-num">S</span> <strong>Entropy</strong>: $S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = Nk\left[\ln\left(\frac{V}{Nv_q}\right) + \frac{5}{2}\right] - \frac{\partial F_{\text{int}}}{\partial T}$ → <strong>Sackur-Tetrode recovered!</strong></div>
+
+<div class="step"><span class="step-num">U</span> <strong>Energy</strong>: $U = -\frac{\partial}{\partial\beta}\ln Z = U_{\text{int}} + \frac{3}{2}NkT$ → translational KE is always $\frac{3}{2}NkT$</div>
+
+<div class="step"><span class="step-num">μ</span> <strong>Chemical potential</strong>: $\mu = \left(\frac{\partial F}{\partial N}\right)_{T,V} = -kT\ln\!\left(\frac{V Z_{\text{int}}}{N v_q}\right)$</div>
+
+<div class="step"><span class="step-num">C</span> <strong>Heat capacity</strong>: $C_V = \frac{\partial U}{\partial T} = \frac{\partial U_{\text{int}}}{\partial T} + \frac{3}{2}Nk$</div>
+
+<div class="box exam">
+<div class="box-title">This derivation chain appeared directly on the 2025 exam (Q VI)</div>
+<p>That question asked: (a) find $F(T,V,N)$ using the formula sheet, (b) show $P = NkT/V$, (c) find $Z(T,V,N)$ from $F$. <strong>Practice this chain until it's automatic.</strong></p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s13">13. Master Formula Map & Decision Trees</h2>
+
+<!-- SVG: Z → F → Everything flowchart -->
+<div class="fig">
+<svg viewBox="0 0 560 350" width="560" height="350" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="560" height="350" fill="#f8fafc" rx="8"/>
+  <!-- Z box -->
+  <rect x="200" y="15" width="160" height="50" rx="10" fill="#059669" stroke="#047857" stroke-width="2"/>
+  <text x="280" y="38" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Z = Σ e^(−βE)</text>
+  <text x="280" y="55" text-anchor="middle" font-size="11" fill="#d1fae5">Partition Function</text>
+  <!-- Arrow Z → F -->
+  <line x1="280" y1="65" x2="280" y2="95" stroke="#334155" stroke-width="2" marker-end="url(#flowArrow)"/>
+  <text x="340" y="85" font-size="11" fill="#059669" font-weight="bold">F = −kT ln Z</text>
+  <!-- F box -->
+  <rect x="200" y="95" width="160" height="45" rx="10" fill="#6366f1" stroke="#4f46e5" stroke-width="2"/>
+  <text x="280" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="white">F (Helmholtz)</text>
+  <text x="280" y="132" text-anchor="middle" font-size="10" fill="#e0e7ff">Free Energy</text>
+  <!-- Branches from F -->
+  <!-- S branch -->
+  <line x1="215" y1="140" x2="80" y2="190" stroke="#334155" stroke-width="1.5" marker-end="url(#flowArrow)"/>
+  <rect x="20" y="190" width="120" height="40" rx="8" fill="#3b82f6" opacity="0.15" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="80" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">S = −∂F/∂T</text>
+  <text x="80" y="224" text-anchor="middle" font-size="10" fill="#3b82f6">Entropy</text>
+  <!-- P branch -->
+  <line x1="240" y1="140" x2="185" y2="190" stroke="#334155" stroke-width="1.5" marker-end="url(#flowArrow)"/>
+  <rect x="130" y="190" width="120" height="40" rx="8" fill="#059669" opacity="0.15" stroke="#059669" stroke-width="1.5"/>
+  <text x="190" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#047857">P = −∂F/∂V</text>
+  <text x="190" y="224" text-anchor="middle" font-size="10" fill="#059669">Pressure</text>
+  <!-- μ branch -->
+  <line x1="320" y1="140" x2="375" y2="190" stroke="#334155" stroke-width="1.5" marker-end="url(#flowArrow)"/>
+  <rect x="315" y="190" width="120" height="40" rx="8" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="375" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">μ = ∂F/∂N</text>
+  <text x="375" y="224" text-anchor="middle" font-size="10" fill="#b45309">Chem. Potential</text>
+  <!-- U branch -->
+  <line x1="345" y1="140" x2="480" y2="190" stroke="#334155" stroke-width="1.5" marker-end="url(#flowArrow)"/>
+  <rect x="425" y="190" width="120" height="40" rx="8" fill="#ef4444" opacity="0.15" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="485" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">U = F + TS</text>
+  <text x="485" y="224" text-anchor="middle" font-size="10" fill="#ef4444">Internal Energy</text>
+  <!-- C_V from U -->
+  <line x1="485" y1="230" x2="485" y2="270" stroke="#334155" stroke-width="1.5" marker-end="url(#flowArrow)"/>
+  <rect x="425" y="270" width="120" height="40" rx="8" fill="#8b5cf6" opacity="0.15" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="485" y="290" text-anchor="middle" font-size="12" font-weight="bold" fill="#6d28d9">C_V = ∂U/∂T</text>
+  <text x="485" y="304" text-anchor="middle" font-size="10" fill="#8b5cf6">Heat Capacity</text>
+  <!-- Also ⟨E⟩ from Z directly -->
+  <path d="M360,40 Q440,40 480,70 Q510,95 510,130 L510,185" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#flowArrow)"/>
+  <text x="505" y="120" font-size="10" fill="#ef4444">or: −∂(ln Z)/∂β</text>
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="flowArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#334155"/></marker>
+  </defs>
+</svg>
+<div class="fig-caption">The master flowchart of statistical mechanics: once you have $Z$, take $F = -kT\ln Z$, then all thermodynamic quantities follow from partial derivatives. This is the single most important workflow for the exam.</div>
+</div>
+
+<h3>The Grand Chain: $Z \to F \to$ Everything</h3>
+<div class="box key">
+<div class="box-title">Statistical Mechanics workflow</div>
+<div class="step"><span class="step-num">1</span> <strong>Identify the system</strong>: What are the microstates? What are their energies $E(s)$?</div>
+<div class="step"><span class="step-num">2</span> <strong>Compute $Z$</strong>: Sum $e^{-\beta E(s)}$ over all microstates. Use tricks: geometric series, Gaussian integrals, etc.</div>
+<div class="step"><span class="step-num">3</span> <strong>Get $F$</strong>: $F = -kT\ln Z$</div>
+<div class="step"><span class="step-num">4</span> <strong>Take derivatives</strong>: $S = -\partial F/\partial T$, $P = -\partial F/\partial V$, $\mu = \partial F/\partial N$</div>
+<div class="step"><span class="step-num">5</span> <strong>Reconstruct $U$</strong>: $U = F + TS$ or $U = -\partial\ln Z/\partial\beta$</div>
+<div class="step"><span class="step-num">6</span> <strong>Heat capacity</strong>: $C_V = \partial U/\partial T$</div>
+</div>
+
+<h3>Decision Tree: "Which formula do I use?"</h3>
+
+<div class="connection">
+<div class="connection-title">Given a thermodynamics problem, ask:</div>
+
+<p><strong>1. Is it about equilibrium between phases?</strong><br/>
+→ Use $G$: phases coexist when $G_1 = G_2$. Clausius-Clapeyron for coexistence line slope.</p>
+
+<p><strong>2. Is it about a chemical reaction?</strong><br/>
+→ Use $\Delta G^0$ and $K = e^{-\Delta G^0/RT}$. Le Chatelier for qualitative predictions.</p>
+
+<p><strong>3. Is it about a heat engine or cycle?</strong><br/>
+→ Draw the PV or TS diagram. Calculate $W$ and $Q$ for each step. Efficiency = $W/Q_H$. For Rankine, use enthalpies from the sheet.</p>
+
+<p><strong>4. Is it about statistical mechanics / partition function?</strong><br/>
+→ Write down $Z$. Use $F = -kT\ln Z$, then take derivatives. Remember: distinguishable → $Z_1^N$, indistinguishable → $Z_1^N/N!$.</p>
+
+<p><strong>5. Is it about entropy or probability?</strong><br/>
+→ Count microstates → $S = k\ln\Omega$. Or use Boltzmann: $P(s) = e^{-E(s)/kT}/Z$.</p>
+
+<p><strong>6. Is it a "show that" or "derive" problem?</strong><br/>
+→ Start from a fundamental identity (thermodynamic identity, $F = -kT\ln Z$, or $S = k\ln\Omega$) and manipulate.</p>
+</div>
+
+<h3>Common Mathematical Tricks</h3>
+<table>
+<tr><th>Trick</th><th>Formula</th><th>Where used</th></tr>
+<tr><td>Geometric series</td><td>$\sum_{n=0}^\infty x^n = \frac{1}{1-x}$ for $|x|<1$</td><td>SHO partition function ($x = e^{-\beta\hbar\omega}$)</td></tr>
+<tr><td>Gaussian integral</td><td>$\int_0^\infty e^{-\alpha x^2}dx = \frac{1}{2}\sqrt{\pi/\alpha}$</td><td>Ideal gas $Z_1$, Maxwell-Boltzmann <span class="tag onsheet">ON SHEET</span></td></tr>
+<tr><td>$\beta$-derivative trick</td><td>$\langle E\rangle = -\partial\ln Z/\partial\beta$</td><td>Finding average energy from any $Z$</td></tr>
+<tr><td>Stirling's approx</td><td>$\ln N! \approx N\ln N - N$</td><td>$Z_N$ for ideal gas, multiplicity <span class="tag onsheet">ON SHEET</span></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="s14">14. 2025 Final Exam — Thermal Questions Walkthrough</h2>
+
+<p>The 2025 exam had three thermal questions (IV, V, VI) worth 100/200 marks total. Here's exactly what was asked and how to solve each one. <strong>Same professor, same style expected for 2026.</strong></p>
+
+<h3>Q IV: Energy Fluctuations in the Einstein Solid (38 marks)</h3>
+
+<p>Setup: $N$ simple harmonic oscillators at temperature $T$, $\beta = 1/kT$, energy $E = n\hbar\omega$, $n = 0, 1, 2, \ldots$ (zero-point energy neglected).</p>
+
+<div class="box key">
+<div class="box-title">(a) Calculate $Z$ and $\langle E\rangle$. Should the $N$ SHOs be distinguishable or not? [9 marks]</div>
+<div class="step"><span class="step-num">1</span> Single SHO: $Z_1 = \sum_{n=0}^{\infty} e^{-n\beta\hbar\omega} = \frac{1}{1-e^{-\beta\hbar\omega}}$ (geometric series with $x = e^{-\beta\hbar\omega}$)</div>
+<div class="step"><span class="step-num">2</span> <strong>Distinguishable</strong> — SHOs sit at fixed lattice sites, so $Z_N = Z_1^N$ (no $1/N!$)</div>
+<div class="step"><span class="step-num">3</span> $\langle E\rangle = -\frac{\partial}{\partial\beta}\ln Z_N = -N\frac{\partial}{\partial\beta}\ln Z_1 = N\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}$</div>
+<p><strong>Key insight:</strong> lattice oscillators are distinguishable because each one is at a specific, labeled position. Gas atoms are indistinguishable because they can swap.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">(b) Find $\langle E^2\rangle$ [10 marks]</div>
+<div class="step"><span class="step-num">1</span> For a single SHO: $\langle E^2\rangle_1 = \frac{1}{Z_1}\sum_{n=0}^{\infty}(n\hbar\omega)^2 e^{-n\beta\hbar\omega} = \frac{1}{Z_1}\frac{\partial^2 Z_1}{\partial\beta^2}$</div>
+<div class="step"><span class="step-num">2</span> For $N$ SHOs: use $\langle E^2\rangle = \frac{1}{Z}\frac{\partial^2 Z}{\partial\beta^2}$. Be careful: $\langle E^2\rangle \neq N\langle E^2\rangle_1$ because $E_{\text{total}} = \sum E_i$ and $\langle(\sum E_i)^2\rangle$ includes cross terms.</div>
+<div class="step"><span class="step-num">3</span> Alternative approach: $\langle E^2\rangle = \frac{\partial^2}{\partial\beta^2}\ln Z + \left(\frac{\partial}{\partial\beta}\ln Z\right)^2$. The second term is $\langle E\rangle^2$.</div>
+</div>
+
+<div class="box key">
+<div class="box-title">(c) Show $\sigma_E^2 = kT^2 C_V$ [10 marks]</div>
+<div class="step"><span class="step-num">1</span> Variance: $\sigma_E^2 = \langle E^2\rangle - \langle E\rangle^2 = \frac{\partial^2}{\partial\beta^2}\ln Z$</div>
+<div class="step"><span class="step-num">2</span> But $\langle E\rangle = -\frac{\partial}{\partial\beta}\ln Z$, so $\sigma_E^2 = -\frac{\partial\langle E\rangle}{\partial\beta}$</div>
+<div class="step"><span class="step-num">3</span> Convert: $\frac{\partial}{\partial\beta} = \frac{\partial T}{\partial\beta}\frac{\partial}{\partial T} = -kT^2\frac{\partial}{\partial T}$</div>
+<div class="step"><span class="step-num">4</span> So $\sigma_E^2 = kT^2\frac{\partial\langle E\rangle}{\partial T} = kT^2 C_V$ ✓</div>
+<p><strong>This is a fundamental result:</strong> energy fluctuations are directly related to heat capacity. Larger $C_V$ → larger fluctuations.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">(d) How does $\sigma_E/\langle E\rangle$ behave in the thermodynamic limit? [9 marks]</div>
+<div class="step"><span class="step-num">1</span> $\langle E\rangle \propto N$ and $C_V \propto N$, so $\sigma_E^2 = kT^2 C_V \propto N$</div>
+<div class="step"><span class="step-num">2</span> Therefore $\sigma_E \propto \sqrt{N}$</div>
+<div class="step"><span class="step-num">3</span> The relative fluctuation: $\frac{\sigma_E}{\langle E\rangle} \propto \frac{\sqrt{N}}{N} = \frac{1}{\sqrt{N}} \to 0$ as $N \to \infty$</div>
+<p><strong>Why it matters:</strong> For $N \sim 10^{23}$, relative fluctuations are $\sim 10^{-12}$. The average energy is essentially the <em>exact</em> energy — this is why thermodynamics works! We can replace fluctuating microscopic quantities with their averages and get correct macroscopic predictions.</p>
+</div>
+
+<h3>Q V: Three Short Questions (22 marks)</h3>
+
+<div class="box key">
+<div class="box-title">V.1: What if we keep zero-point energy $\hbar\omega/2$? [9 marks]</div>
+<p>With zero-point energy: $E_n = (n + \frac{1}{2})\hbar\omega = n\hbar\omega + \frac{1}{2}\hbar\omega$</p>
+<div class="step"><span class="step-num">1</span> $Z_{\text{new}} = \sum e^{-\beta(n+1/2)\hbar\omega} = e^{-\beta\hbar\omega/2}\sum e^{-n\beta\hbar\omega} = e^{-\beta\hbar\omega/2} \cdot Z_{\text{old}}$</div>
+<div class="step"><span class="step-num">2</span> $F_{\text{new}} = -kT\ln Z_{\text{new}} = F_{\text{old}} + \frac{N\hbar\omega}{2}$ (shifted by a constant in $T$)</div>
+<div class="step"><span class="step-num">3</span> $U_{\text{new}} = U_{\text{old}} + \frac{N\hbar\omega}{2}$ (shifted)</div>
+<div class="step"><span class="step-num">4</span> But $S = -\partial F/\partial T$ and $C_V = \partial U/\partial T$ are <strong>unchanged</strong> — the constant $N\hbar\omega/2$ doesn't depend on $T$, so it vanishes under differentiation.</div>
+<p><strong>Bottom line:</strong> $Z$, $F$, and $U$ change; $S$, $C_V$, and $P$ are unaffected. Only quantities that depend on the <em>absolute</em> energy scale are shifted. Quantities from derivatives with respect to $T$ or $V$ are immune.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">V.2: Most likely speed in $d$ dimensions [7 marks]</div>
+<p>In $d$ dimensions, the speed distribution becomes $P(v) \propto v^{d-1} e^{-mv^2/2kT}$:</p>
+<div class="step"><span class="step-num">1</span> The $v^{d-1}$ replaces $v^2$ (surface area of a $d$-dimensional sphere scales as $v^{d-1}$)</div>
+<div class="step"><span class="step-num">2</span> Set $dP/dv = 0$: $(d-1)v^{d-2}e^{-mv^2/2kT} + v^{d-1}\cdot(-mv/kT)e^{-mv^2/2kT} = 0$</div>
+<div class="step"><span class="step-num">3</span> Simplify: $(d-1) = mv_p^2/kT$, so $v_p^2 = (d-1)kT/m$</div>
+<div class="step"><span class="step-num">4</span> Ratio: $\frac{v_{p,d=3}^2}{v_{p,d=2}^2} = \frac{2kT/m}{kT/m} = 2$, so $\frac{v_{p,d=3}}{v_{p,d=2}} = \sqrt{2}$</div>
+<p><strong>Note:</strong> For 3D this gives $v_p = \sqrt{2kT/m}$, matching the standard Maxwell-Boltzmann result.</p>
+</div>
+
+<div class="box key">
+<div class="box-title">V.3: Classical-to-quantum transition temperature ratio [6 marks]</div>
+<p>Classical limit breaks down when $V/N \sim v_q$ (particle spacing ≈ de Broglie wavelength). For $N$ particles in "volume" $L^d$:</p>
+<div class="step"><span class="step-num">1</span> Particle spacing: $(L^d/N)^{1/d} = L/N^{1/d}$</div>
+<div class="step"><span class="step-num">2</span> Thermal de Broglie wavelength: $\lambda \sim h/\sqrt{mkT}$, so $v_q \sim (h^2/2\pi mkT)^{d/2}$</div>
+<div class="step"><span class="step-num">3</span> Transition when $L^d/N \sim v_q$: $kT_c \sim \frac{h^2}{2\pi m}\left(\frac{N}{L^d}\right)^{2/d}$</div>
+<div class="step"><span class="step-num">4</span> For same $N$, $m$, and $L$: $\frac{T_{c,d=3}}{T_{c,d=2}} = \frac{(N/L^3)^{2/3}}{(N/L^2)^{2/2}} = \frac{N^{2/3}/L^2}{N/L^2} = N^{-1/3}$</div>
+<p>For macroscopic $N \sim 10^{23}$, this ratio is tiny — the 3D gas becomes quantum at a much lower temperature than the 2D gas at the same density.</p>
+</div>
+
+<h3>Q VI: Ideal Gas the Boltzmann Way (40 marks)</h3>
+
+<div class="box key">
+<div class="box-title">(a) Find $F(T,V,N)$ for a monatomic ideal gas [7 marks]</div>
+<p>Use the formulas directly from the cheat sheet:</p>
+<div class="step"><span class="step-num">1</span> $Z_N = \frac{1}{N!}\left(\frac{V}{v_q}\right)^N$ where $v_q = \left(\sqrt{\frac{h^2}{2\pi mkT}}\right)^3$ (both on sheet)</div>
+<div class="step"><span class="step-num">2</span> $F = -kT\ln Z_N = -kT\left[N\ln\left(\frac{V}{v_q}\right) - \ln(N!)\right]$</div>
+<div class="step"><span class="step-num">3</span> Apply Stirling's ($\ln N! \approx N\ln N - N$, on sheet):</div>
+$$\boxed{F = -NkT\left[\ln V - \ln N - \ln v_q + 1\right]}$$
+</div>
+
+<div class="box key">
+<div class="box-title">(b) Show that $P$ from $F$ gives the ideal gas law [4 marks]</div>
+<div class="step"><span class="step-num">1</span> $P = -\left(\frac{\partial F}{\partial V}\right)_{T,N}$ (on sheet)</div>
+<div class="step"><span class="step-num">2</span> Only the $\ln V$ term in $F$ depends on $V$:</div>
+$$P = -(-NkT \cdot \frac{1}{V}) = \frac{NkT}{V} \qquad \Rightarrow \qquad PV = NkT \quad \checkmark$$
+</div>
+
+<div class="box key">
+<div class="box-title">(c) Find $Z(T,V,N)$ from $F$ [6 marks]</div>
+<p>Going backwards from $F = -kT\ln Z$:</p>
+$$Z = e^{-F/kT} = e^{N[\ln V - \ln N - \ln v_q + 1]} = \frac{e^N}{N^N}\left(\frac{V}{v_q}\right)^N$$
+<p>Note: by Stirling's, $e^N/N^N \approx 1/(N!/e^N \cdot ...) $ — this recovers $Z_N = \frac{1}{N!}(V/v_q)^N$ up to Stirling's precision.</p>
+</div>
+
+<div class="box warn">
+<div class="box-title">Key takeaway from Q VI</div>
+<p>This entire question is solvable by chaining formulas on the cheat sheet. You need to know: (1) which formula to start with, (2) Stirling's approximation, and (3) how to take partial derivatives of $F$. No deep physics intuition required — just fluency with the formula sheet.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="s15">15. Predicted 2026 Exam Questions</h2>
+
+<p>Based on the 2025 exam, lecture emphasis, problem sets, and quiz, here are the question types most likely to appear:</p>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 1: Partition function calculation (HIGH probability)</div>
+<p><strong>Why:</strong> The 2025 exam devoted ~50% of thermal marks to partition functions (Q IV, V, VI). This year's lectures also culminated with this topic.</p>
+<p><strong>Likely format:</strong> Given a system with specific energy levels (e.g., two-level system, harmonic oscillator, rotational levels, or a novel system), compute $Z$, then derive $\langle E\rangle$, $F$, $S$, or $C_V$.</p>
+<p><strong>Variants to prepare for:</strong></p>
+<p>• Einstein solid with zero-point energy included vs. excluded</p>
+<p>• Two-level system: $E = 0$ and $E = \epsilon$, find $Z$, $\langle E\rangle$, $C_V$ (Schottky anomaly)</p>
+<p>• System with degeneracy: e.g., $g_0 = 1$ ground state, $g_1 = 3$ excited states at energy $\epsilon$</p>
+<p>• Rotational partition function of a diatomic molecule → average energy → heat capacity</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 2: Ideal gas from $Z$ — the full chain (HIGH probability)</div>
+<p><strong>Why:</strong> This appeared directly as Q VI in 2025 and is the grand unification of the course.</p>
+<p><strong>Likely format:</strong> Use $Z_N = \frac{1}{N!}(V/v_q)^N$ to derive $F$, then show it gives PV=NkT, Sackur-Tetrode, $U = \frac{3}{2}NkT$, etc.</p>
+<p><strong>Twist to expect:</strong> May give a modified ideal gas (e.g., 2D gas in area $A$, or gas with internal DOF like $Z_{\text{int}}$) and ask you to find modified thermodynamic properties.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 3: Energy fluctuations and $C_V$ (MEDIUM-HIGH probability)</div>
+<p><strong>Why:</strong> Appeared in 2025 Q IV(c-d). Tests deeper understanding of the connection between fluctuations and response functions.</p>
+<p><strong>Key relation:</strong> $\sigma_E^2 = \langle E^2\rangle - \langle E\rangle^2 = kT^2 C_V$</p>
+<p><strong>Likely follow-up:</strong> In the thermodynamic limit ($N \to \infty$), $\sigma_E/\langle E\rangle \propto 1/\sqrt{N} \to 0$ — fluctuations become negligible relative to the mean, justifying the use of average quantities.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 4: Phase equilibrium / Clausius-Clapeyron (MEDIUM probability)</div>
+<p><strong>Why:</strong> Major topic in L13, not tested in 2025 → likely to appear this year.</p>
+<p><strong>Likely format:</strong> Given latent heat and density data for a substance, find slope of coexistence line. Or: explain why ice melts under pressure. Or: use Gibbs energy curves to determine which phase is stable.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 5: Chemical equilibrium / $K$ calculation (MEDIUM probability)</div>
+<p><strong>Why:</strong> Covered in L14, $K = e^{-\Delta G^0/RT}$ is on the formula sheet, and Le Chatelier is conceptually rich.</p>
+<p><strong>Likely format:</strong> Given $\Delta G^0$ for a reaction, find $K$. Predict shift in equilibrium when conditions change. Calculate pH from $K_w$.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 6: Maxwell-Boltzmann speed distribution (MEDIUM probability)</div>
+<p><strong>Why:</strong> Appeared in 2025 Q V.2 (most likely speed in $d$ dimensions). Clear exam favorite.</p>
+<p><strong>Likely format:</strong> Derive $v_p$, compute $\bar{v}$, or generalize to $d$ dimensions. The key insight: $P(v) \propto v^{d-1} e^{-mv^2/2kT}$, and set $dP/dv = 0$ to find the most probable speed.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 7: Entropy and multiplicity (LOWER probability for a full question)</div>
+<p><strong>Why:</strong> More elementary material, likely tested on midterm/quiz already. But could appear as a sub-part.</p>
+<p><strong>Topics to review:</strong> Einstein solid multiplicity, Stirling's approximation, "what direction does heat flow?" using $\partial S/\partial U = 1/T$.</p>
+</div>
+
+<div class="box exam">
+<div class="box-title">PREDICTION 8: Heat engine / Rankine cycle (LOWER probability)</div>
+<p><strong>Why:</strong> More applied/engineering. Rankine COP is on the formula sheet, suggesting it could appear.</p>
+<p><strong>If it appears:</strong> Likely a "calculate the efficiency of this cycle" problem with a PV or TS diagram. Know how to compute $W$ and $Q$ for each step type (isothermal, adiabatic, isobaric, isochoric).</p>
+</div>
+
+<hr/>
+
+<h3>Top 5 Things to Practice the Night Before</h3>
+<div class="box key">
+<div class="box-title">Your final checklist</div>
+<div class="step"><span class="step-num">1</span> <strong>$Z$ → $F$ → everything chain</strong>: Given any $Z$, can you get $F$, $S$, $P$, $U$, $C_V$, $\mu$? Do this for SHO, two-level system, and ideal gas.</div>
+<div class="step"><span class="step-num">2</span> <strong>Distinguishable vs. indistinguishable</strong>: When to use $Z_1^N$ vs $Z_1^N/N!$? What changes in the resulting entropy?</div>
+<div class="step"><span class="step-num">3</span> <strong>Ideal gas derivation</strong>: $Z_1 = V/v_q$ → $Z_N = \frac{1}{N!}(V/v_q)^N$ → $F$ → ideal gas law, Sackur-Tetrode. Do it from memory using the formula sheet.</div>
+<div class="step"><span class="step-num">4</span> <strong>Thermodynamic identities table</strong>: Given any potential ($U$, $H$, $F$, $G$), can you read off the right partial derivative? Practice: "How do I get $S$ from $G$?" → "$S = -(\partial G/\partial T)_P$".</div>
+<div class="step"><span class="step-num">5</span> <strong>Phase diagrams & Clausius-Clapeyron</strong>: Which phase has lower $G$ at given $(T,P)$? What's the slope of the coexistence line? Why does it slope left for water?</div>
+</div>
+
+<hr/>
+<p style="text-align:center; color:var(--dim); font-size:0.9rem; margin-top:2rem;">
+Good luck, Cheryl! Remember: the formula sheet is your friend — the exam tests whether you understand <em>when</em> to use each formula, not whether you memorized it. Think about what's held constant, what you're solving for, and which potential/identity connects them.
+</p>
+
+</body>
+</html>
